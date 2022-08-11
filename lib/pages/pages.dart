@@ -1,1 +1,1 @@
-export 'tally_page.dart';
+export 'tally_counter_page.dart';

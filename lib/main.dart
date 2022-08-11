@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:tally_counter/repositories/tally_counter_repository.dart';
 
 import 'cubits/cubits.dart';
 import 'pages/pages.dart';
+import 'repositories/repositories.dart';
 
 void main() {
   runApp(const MyApp());
@@ -25,7 +25,7 @@ class MyApp extends StatelessWidget {
         )..loadTallyCounters(),
         child: BlocBuilder<TallyCounterCubit, TallyCounterState>(
           builder: (context, state) {
-            return TallyPage(
+            return TallyCounterPage(
               tallyCounter: state.tallyCounters.first,
             );
           },
