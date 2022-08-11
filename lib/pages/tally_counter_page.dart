@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -39,11 +40,12 @@ class _TallyCounterPageState extends State<TallyCounterPage> with TickerProvider
       body: GestureDetector(
         behavior: HitTestBehavior.opaque,
         onTap: () {
-          _animateBackgroundColor(TallyCounterAction.increase);
           context.read<TallyCounterCubit>().changeCounter(
                 tallyCounter: widget.tallyCounter,
                 action: TallyCounterAction.increase,
               );
+          _animateBackgroundColor(TallyCounterAction.increase);
+          HapticFeedback.lightImpact();
         },
         child: BlocBuilder<TallyCounterCubit, TallyCounterState>(
           builder: (context, state) {
@@ -174,11 +176,12 @@ class _BottomButtonRow extends StatelessWidget {
               TallyCounterButton(
                 icon: const FaIcon(FontAwesomeIcons.minus),
                 onPressed: () {
-                  backgroundColorAnimation(TallyCounterAction.decrease);
                   context.read<TallyCounterCubit>().changeCounter(
                         tallyCounter: tallyCounter,
                         action: TallyCounterAction.decrease,
                       );
+                  backgroundColorAnimation(TallyCounterAction.decrease);
+                  HapticFeedback.lightImpact();
                 },
               ),
             ],
@@ -196,11 +199,12 @@ class _BottomButtonRow extends StatelessWidget {
       cancelText: 'Cancel',
       actionText: 'Reset',
       action: () {
-        backgroundColorAnimation(TallyCounterAction.reset);
         context.read<TallyCounterCubit>().changeCounter(
               tallyCounter: tallyCounter,
               action: TallyCounterAction.reset,
             );
+        backgroundColorAnimation(TallyCounterAction.reset);
+        HapticFeedback.lightImpact();
       },
     );
   }

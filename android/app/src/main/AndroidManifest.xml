@@ -1,5 +1,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.tally_counter">
+    
+    <uses-permission android:name="android.permission.VIBRATE" />
+
    <application
         android:label="tally_counter"
         android:name="${applicationName}"
