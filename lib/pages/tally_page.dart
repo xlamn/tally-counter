@@ -98,10 +98,10 @@ class TallyPage extends StatelessWidget {
   }
 
   Color? _getBackgroundColor(TallyCounterState state) {
-    if (state is TallyCounterIncreaseSuccess) {
+    if (state is TallyCounterIncreaseTransition) {
       return Colors.lightGreen;
     }
-    if (state is TallyCounterDecreaseSuccess) {
+    if (state is TallyCounterDecreaseTransition) {
       return Colors.red;
     }
     return null;
