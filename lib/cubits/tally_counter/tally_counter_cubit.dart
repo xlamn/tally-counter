@@ -2,6 +2,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tally_counter/models/tally_counter.dart';
 import 'package:tally_counter/repositories/tally_counter_repository.dart';
 
+import '../../enums/enums.dart';
+
 part 'tally_counter_state.dart';
 
 class TallyCounterCubit extends Cubit<TallyCounterState> {
@@ -13,27 +15,35 @@ class TallyCounterCubit extends Cubit<TallyCounterState> {
     emit(TallyCounterSuccess(tallyCounters));
   }
 
-  void increaseCounter(TallyCounter tallyCounter) async {
+  void changeCounter({required TallyCounterAction action, required TallyCounter tallyCounter}) {
+    switch (action) {
+      case TallyCounterAction.increase:
+        _increaseCounter(tallyCounter);
+        break;
+          case TallyCounterAction.decrease:
+        _decreaseCounter(tallyCounter);
+        break;
+              case TallyCounterAction.reset:
+        _resetCounter(tallyCounter);
+        break;
+    }
+  }
+
+  void _increaseCounter(TallyCounter tallyCounter) async {
     tallyCounter.count++;
     await tallyCounterRepository.saveTallyCounters([tallyCounter]);
-    emit(TallyCounterIncreaseTransition([tallyCounter]));
-    await Future.delayed(const Duration(seconds: 2));
     emit(TallyCounterSuccess([tallyCounter]));
   }
 
-  void decreaseCounter(TallyCounter tallyCounter) async {
+  void _decreaseCounter(TallyCounter tallyCounter) async {
     tallyCounter.count--;
     await tallyCounterRepository.saveTallyCounters([tallyCounter]);
-    emit(TallyCounterDecreaseTransition([tallyCounter]));
-    await Future.delayed(const Duration(seconds: 2));
     emit(TallyCounterSuccess([tallyCounter]));
   }
 
-  void resetCounter(TallyCounter tallyCounter) async {
+  void _resetCounter(TallyCounter tallyCounter) async {
     tallyCounter.count = 0;
     await tallyCounterRepository.saveTallyCounters([tallyCounter]);
-    emit(TallyCounterResetSuccess([tallyCounter]));
-    await Future.delayed(const Duration(seconds: 2));
     emit(TallyCounterSuccess([tallyCounter]));
   }
 }

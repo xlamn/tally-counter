@@ -13,15 +13,3 @@ class TallyCounterInitial extends TallyCounterState {
 class TallyCounterSuccess extends TallyCounterState {
   const TallyCounterSuccess(super.tallyCounters);
 }
-
-class TallyCounterIncreaseTransition extends TallyCounterState {
-  const TallyCounterIncreaseTransition(super.tallyCounters);
-}
-
-class TallyCounterDecreaseTransition extends TallyCounterState {
-  const TallyCounterDecreaseTransition(super.tallyCounters);
-}
-
-class TallyCounterResetSuccess extends TallyCounterSuccess {
-  const TallyCounterResetSuccess(super.tallyCounters);
-}
