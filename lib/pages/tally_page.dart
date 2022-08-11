@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import '../constants/constants.dart';
 import '../cubits/cubits.dart';
 import '../models/models.dart';
+import '../widgets/widgets.dart';
 
 class TallyPage extends StatelessWidget {
   final TallyCounter tallyCounter;
@@ -39,50 +41,23 @@ class TallyPage extends StatelessWidget {
                   child: Align(
                     alignment: Alignment.bottomLeft,
                     child: Container(
-                      padding: const EdgeInsets.all(
-                        SizeConstants.small,
+                      padding: const EdgeInsets.symmetric(
+                        vertical: SizeConstants.small,
+                        horizontal: SizeConstants.normal,
                       ),
                       child: Row(
                         children: [
-                          Container(
-                            margin: const EdgeInsets.all(
-                              SizeConstants.small,
-                            ),
-                            decoration: const BoxDecoration(
-                              color: Colors.blue,
-                              borderRadius: BorderRadius.all(
-                                Radius.circular(20),
-                              ),
-                            ),
-                            height: 44,
-                            width: 44,
-                            child: IconButton(
-                              icon: const Icon(Icons.circle),
-                              color: Colors.white,
-                              onPressed: () {
-                                context.read<TallyCounterCubit>().resetCounter(tallyCounter);
-                              },
-                            ),
+                          TallyCounterButton(
+                            icon: const FaIcon(FontAwesomeIcons.arrowRotateLeft),
+                            onPressed: () {
+                              context.read<TallyCounterCubit>().resetCounter(tallyCounter);
+                            },
                           ),
-                          Container(
-                            margin: const EdgeInsets.all(
-                              SizeConstants.small,
-                            ),
-                            decoration: const BoxDecoration(
-                              color: Colors.blue,
-                              borderRadius: BorderRadius.all(
-                                Radius.circular(20),
-                              ),
-                            ),
-                            height: 44,
-                            width: 44,
-                            child: IconButton(
-                              icon: const Icon(Icons.keyboard_arrow_down),
-                              color: Colors.white,
-                              onPressed: () {
-                                context.read<TallyCounterCubit>().decreaseCounter(tallyCounter);
-                              },
-                            ),
+                          TallyCounterButton(
+                            icon: const FaIcon(FontAwesomeIcons.anglesDown),
+                            onPressed: () {
+                              context.read<TallyCounterCubit>().decreaseCounter(tallyCounter);
+                            },
                           ),
                         ],
                       ),
