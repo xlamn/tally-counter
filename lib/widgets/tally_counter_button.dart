@@ -18,9 +18,9 @@ class TallyCounterButton extends StatelessWidget {
         SizeConstants.small,
       ),
       decoration: BoxDecoration(
-        color: Colors.black.withOpacity(0.6),
+        color: Colors.black.withOpacity(0.4),
         borderRadius: const BorderRadius.all(
-          Radius.circular(20),
+          Radius.circular(50),
         ),
       ),
       height: 44,

@@ -65,9 +65,9 @@ class _TallyCounterPageState extends State<TallyCounterPage> with TickerProvider
                     ),
                   ),
                 ),
-                _TopButtonRow(
-                  tallyCounter: widget.tallyCounter,
-                ),
+                // _TopButtonRow(
+                //   tallyCounter: widget.tallyCounter,
+                // ),
                 _BottomButtonRow(
                   tallyCounter: widget.tallyCounter,
                   backgroundColorAnimation: _animateBackgroundColor,
@@ -104,7 +104,7 @@ class _TallyCounterPageState extends State<TallyCounterPage> with TickerProvider
         return Colors.greenAccent;
 
       case TallyCounterAction.decrease:
-        return Colors.red;
+        return Colors.red.withOpacity(0.8);
 
       case TallyCounterAction.reset:
         return Colors.yellow;
@@ -204,7 +204,7 @@ class _BottomButtonRow extends StatelessWidget {
               action: TallyCounterAction.reset,
             );
         backgroundColorAnimation(TallyCounterAction.reset);
-        HapticFeedback.lightImpact();
+        HapticFeedback.mediumImpact();
       },
     );
   }

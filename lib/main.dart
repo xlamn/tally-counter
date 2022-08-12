@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'cubits/cubits.dart';
@@ -7,6 +8,10 @@ import 'repositories/repositories.dart';
 
 void main() {
   runApp(const MyApp());
+  SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
+    statusBarColor: Colors.transparent,
+    statusBarIconBrightness: Brightness.dark,
+  ));
 }
 
 class MyApp extends StatelessWidget {
@@ -19,6 +24,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
+      debugShowCheckedModeBanner: false,
       home: BlocProvider(
         create: (context) => TallyCounterCubit(
           tallyCounterRepository: TallyCounterRepository(),

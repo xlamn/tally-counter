@@ -23,7 +23,15 @@ void showAlertDialog(
             onPressed: () => Navigator.of(dialogContext).pop(false),
           ),
           TextButton(
-              child: Text(actionText),
+              style: TextButton.styleFrom(
+                primary: Colors.red,
+              ),
+              child: Text(
+                actionText,
+                style: const TextStyle(
+                  color: Colors.red,
+                ),
+              ),
               onPressed: () {
                 action();
                 Navigator.of(dialogContext).pop(true);
