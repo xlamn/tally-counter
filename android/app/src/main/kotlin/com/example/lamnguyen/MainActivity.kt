@@ -1,4 +1,4 @@
-package com.example.tally_counter
+package com.lamnguyen.tally_counter
 
 import io.flutter.embedding.android.FlutterActivity
 
