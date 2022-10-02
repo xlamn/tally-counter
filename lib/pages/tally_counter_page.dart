@@ -8,12 +8,11 @@ import '../cubits/cubits.dart';
 import '../enums/enums.dart';
 import '../models/models.dart';
 import '../widgets/widgets.dart';
+import 'pages.dart';
 
 class TallyCounterPage extends StatefulWidget {
-  final TallyCounter tallyCounter;
   const TallyCounterPage({
     Key? key,
-    required this.tallyCounter,
   }) : super(key: key);
 
   @override
@@ -36,12 +35,14 @@ class _TallyCounterPageState extends State<TallyCounterPage> with TickerProvider
 
   @override
   Widget build(BuildContext context) {
+    final tallyCounter = BlocProvider.of<TallyCounterCubit>(context).state.selected;
+
     return Scaffold(
       body: GestureDetector(
         behavior: HitTestBehavior.opaque,
         onTap: () {
           context.read<TallyCounterCubit>().changeCounter(
-                tallyCounter: widget.tallyCounter,
+                tallyCounter: tallyCounter,
                 action: TallyCounterAction.increase,
               );
           _animateBackgroundColor(TallyCounterAction.increase);
@@ -58,18 +59,18 @@ class _TallyCounterPageState extends State<TallyCounterPage> with TickerProvider
                   color: _animation?.value ?? _getStartColor(),
                   child: Center(
                     child: Text(
-                      '${widget.tallyCounter.count}',
+                      '${tallyCounter.count}',
                       style: const TextStyle(
                         fontSize: 50,
                       ),
                     ),
                   ),
                 ),
-                // _TopButtonRow(
-                //   tallyCounter: widget.tallyCounter,
-                // ),
+                _TopButtonRow(
+                  tallyCounter: tallyCounter,
+                ),
                 _BottomButtonRow(
-                  tallyCounter: widget.tallyCounter,
+                  tallyCounter: tallyCounter,
                   backgroundColorAnimation: _animateBackgroundColor,
                 ),
               ],
@@ -110,15 +111,26 @@ class _TallyCounterPageState extends State<TallyCounterPage> with TickerProvider
         return Colors.yellow;
     }
   }
+
+  @override
+  dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
 }
 
 class _TopButtonRow extends StatelessWidget {
   final TallyCounter tallyCounter;
 
-  const _TopButtonRow({Key? key, required this.tallyCounter}) : super(key: key);
+  const _TopButtonRow({
+    Key? key,
+    required this.tallyCounter,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final iconColor = Colors.black.withOpacity(0.4);
+
     return SafeArea(
       child: Align(
         alignment: Alignment.topCenter,
@@ -128,7 +140,7 @@ class _TopButtonRow extends StatelessWidget {
             horizontal: SizeConstants.normal,
           ),
           child: Row(
-            textDirection: TextDirection.rtl,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Container(
                 margin: const EdgeInsets.all(
@@ -136,14 +148,46 @@ class _TopButtonRow extends StatelessWidget {
                 ),
                 child: IconButton(
                     iconSize: SizeConstants.large,
-                    icon: const Icon(Icons.info_outline, size: 32),
-                    color: Colors.black.withOpacity(0.4),
-                    onPressed: () {}),
+                    icon: const FaIcon(FontAwesomeIcons.bars),
+                    color: iconColor,
+                    onPressed: () {
+                      PageConstants.pageController.animateToPage(
+                        0,
+                        duration: const Duration(milliseconds: 250),
+                        curve: Curves.linear,
+                      );
+                    }),
+              ),
+              Container(
+                margin: const EdgeInsets.all(
+                  SizeConstants.small,
+                ),
+                child: IconButton(
+                  iconSize: SizeConstants.large,
+                  icon: const FaIcon(FontAwesomeIcons.circleInfo),
+                  color: iconColor,
+                  onPressed: () => _showSettings(context),
+                ),
               ),
             ],
           ),
         ),
       ),
+    );
+  }
+
+  void _showSettings(BuildContext context) {
+    showModalBottomSheet(
+      context: context,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(
+          top: Radius.circular(20),
+        ),
+      ),
+      clipBehavior: Clip.antiAliasWithSaveLayer,
+      builder: ((context) => TallyCounterSettingsPage(
+            tallyCounter: tallyCounter,
+          )),
     );
   }
 }

@@ -9,11 +9,30 @@ part 'tally_counter_state.dart';
 class TallyCounterCubit extends Cubit<TallyCounterState> {
   final TallyCounterRepository tallyCounterRepository;
 
-  TallyCounterCubit({required this.tallyCounterRepository}) : super(TallyCounterInitial([TallyCounter()]));
+  TallyCounterCubit({required this.tallyCounterRepository})
+      : super(TallyCounterInitial([TallyCounter()], TallyCounter()));
   void loadTallyCounters() async {
     final tallyCounters = await tallyCounterRepository.getTallyCounters();
-    emit(TallyCounterSuccess(tallyCounters));
+    emit(TallyCounterSuccess(tallyCounters, tallyCounters.first));
   }
+
+  // multiple counters
+
+  void switchCounter(TallyCounter selected) {
+    emit(TallyCounterSuccess(state.tallyCounters, selected));
+  }
+
+  void addCounter() {
+    emit(TallyCounterSuccess([...state.tallyCounters, TallyCounter()], state.selected));
+  }
+
+  void removeCounter(TallyCounter selected) {
+    final tallyCounters = state.tallyCounters.toList();
+    tallyCounters.remove(selected);
+    emit(TallyCounterSuccess(tallyCounters, state.selected));
+  }
+
+  // counter itself
 
   void changeCounter({required TallyCounterAction action, required TallyCounter tallyCounter}) {
     switch (action) {
@@ -30,20 +49,20 @@ class TallyCounterCubit extends Cubit<TallyCounterState> {
   }
 
   void _increaseCounter(TallyCounter tallyCounter) async {
-    tallyCounter.count++;
-    await tallyCounterRepository.saveTallyCounters([tallyCounter]);
-    emit(TallyCounterSuccess([tallyCounter]));
+    state.selected.count++;
+    await tallyCounterRepository.saveTallyCounters(state.tallyCounters);
+    emit(TallyCounterSuccess(state.tallyCounters, state.selected));
   }
 
   void _decreaseCounter(TallyCounter tallyCounter) async {
-    tallyCounter.count--;
-    await tallyCounterRepository.saveTallyCounters([tallyCounter]);
-    emit(TallyCounterSuccess([tallyCounter]));
+    state.selected.count--;
+    await tallyCounterRepository.saveTallyCounters(state.tallyCounters);
+    emit(TallyCounterSuccess(state.tallyCounters, state.selected));
   }
 
   void _resetCounter(TallyCounter tallyCounter) async {
-    tallyCounter.count = 0;
-    await tallyCounterRepository.saveTallyCounters([tallyCounter]);
-    emit(TallyCounterSuccess([tallyCounter]));
+    state.selected.count = 0;
+    await tallyCounterRepository.saveTallyCounters(state.tallyCounters);
+    emit(TallyCounterSuccess(state.tallyCounters, state.selected));
   }
 }

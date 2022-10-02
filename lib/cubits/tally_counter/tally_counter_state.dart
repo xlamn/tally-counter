@@ -2,14 +2,15 @@ part of 'tally_counter_cubit.dart';
 
 abstract class TallyCounterState {
   final List<TallyCounter> tallyCounters;
+  final TallyCounter selected;
 
-  const TallyCounterState(this.tallyCounters);
+  const TallyCounterState(this.tallyCounters, this.selected);
 }
 
 class TallyCounterInitial extends TallyCounterState {
-  const TallyCounterInitial(super.tallyCounters);
+  TallyCounterInitial(super.tallyCounters, super.selected);
 }
 
 class TallyCounterSuccess extends TallyCounterState {
-  const TallyCounterSuccess(super.tallyCounters);
+  const TallyCounterSuccess(super.tallyCounters, super.selected);
 }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:tally_counter/constants/constants.dart';
 
 import 'cubits/cubits.dart';
 import 'pages/pages.dart';
@@ -19,20 +20,28 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      debugShowCheckedModeBanner: false,
-      home: BlocProvider(
-        create: (context) => TallyCounterCubit(
-          tallyCounterRepository: TallyCounterRepository(),
-        )..loadTallyCounters(),
-        child: BlocBuilder<TallyCounterCubit, TallyCounterState>(
+    return BlocProvider(
+      create: (context) => TallyCounterCubit(
+        tallyCounterRepository: TallyCounterRepository(),
+      )..loadTallyCounters(),
+      child: MaterialApp(
+        theme: ThemeData(
+          primarySwatch: Colors.blue,
+        ),
+        debugShowCheckedModeBanner: false,
+        home: BlocBuilder<TallyCounterCubit, TallyCounterState>(
           builder: (context, state) {
-            return TallyCounterPage(
-              tallyCounter: state.tallyCounters.first,
+            return Material(
+              child: PageView(
+                controller: PageConstants.pageController,
+                physics: const NeverScrollableScrollPhysics(),
+                children: [
+                  TallyCountersOverViewPage(
+                    tallyCounters: state.tallyCounters,
+                  ),
+                  const TallyCounterPage(),
+                ],
+              ),
             );
           },
         ),
