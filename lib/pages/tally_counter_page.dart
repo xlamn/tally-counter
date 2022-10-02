@@ -94,7 +94,7 @@ class _TallyCounterPageState extends State<TallyCounterPage> with TickerProvider
   }
 
   Color _getStartColor() {
-    return Theme.of(context).primaryColor;
+    return Theme.of(context).dialogBackgroundColor;
   }
 
   Color _getEndColor(TallyCounterAction action) {
