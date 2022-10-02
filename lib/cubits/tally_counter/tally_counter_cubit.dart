@@ -13,12 +13,14 @@ class TallyCounterCubit extends Cubit<TallyCounterState> {
       : super(TallyCounterInitial([TallyCounter()], TallyCounter()));
   void loadTallyCounters() async {
     final tallyCounters = await tallyCounterRepository.getTallyCounters();
-    emit(TallyCounterSuccess(tallyCounters, tallyCounters.first));
+    final selected = await tallyCounterRepository.getLastSelected();
+    emit(TallyCounterSuccess(tallyCounters, selected ?? tallyCounters.first));
   }
 
   // multiple counters
 
   void switchCounter(TallyCounter selected) {
+    tallyCounterRepository.saveLastSelected(selected);
     emit(TallyCounterSuccess(state.tallyCounters, selected));
   }
 

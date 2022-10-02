@@ -1,6 +1,3 @@
-import 'dart:io';
-
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -19,52 +16,52 @@ class TallyCountersOverViewPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (!Platform.isIOS) {
-      //TODO
-      return Scaffold(
-        appBar: AppBar(),
-        body: BlocBuilder<TallyCounterCubit, TallyCounterState>(
-          builder: (context, state) {
-            return Container();
-          },
-        ),
-      );
-    }
-
-    return CupertinoPageScaffold(
-      navigationBar: CupertinoNavigationBar(
-        middle: const Text('Tally Counters'),
-        trailing: IconButton(
-            iconSize: SizeConstants.normal,
-            icon: const FaIcon(FontAwesomeIcons.plus),
-            color: Colors.black.withOpacity(0.4),
-            onPressed: () {
-              BlocProvider.of<TallyCounterCubit>(context).addCounter();
-            }),
-      ),
-      child: BlocBuilder<TallyCounterCubit, TallyCounterState>(
+    return Scaffold(
+      body: BlocBuilder<TallyCounterCubit, TallyCounterState>(
         builder: (context, state) {
-          return ListView(
-            children: _buildTallyCounterItems(),
+          return CustomScrollView(
+            slivers: [
+              SliverAppBar.medium(
+                title: const Text('Easy Tally Counter'),
+                actions: [
+                  Container(
+                    padding: const EdgeInsets.all(SizeConstants.small),
+                    child: IconButton(
+                        iconSize: SizeConstants.normal,
+                        icon: const FaIcon(FontAwesomeIcons.plus),
+                        color: Theme.of(context).iconTheme.color!.withOpacity(0.5),
+                        onPressed: () {
+                          BlocProvider.of<TallyCounterCubit>(context).addCounter();
+                        }),
+                  ),
+                ],
+              ),
+              SliverList(
+                delegate: SliverChildBuilderDelegate(
+                  childCount: state.tallyCounters.length,
+                  (BuildContext context, int index) {
+                    return _buildTallyCounterListItem(index);
+                  },
+                ),
+              ),
+            ],
           );
         },
       ),
     );
   }
 
-  List<Widget> _buildTallyCounterItems() {
-    List<Widget> items = [];
-    for (var i = 0; i < tallyCounters.length; i++) {
-      items.add(_TallyCounterItem(
-        tallyCounter: tallyCounters[i],
-      ));
-      if (i != tallyCounters.length - 1) {
-        items.add(const Divider(
-          thickness: 1.5,
-        ));
-      }
-    }
-    return items;
+  Widget _buildTallyCounterListItem(int index) {
+    return Column(
+      children: [
+        _TallyCounterItem(tallyCounter: tallyCounters[index]),
+        if (index != tallyCounters.length - 1)
+          const Divider(
+            thickness: 1.5,
+            height: 0,
+          ),
+      ],
+    );
   }
 }
 
@@ -81,7 +78,7 @@ class _TallyCounterItem extends StatelessWidget {
     return GestureDetector(
         behavior: HitTestBehavior.opaque,
         child: Container(
-          padding: const EdgeInsets.all(SizeConstants.large),
+          padding: const EdgeInsets.all(SizeConstants.xLarge),
           child: Center(
               child: Text(
             '${tallyCounter.count}',

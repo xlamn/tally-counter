@@ -26,7 +26,7 @@ class TallyCounterSettingsPage extends StatelessWidget {
             margin: const EdgeInsets.all(SizeConstants.normal),
             child: TextButton(
               style: TextButton.styleFrom(
-                primary: Colors.red,
+                foregroundColor: Colors.red,
                 padding: const EdgeInsets.all(SizeConstants.normalSmaller),
                 textStyle: const TextStyle(fontSize: 20),
               ),

@@ -35,22 +35,20 @@ class _TallyCounterPageState extends State<TallyCounterPage> with TickerProvider
 
   @override
   Widget build(BuildContext context) {
-    final tallyCounter = BlocProvider.of<TallyCounterCubit>(context).state.selected;
-
     return Scaffold(
-      body: GestureDetector(
-        behavior: HitTestBehavior.opaque,
-        onTap: () {
-          context.read<TallyCounterCubit>().changeCounter(
-                tallyCounter: tallyCounter,
-                action: TallyCounterAction.increase,
-              );
-          _animateBackgroundColor(TallyCounterAction.increase);
-          HapticFeedback.lightImpact();
-        },
-        child: BlocBuilder<TallyCounterCubit, TallyCounterState>(
-          builder: (context, state) {
-            return Stack(
+      body: BlocBuilder<TallyCounterCubit, TallyCounterState>(
+        builder: (context, state) {
+          return GestureDetector(
+            behavior: HitTestBehavior.opaque,
+            onTap: () {
+              context.read<TallyCounterCubit>().changeCounter(
+                    tallyCounter: state.selected,
+                    action: TallyCounterAction.increase,
+                  );
+              _animateBackgroundColor(TallyCounterAction.increase);
+              HapticFeedback.lightImpact();
+            },
+            child: Stack(
               children: [
                 Container(
                   padding: EdgeInsets.only(
@@ -59,7 +57,7 @@ class _TallyCounterPageState extends State<TallyCounterPage> with TickerProvider
                   color: _animation?.value ?? _getStartColor(),
                   child: Center(
                     child: Text(
-                      '${tallyCounter.count}',
+                      '${state.selected.count}',
                       style: const TextStyle(
                         fontSize: 50,
                       ),
@@ -67,16 +65,16 @@ class _TallyCounterPageState extends State<TallyCounterPage> with TickerProvider
                   ),
                 ),
                 _TopButtonRow(
-                  tallyCounter: tallyCounter,
+                  tallyCounter: state.selected,
                 ),
                 _BottomButtonRow(
-                  tallyCounter: tallyCounter,
+                  tallyCounter: state.selected,
                   backgroundColorAnimation: _animateBackgroundColor,
                 ),
               ],
-            );
-          },
-        ),
+            ),
+          );
+        },
       ),
     );
   }
@@ -96,7 +94,7 @@ class _TallyCounterPageState extends State<TallyCounterPage> with TickerProvider
   }
 
   Color _getStartColor() {
-    return Colors.white;
+    return Theme.of(context).primaryColor;
   }
 
   Color _getEndColor(TallyCounterAction action) {
@@ -129,7 +127,7 @@ class _TopButtonRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final iconColor = Colors.black.withOpacity(0.4);
+    final iconColor = Theme.of(context).iconTheme.color!.withOpacity(0.5);
 
     return SafeArea(
       child: Align(

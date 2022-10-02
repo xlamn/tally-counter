@@ -18,7 +18,7 @@ class TallyCounterButton extends StatelessWidget {
         SizeConstants.small,
       ),
       decoration: BoxDecoration(
-        color: Colors.black.withOpacity(0.4),
+        color: Theme.of(context).iconTheme.color!.withOpacity(0.5),
         borderRadius: const BorderRadius.all(
           Radius.circular(50),
         ),
@@ -28,7 +28,7 @@ class TallyCounterButton extends StatelessWidget {
       child: IconButton(
         iconSize: SizeConstants.large,
         icon: icon,
-        color: Colors.white,
+        color: Theme.of(context).dialogBackgroundColor,
         onPressed: onPressed,
       ),
     );

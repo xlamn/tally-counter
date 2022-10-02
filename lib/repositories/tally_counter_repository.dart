@@ -20,4 +20,20 @@ class TallyCounterRepository {
       return [TallyCounter()];
     }
   }
+
+  Future<void> saveLastSelected(TallyCounter tallyCounter) async {
+    final prefs = await SharedPreferences.getInstance();
+    String tallyCounterEncoded = jsonEncode(tallyCounter.toJson());
+    await prefs.setString('selected', tallyCounterEncoded);
+  }
+
+  Future<TallyCounter?> getLastSelected() async {
+    final prefs = await SharedPreferences.getInstance();
+    String tallyCounterEncoded = prefs.getString('selected') ?? '';
+    if (tallyCounterEncoded.isNotEmpty) {
+      return TallyCounter.fromJson(jsonDecode(tallyCounterEncoded));
+    } else {
+      return null;
+    }
+  }
 }

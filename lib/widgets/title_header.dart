@@ -25,8 +25,7 @@ class TitleHeader extends StatelessWidget {
           Text(
             title,
             style: const TextStyle(
-              fontSize: 32.0,
-              fontWeight: FontWeight.bold,
+              fontSize: 28.0,
             ),
           ),
           if (trailing != null) trailing!,
