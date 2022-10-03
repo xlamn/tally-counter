@@ -16,7 +16,6 @@ class TitleHeader extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.symmetric(
-        horizontal: SizeConstants.large,
         vertical: SizeConstants.xLarge,
       ),
       child: Row(

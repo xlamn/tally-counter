@@ -59,9 +59,7 @@ class TopButtonRow extends StatelessWidget {
         ),
       ),
       clipBehavior: Clip.antiAliasWithSaveLayer,
-      builder: ((context) => TallyCounterSettingsPage(
-            tallyCounter: tallyCounter,
-          )),
+      builder: ((context) => const TallyCounterSettingsPage()),
     );
   }
 }

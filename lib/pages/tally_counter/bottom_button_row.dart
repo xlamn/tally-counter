@@ -37,8 +37,7 @@ class BottomButtonRow extends StatelessWidget {
               TallyCounterButton(
                 icon: const FaIcon(FontAwesomeIcons.minus),
                 onPressed: () {
-                  context.read<TallyCounterCubit>().changeCounter(
-                        tallyCounter: tallyCounter,
+                  context.read<TallyCounterCubit>().updateCount(
                         action: TallyCounterAction.decrease,
                       );
                   backgroundColorAnimation(TallyCounterAction.decrease);
@@ -60,8 +59,7 @@ class BottomButtonRow extends StatelessWidget {
       cancelText: 'Cancel',
       actionText: 'Reset',
       action: () {
-        context.read<TallyCounterCubit>().changeCounter(
-              tallyCounter: tallyCounter,
+        context.read<TallyCounterCubit>().updateCount(
               action: TallyCounterAction.reset,
             );
         backgroundColorAnimation(TallyCounterAction.reset);

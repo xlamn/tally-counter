@@ -21,19 +21,13 @@ class TallyCounterRepository {
     }
   }
 
-  Future<void> saveLastSelected(TallyCounter tallyCounter) async {
+  Future<void> saveLastTallyCounterPosition(int position) async {
     final prefs = await SharedPreferences.getInstance();
-    String tallyCounterEncoded = jsonEncode(tallyCounter.toJson());
-    await prefs.setString('selected', tallyCounterEncoded);
+    await prefs.setInt('tallyCounter_position', position);
   }
 
-  Future<TallyCounter?> getLastSelected() async {
+  Future<int> getLastTallyCounterPosition() async {
     final prefs = await SharedPreferences.getInstance();
-    String tallyCounterEncoded = prefs.getString('selected') ?? '';
-    if (tallyCounterEncoded.isNotEmpty) {
-      return TallyCounter.fromJson(jsonDecode(tallyCounterEncoded));
-    } else {
-      return null;
-    }
+    return prefs.getInt('tallyCounter_position') ?? 0;
   }
 }

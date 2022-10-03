@@ -1,10 +1,19 @@
 part of 'tally_counter_cubit.dart';
 
-abstract class TallyCounterState {
+class TallyCounterState {
   final List<TallyCounter> tallyCounters;
-  final TallyCounter selected;
+  final int selected;
 
   const TallyCounterState(this.tallyCounters, this.selected);
+
+  TallyCounterState copyWith({String? title, int? count}) {
+    final tallyCounter = tallyCounters[selected];
+    tallyCounters[selected] = TallyCounter(
+      title: title ?? tallyCounter.title,
+      count: count ?? tallyCounter.count,
+    );
+    return TallyCounterState(tallyCounters, selected);
+  }
 }
 
 class TallyCounterInitial extends TallyCounterState {

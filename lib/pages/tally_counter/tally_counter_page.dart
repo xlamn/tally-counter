@@ -38,8 +38,7 @@ class _TallyCounterPageState extends State<TallyCounterPage> with TickerProvider
           return GestureDetector(
             behavior: HitTestBehavior.opaque,
             onTap: () {
-              context.read<TallyCounterCubit>().changeCounter(
-                    tallyCounter: state.selected,
+              context.read<TallyCounterCubit>().updateCount(
                     action: TallyCounterAction.increase,
                   );
               _animateBackgroundColor(TallyCounterAction.increase);
@@ -54,7 +53,7 @@ class _TallyCounterPageState extends State<TallyCounterPage> with TickerProvider
                   color: _animation?.value ?? _getStartColor(),
                   child: Center(
                     child: Text(
-                      '${state.selected.count}',
+                      '${state.tallyCounters[state.selected].count}',
                       style: const TextStyle(
                         fontSize: 50,
                       ),
@@ -62,10 +61,10 @@ class _TallyCounterPageState extends State<TallyCounterPage> with TickerProvider
                   ),
                 ),
                 TopButtonRow(
-                  tallyCounter: state.selected,
+                  tallyCounter: state.tallyCounters[state.selected],
                 ),
                 BottomButtonRow(
-                  tallyCounter: state.selected,
+                  tallyCounter: state.tallyCounters[state.selected],
                   backgroundColorAnimation: _animateBackgroundColor,
                 ),
               ],

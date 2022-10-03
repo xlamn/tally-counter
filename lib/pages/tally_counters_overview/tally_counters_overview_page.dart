@@ -6,15 +6,11 @@ import '../../constants/constants.dart';
 import '../../cubits/cubits.dart';
 import '../../models/models.dart';
 import '../../widgets/widgets.dart';
-import 'app_header.dart';
 import 'tally_counter_item.dart';
 
 class TallyCountersOverViewPage extends StatelessWidget {
-  final List<TallyCounter> tallyCounters;
-
   const TallyCountersOverViewPage({
     Key? key,
-    required this.tallyCounters,
   }) : super(key: key);
 
   @override
@@ -24,9 +20,10 @@ class TallyCountersOverViewPage extends StatelessWidget {
         builder: (context, state) {
           return CustomScrollView(
             slivers: [
-              const AppHeader(
-                title: 'Tally Counter',
-                actions: [
+              SliverAppBar(
+                toolbarHeight: MediaQuery.of(context).size.height * 0.1,
+                backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+                actions: const [
                   _AddTallyCounterButton(),
                 ],
               ),
@@ -34,7 +31,7 @@ class TallyCountersOverViewPage extends StatelessWidget {
                 delegate: SliverChildBuilderDelegate(
                   childCount: state.tallyCounters.length,
                   (BuildContext context, int index) {
-                    return _buildTallyCounterListItem(context, index);
+                    return _buildTallyCounterListItem(context, index, state.tallyCounters);
                   },
                 ),
               ),
@@ -45,7 +42,7 @@ class TallyCountersOverViewPage extends StatelessWidget {
     );
   }
 
-  Widget _buildTallyCounterListItem(BuildContext context, int index) {
+  Widget _buildTallyCounterListItem(BuildContext context, int index, List<TallyCounter> tallyCounters) {
     return Column(
       children: [
         TallyCounterItem(tallyCounter: tallyCounters[index]),
@@ -66,7 +63,7 @@ class _AddTallyCounterButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.symmetric(
+      padding: const EdgeInsets.symmetric(
         vertical: SizeConstants.normalSmaller,
         horizontal: SizeConstants.normal,
       ),

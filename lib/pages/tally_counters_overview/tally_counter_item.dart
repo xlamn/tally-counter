@@ -18,12 +18,28 @@ class TallyCounterItem extends StatelessWidget {
     return GestureDetector(
       behavior: HitTestBehavior.opaque,
       child: Container(
-        padding: const EdgeInsets.all(SizeConstants.xLarge),
-        child: Center(
-            child: Text(
-          '${tallyCounter.count}',
-          style: const TextStyle(fontSize: 25),
-        )),
+        padding: const EdgeInsets.all(SizeConstants.large),
+        child: Column(
+          children: [
+            Container(
+              padding: const EdgeInsets.all(SizeConstants.xxSmall),
+              child: Text(
+                tallyCounter.title ?? 'No Name',
+                style: TextStyle(
+                  fontSize: 16,
+                  color: Theme.of(context).textTheme.headlineMedium!.color,
+                ),
+              ),
+            ),
+            Container(
+              padding: const EdgeInsets.all(SizeConstants.xxSmall),
+              child: Text(
+                '${tallyCounter.count}',
+                style: const TextStyle(fontSize: 24),
+              ),
+            ),
+          ],
+        ),
       ),
       onTap: () => _onTallyCounterTap(context),
     );
