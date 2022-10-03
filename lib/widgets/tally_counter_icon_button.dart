@@ -24,7 +24,7 @@ class TallyCounterIconButton extends StatelessWidget {
         iconSize: iconSize,
         icon: icon,
         color: Theme.of(context).iconTheme.color!.withOpacity(0.5),
-        onPressed: () => action,
+        onPressed: action,
       ),
     );
   }
