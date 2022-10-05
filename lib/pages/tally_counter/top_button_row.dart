@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import '../../constants/constants.dart';
+import '../../cubits/cubits.dart';
 import '../../models/models.dart';
 import '../../widgets/widgets.dart';
 import '../pages.dart';
@@ -33,7 +35,7 @@ class TopButtonRow extends StatelessWidget {
               ),
               TallyCounterIconButton(
                 icon: const FaIcon(FontAwesomeIcons.circleInfo),
-                action: () => _showSettings(context),
+                action: () async => await _showSettings(context),
               ),
             ],
           ),
@@ -50,8 +52,8 @@ class TopButtonRow extends StatelessWidget {
     );
   }
 
-  void _showSettings(BuildContext context) {
-    showModalBottomSheet(
+  Future<void> _showSettings(BuildContext context) async {
+    await showModalBottomSheet(
       context: context,
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.vertical(
@@ -60,6 +62,15 @@ class TopButtonRow extends StatelessWidget {
       ),
       clipBehavior: Clip.antiAliasWithSaveLayer,
       builder: ((context) => const TallyCounterSettingsPage()),
+    ).whenComplete(() => _updateCounter(context));
+  }
+
+  void _updateCounter(BuildContext context) {
+    BlocProvider.of<TallyCounterCubit>(context).updateCounter(
+      title: PageConstants.titleController.text,
+      count: int.parse(
+        PageConstants.countController.value.text,
+      ),
     );
   }
 }

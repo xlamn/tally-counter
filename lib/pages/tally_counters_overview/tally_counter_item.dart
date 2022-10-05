@@ -24,7 +24,7 @@ class TallyCounterItem extends StatelessWidget {
             Container(
               padding: const EdgeInsets.all(SizeConstants.xxSmall),
               child: Text(
-                tallyCounter.title ?? 'No Name',
+                tallyCounter.title?.isNotEmpty ?? false ? tallyCounter.title! : 'No Name',
                 style: TextStyle(
                   fontSize: 16,
                   color: Theme.of(context).textTheme.headlineMedium!.color,

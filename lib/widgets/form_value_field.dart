@@ -3,25 +3,25 @@ import 'package:flutter/material.dart';
 import '../constants/constants.dart';
 import '../models/models.dart';
 
-class FormTextField extends StatefulWidget {
+class FormValueField extends StatefulWidget {
   final TallyCounter tallyCounter;
   final String title;
   final int? length;
-  final TextEditingController? textController;
+  final TextEditingController? valueController;
 
-  const FormTextField({
+  const FormValueField({
     Key? key,
     required this.tallyCounter,
     required this.title,
     this.length,
-    this.textController,
+    this.valueController,
   }) : super(key: key);
 
   @override
-  State<FormTextField> createState() => _FormTextFieldState();
+  State<FormValueField> createState() => _FormValueFieldState();
 }
 
-class _FormTextFieldState extends State<FormTextField> {
+class _FormValueFieldState extends State<FormValueField> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -40,8 +40,9 @@ class _FormTextFieldState extends State<FormTextField> {
           ),
           TextFormField(
             maxLines: 1,
-            controller: widget.textController,
+            controller: widget.valueController,
             maxLength: widget.length,
+            keyboardType: TextInputType.number,
             decoration: InputDecoration(
               counterText: '',
               border: OutlineInputBorder(

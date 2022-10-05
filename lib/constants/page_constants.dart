@@ -4,4 +4,8 @@ class PageConstants {
   static PageController pageController = PageController(
     initialPage: 1,
   );
+
+  static TextEditingController titleController = TextEditingController();
+
+  static TextEditingController countController = TextEditingController();
 }

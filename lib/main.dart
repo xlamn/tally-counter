@@ -2,14 +2,26 @@ import 'package:dynamic_color/dynamic_color.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:tally_counter/constants/constants.dart';
 
+import 'constants/constants.dart';
 import 'cubits/cubits.dart';
+import 'helper/helper.dart';
 import 'pages/pages.dart';
 import 'repositories/repositories.dart';
 
 void main() {
+  setUp();
   runApp(const MyApp());
+}
+
+void setUp() {
+  // Logging Settings
+  final cubitDelegateFactory = CubitDelegateFactory();
+  if (!cubitDelegateFactory.hasObserverSetup(Bloc.observer)) {
+    Bloc.observer = cubitDelegateFactory.create();
+  }
+
+  // Status Bar Settings
   SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
     statusBarColor: Colors.transparent,
     statusBarIconBrightness: Brightness.dark,
@@ -18,14 +30,6 @@ void main() {
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
-
-  static final _defaultLightColorScheme = ColorScheme.fromSwatch(
-    primarySwatch: Colors.blue,
-  );
-  static final _defaultDarkColorScheme = ColorScheme.fromSwatch(
-    primarySwatch: Colors.blue,
-    brightness: Brightness.dark,
-  );
 
   @override
   Widget build(BuildContext context) {
@@ -37,11 +41,11 @@ class MyApp extends StatelessWidget {
         builder: ((lightColorScheme, darkColorScheme) {
           return MaterialApp(
             theme: ThemeData(
-              colorScheme: lightColorScheme ?? _defaultLightColorScheme,
+              colorScheme: lightColorScheme ?? ColorConstants.defaultLightColorScheme,
               useMaterial3: true,
             ),
             darkTheme: ThemeData(
-              colorScheme: darkColorScheme ?? _defaultDarkColorScheme,
+              colorScheme: darkColorScheme ?? ColorConstants.defaultDarkColorScheme,
               useMaterial3: true,
             ),
             themeMode: ThemeMode.system,

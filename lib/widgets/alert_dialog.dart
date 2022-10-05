@@ -24,7 +24,7 @@ void showAlertDialog(
           ),
           TextButton(
               style: TextButton.styleFrom(
-                primary: Colors.red,
+                foregroundColor: Colors.red,
               ),
               child: Text(
                 actionText,
