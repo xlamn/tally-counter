@@ -1,4 +1,3 @@
-import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../enums/enums.dart';
@@ -75,7 +74,6 @@ class TallyCounterCubit extends Cubit<TallyCounterState> {
   }
 
   Future<void> updateCounter({String? title, int? count}) async {
-    emit(TallyCounterStateLoading(state.tallyCounters, state.selected));
     emit(state.copyCounter(title: title, count: count));
     await tallyCounterRepository.saveTallyCounters(state.tallyCounters);
   }

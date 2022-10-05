@@ -1,6 +1,6 @@
 part of 'tally_counter_cubit.dart';
 
-class TallyCounterState extends Equatable {
+class TallyCounterState {
   final List<TallyCounter> tallyCounters;
   final int selected;
 
@@ -22,12 +22,4 @@ class TallyCounterState extends Equatable {
     );
     return TallyCounterState(tallyCounters, selected);
   }
-
-  @override
-  List<Object?> get props => [tallyCounters, selected];
-}
-
-//TODO: Remove loading and only be dependent on state for state changes
-class TallyCounterStateLoading extends TallyCounterState {
-  const TallyCounterStateLoading(super.tallyCounters, super.selected);
 }
