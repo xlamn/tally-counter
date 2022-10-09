@@ -15,8 +15,14 @@ class TallyCounterSettingsPage extends StatelessWidget {
         PageConstants.titleController.value = TextEditingValue(
           text: state.tallyCounters[state.selected].title ?? '',
         );
+
+        //TODO: Cursor isn't consistent
         PageConstants.countController.value = TextEditingValue(
           text: '${state.tallyCounters[state.selected].count}',
+        );
+
+        PageConstants.stepController.value = TextEditingValue(
+          text: '${state.tallyCounters[state.selected].step}',
         );
 
         return SafeArea(
@@ -37,6 +43,11 @@ class TallyCounterSettingsPage extends StatelessWidget {
                   title: 'Value',
                   valueController: PageConstants.countController,
                 ),
+                FormValueField(
+                  tallyCounter: state.tallyCounters[state.selected],
+                  title: 'Steps',
+                  valueController: PageConstants.stepController,
+                ),
                 Expanded(
                   child: Container(),
                 ),
@@ -44,7 +55,7 @@ class TallyCounterSettingsPage extends StatelessWidget {
                   margin: const EdgeInsets.all(SizeConstants.normal),
                   child: TextButton(
                     style: TextButton.styleFrom(
-                      foregroundColor: Colors.red,
+                      foregroundColor: Colors.red.withOpacity(0.8),
                       padding: const EdgeInsets.all(SizeConstants.normalSmaller),
                       textStyle: const TextStyle(fontSize: 20),
                     ),

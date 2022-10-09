@@ -8,4 +8,6 @@ class PageConstants {
   static TextEditingController titleController = TextEditingController();
 
   static TextEditingController countController = TextEditingController();
+
+  static TextEditingController stepController = TextEditingController();
 }

@@ -68,9 +68,16 @@ class TopButtonRow extends StatelessWidget {
   void _updateCounter(BuildContext context) {
     BlocProvider.of<TallyCounterCubit>(context).updateCounter(
       title: PageConstants.titleController.text,
-      count: int.parse(
-        PageConstants.countController.value.text,
-      ),
+      count: PageConstants.countController.value.text.isNotEmpty
+          ? int.parse(
+              PageConstants.countController.value.text,
+            )
+          : null,
+      step: PageConstants.stepController.value.text.isNotEmpty
+          ? int.parse(
+              PageConstants.stepController.value.text,
+            )
+          : null,
     );
   }
 }

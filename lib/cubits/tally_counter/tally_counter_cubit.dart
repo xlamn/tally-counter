@@ -62,10 +62,10 @@ class TallyCounterCubit extends Cubit<TallyCounterState> {
   void updateCount({required TallyCounterAction action}) async {
     switch (action) {
       case TallyCounterAction.increase:
-        await updateCounter(count: _getSelectedCounter().count + 1);
+        await updateCounter(count: _getSelectedCounter().count + _getSelectedCounter().step);
         break;
       case TallyCounterAction.decrease:
-        await updateCounter(count: _getSelectedCounter().count - 1);
+        await updateCounter(count: _getSelectedCounter().count - _getSelectedCounter().step);
         break;
       case TallyCounterAction.reset:
         await updateCounter(count: 0);
@@ -73,8 +73,8 @@ class TallyCounterCubit extends Cubit<TallyCounterState> {
     }
   }
 
-  Future<void> updateCounter({String? title, int? count}) async {
-    emit(state.copyCounter(title: title, count: count));
+  Future<void> updateCounter({String? title, int? count, int? step}) async {
+    emit(state.copyCounter(title: title, count: count, step: step));
     await tallyCounterRepository.saveTallyCounters(state.tallyCounters);
   }
 

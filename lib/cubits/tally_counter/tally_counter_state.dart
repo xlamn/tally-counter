@@ -13,12 +13,13 @@ class TallyCounterState {
     );
   }
 
-  TallyCounterState copyCounter({String? title, int? count}) {
+  TallyCounterState copyCounter({String? title, int? count, int? step}) {
     final tallyCounter = tallyCounters[selected];
 
     tallyCounters[selected] = TallyCounter(
       title: title ?? tallyCounter.title,
       count: count ?? tallyCounter.count,
+      step: step ?? tallyCounter.step,
     );
     return TallyCounterState(tallyCounters, selected);
   }
