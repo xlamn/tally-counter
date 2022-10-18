@@ -46,12 +46,7 @@ class TallyCountersOverViewPage extends StatelessWidget {
     return Column(
       children: [
         TallyCounterItem(tallyCounter: tallyCounters[index]),
-        if (index != tallyCounters.length - 1)
-          Divider(
-            thickness: 1.5,
-            height: 0,
-            color: Theme.of(context).textTheme.bodyMedium!.color!.withOpacity(0.5),
-          ),
+        if (index == tallyCounters.length - 1) const SizedBox(height: SizeConstants.xxLarge)
       ],
     );
   }

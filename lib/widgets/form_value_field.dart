@@ -3,8 +3,8 @@ import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import '../constants/constants.dart';
-import '../extensions/extensions.dart';
 import '../models/models.dart';
+import 'widgets.dart';
 
 class FormValueField extends StatefulWidget {
   final TallyCounter tallyCounter;
@@ -67,7 +67,7 @@ class _FormValueFieldState extends State<FormValueField> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
-                    _ArrowButton(
+                    StepButton(
                       color: Colors.red,
                       icon: FaIcon(
                         FontAwesomeIcons.arrowDown,
@@ -75,7 +75,7 @@ class _FormValueFieldState extends State<FormValueField> {
                       ),
                       onPressed: () => onPressed(isUp: false),
                     ),
-                    _ArrowButton(
+                    StepButton(
                       color: Colors.green,
                       icon: const FaIcon(
                         FontAwesomeIcons.arrowUp,
@@ -97,43 +97,5 @@ class _FormValueFieldState extends State<FormValueField> {
     int currentValue = int.parse(widget.valueController!.text);
     isUp ? currentValue++ : currentValue--;
     widget.valueController!.text = (currentValue).toString();
-  }
-}
-
-class _ArrowButton extends StatelessWidget {
-  final Color color;
-  final Widget icon;
-  final void Function()? onPressed;
-
-  const _ArrowButton({
-    Key? key,
-    required this.color,
-    required this.icon,
-    required this.onPressed,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.symmetric(
-        horizontal: SizeConstants.xxSmall,
-      ),
-      margin: const EdgeInsets.all(SizeConstants.xSmall),
-      decoration: BoxDecoration(
-        color: color.withOpacity(context.isDarkMode ? 0.2 : 0.4),
-        border: Border.all(
-          color: color.withOpacity(0.5),
-        ),
-        borderRadius: const BorderRadius.all(
-          Radius.circular(10),
-        ),
-      ),
-      child: IconButton(
-        padding: EdgeInsets.zero,
-        iconSize: SizeConstants.normal,
-        icon: icon,
-        onPressed: onPressed,
-      ),
-    );
   }
 }

@@ -51,16 +51,26 @@ class TallyCounterSettingsPage extends StatelessWidget {
                 Expanded(
                   child: Container(),
                 ),
-                Container(
-                  margin: const EdgeInsets.all(SizeConstants.normal),
-                  child: TextButton(
-                    style: TextButton.styleFrom(
-                      foregroundColor: Colors.red.withOpacity(0.8),
-                      padding: const EdgeInsets.all(SizeConstants.normalSmaller),
-                      textStyle: const TextStyle(fontSize: 20),
+                GestureDetector(
+                  onTap: (state.tallyCounters.length > 1) ? () => _onDelete(context) : null,
+                  child: Container(
+                    margin: const EdgeInsets.all(SizeConstants.small),
+                    padding: const EdgeInsets.symmetric(
+                      vertical: SizeConstants.normal,
+                      horizontal: SizeConstants.xLarge,
                     ),
-                    onPressed: (state.tallyCounters.length > 1) ? () => _onDelete(context) : null,
-                    child: const Text('Delete'),
+                    decoration: BoxDecoration(
+                      color: Colors.red.withOpacity(0.1),
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                    child: const Text(
+                      'Delete',
+                      style: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w500,
+                        color: Colors.red,
+                      ),
+                    ),
                   ),
                 ),
               ],
