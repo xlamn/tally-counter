@@ -41,6 +41,7 @@ class MyApp extends StatelessWidget {
         builder: ((lightColorScheme, darkColorScheme) {
           return MaterialApp(
             theme: ThemeData(
+              fontFamily: "Poppins",
               colorScheme: lightColorScheme ?? ColorConstants.defaultLightColorScheme,
               useMaterial3: true,
             ),
