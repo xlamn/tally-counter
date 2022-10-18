@@ -73,7 +73,7 @@ class _FormValueFieldState extends State<FormValueField> {
                         FontAwesomeIcons.arrowDown,
                         color: Colors.red.withOpacity(0.8),
                       ),
-                      onPressed: () => onPressed(isUp: false),
+                      onPressed: () => _onPressed(isUp: false),
                     ),
                     StepButton(
                       color: Colors.green,
@@ -81,7 +81,7 @@ class _FormValueFieldState extends State<FormValueField> {
                         FontAwesomeIcons.arrowUp,
                         color: Colors.green,
                       ),
-                      onPressed: () => onPressed(isUp: true),
+                      onPressed: () => _onPressed(isUp: true),
                     ),
                   ],
                 ),
@@ -93,7 +93,7 @@ class _FormValueFieldState extends State<FormValueField> {
     );
   }
 
-  void onPressed({required bool isUp}) {
+  void _onPressed({required bool isUp}) {
     int currentValue = int.parse(widget.valueController!.text);
     isUp ? currentValue++ : currentValue--;
     widget.valueController!.text = (currentValue).toString();

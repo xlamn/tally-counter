@@ -8,6 +8,7 @@ import '../../cubits/cubits.dart';
 import '../../enums/enums.dart';
 import '../../models/models.dart';
 import '../../widgets/widgets.dart';
+import 'reset_dialog.dart';
 
 class BottomButtonRow extends StatelessWidget {
   final TallyCounter tallyCounter;
@@ -32,7 +33,10 @@ class BottomButtonRow extends StatelessWidget {
             children: [
               TallyCounterButton(
                 icon: const FaIcon(FontAwesomeIcons.arrowRotateLeft),
-                onPressed: () => _showResetDialog(context),
+                onPressed: () => showResetDialog(
+                  context,
+                  backgroundColorAnimation: backgroundColorAnimation,
+                ),
               ),
               TallyCounterButton(
                 icon: const FaIcon(FontAwesomeIcons.minus),
@@ -48,23 +52,6 @@ class BottomButtonRow extends StatelessWidget {
           ),
         ),
       ),
-    );
-  }
-
-  _showResetDialog(BuildContext context) {
-    showAlertDialog(
-      context,
-      title: 'Warning',
-      description: 'Are you sure to reset the Counter?',
-      cancelText: 'Cancel',
-      actionText: 'Reset',
-      action: () {
-        context.read<TallyCounterCubit>().updateCount(
-              action: TallyCounterAction.reset,
-            );
-        backgroundColorAnimation(TallyCounterAction.reset);
-        HapticFeedback.mediumImpact();
-      },
     );
   }
 }

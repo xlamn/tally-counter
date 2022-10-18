@@ -57,7 +57,7 @@ class TallyCounterSettingsPage extends StatelessWidget {
                     margin: const EdgeInsets.all(SizeConstants.small),
                     padding: const EdgeInsets.symmetric(
                       vertical: SizeConstants.normal,
-                      horizontal: SizeConstants.xLarge,
+                      horizontal: SizeConstants.large,
                     ),
                     decoration: BoxDecoration(
                       color: Colors.red.withOpacity(0.1),

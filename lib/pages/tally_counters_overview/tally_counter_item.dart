@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:tally_counter/constants/constants.dart';
+import 'package:tally_counter/enums/enums.dart';
 import 'package:tally_counter/widgets/widgets.dart';
 
 import '../../cubits/cubits.dart';
@@ -31,12 +32,13 @@ class TallyCounterItem extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             StepButton(
-                color: Colors.red,
-                icon: FaIcon(
-                  FontAwesomeIcons.arrowDown,
-                  color: Colors.red.withOpacity(0.8),
-                ),
-                onPressed: null),
+              color: Colors.red,
+              icon: FaIcon(
+                FontAwesomeIcons.arrowDown,
+                color: Colors.red.withOpacity(0.8),
+              ),
+              onPressed: () => _onPressed(context, isUp: false),
+            ),
             Flexible(
               child: Column(
                 children: [
@@ -74,7 +76,7 @@ class TallyCounterItem extends StatelessWidget {
                 FontAwesomeIcons.arrowUp,
                 color: Colors.green,
               ),
-              onPressed: () {},
+              onPressed: () => _onPressed(context, isUp: true),
             ),
           ],
         ),
@@ -90,5 +92,11 @@ class TallyCounterItem extends StatelessWidget {
       duration: const Duration(milliseconds: 250),
       curve: Curves.linear,
     );
+  }
+
+  void _onPressed(BuildContext context, {required bool isUp}) {
+    final cubit = BlocProvider.of<TallyCounterCubit>(context);
+    cubit.switchCounter(tallyCounter);
+    cubit.updateCount(action: isUp ? TallyCounterAction.increase : TallyCounterAction.decrease);
   }
 }
