@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../cubits/cubits.dart';
 import '../../enums/enums.dart';
+import '../../extensions/extensions.dart';
 import '../../widgets/widgets.dart';
 
 showResetDialog(
@@ -12,10 +13,10 @@ showResetDialog(
 }) {
   showAlertDialog(
     context,
-    title: 'Warning',
-    description: 'Are you sure to reset the Counter?',
-    cancelText: 'Cancel',
-    actionText: 'Reset',
+    title: context.local.warning.toCapitalized(),
+    description: context.local.warningDescription,
+    cancelText: context.local.cancel.toCapitalized(),
+    actionText: context.local.reset.toCapitalized(),
     action: () {
       context.read<TallyCounterCubit>().updateCount(
             action: TallyCounterAction.reset,

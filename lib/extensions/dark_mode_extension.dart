@@ -8,3 +8,4 @@ extension DarkMode on BuildContext {
     return brightness == Brightness.dark;
   }
 }
+

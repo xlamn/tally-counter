@@ -1,0 +1,10 @@
+{
+  "cancel": "abbrechen",
+  "warning": "Warnung",
+  "warningDescription": "Bist du dir sicher, dass du den Zähler zurücksetzen möchtest?",
+  "reset": "zurücksetzen",
+  "delete": "löschen",
+  "title": "Titel",
+  "value": "Wert",
+  "steps": "Schritte"
+}

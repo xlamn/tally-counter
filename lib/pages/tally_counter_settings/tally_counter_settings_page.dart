@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../constants/constants.dart';
 import '../../cubits/cubits.dart';
+import '../../extensions/extensions.dart';
 import '../../widgets/widgets.dart';
 
 class TallyCounterSettingsPage extends StatelessWidget {
@@ -35,17 +36,17 @@ class TallyCounterSettingsPage extends StatelessWidget {
                 ),
                 FormTextField(
                   tallyCounter: state.tallyCounters[state.selected],
-                  title: 'Title',
+                  title: context.local.title.toCapitalized(),
                   textController: PageConstants.titleController,
                 ),
                 FormValueField(
                   tallyCounter: state.tallyCounters[state.selected],
-                  title: 'Value',
+                  title: context.local.value.toCapitalized(),
                   valueController: PageConstants.countController,
                 ),
                 FormValueField(
                   tallyCounter: state.tallyCounters[state.selected],
-                  title: 'Steps',
+                  title: context.local.steps.toCapitalized(),
                   valueController: PageConstants.stepController,
                 ),
                 Expanded(
@@ -63,9 +64,9 @@ class TallyCounterSettingsPage extends StatelessWidget {
                       color: Colors.red.withOpacity(0.1),
                       borderRadius: BorderRadius.circular(20),
                     ),
-                    child: const Text(
-                      'Delete',
-                      style: TextStyle(
+                    child: Text(
+                      context.local.delete.toCapitalized().toCapitalized(),
+                      style: const TextStyle(
                         fontSize: 16,
                         fontWeight: FontWeight.w500,
                         color: Colors.red,

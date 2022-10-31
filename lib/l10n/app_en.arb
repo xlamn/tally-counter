@@ -1,0 +1,10 @@
+{
+  "cancel": "cancel",
+  "warning": "warning",
+  "warningDescription": "Are you sure to reset the Counter?",
+  "reset": "reset",
+  "delete": "delete",
+  "title": "title",
+  "value": "value",
+  "steps": "steps"
+}

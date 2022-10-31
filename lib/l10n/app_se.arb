@@ -1,0 +1,10 @@
+{
+  "cancel": "avbryt",
+  "warning": "Varning",
+  "warningDescription": "Är du säker på att nollställa räknaren?",
+  "reset": "nollställa",
+  "delete": "radera",
+  "title": "Titel",
+  "value": "Värde",
+  "steps": "Steg"
+}
