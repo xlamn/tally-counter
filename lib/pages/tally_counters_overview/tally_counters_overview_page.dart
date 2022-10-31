@@ -42,11 +42,18 @@ class TallyCountersOverViewPage extends StatelessWidget {
     );
   }
 
-  Widget _buildTallyCounterListItem(BuildContext context, int index, List<TallyCounter> tallyCounters) {
+  Widget _buildTallyCounterListItem(
+    BuildContext context,
+    int index,
+    List<TallyCounter> tallyCounters,
+  ) {
     return Column(
       children: [
         TallyCounterItem(tallyCounter: tallyCounters[index]),
-        if (index == tallyCounters.length - 1) const SizedBox(height: SizeConstants.xxLarge)
+        if (index == tallyCounters.length - 1)
+          const SizedBox(
+            height: SizeConstants.xxLarge,
+          )
       ],
     );
   }

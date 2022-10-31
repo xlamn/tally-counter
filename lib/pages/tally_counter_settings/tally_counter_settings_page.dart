@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:tally_counter/cubits/cubits.dart';
 
 import '../../constants/constants.dart';
+import '../../cubits/cubits.dart';
 import '../../widgets/widgets.dart';
 
 class TallyCounterSettingsPage extends StatelessWidget {
