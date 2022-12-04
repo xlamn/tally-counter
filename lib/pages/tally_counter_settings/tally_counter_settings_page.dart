@@ -55,7 +55,7 @@ class TallyCounterSettingsPage extends StatelessWidget {
                 GestureDetector(
                   onTap: (state.tallyCounters.length > 1) ? () => _onDelete(context) : null,
                   child: Container(
-                    margin: const EdgeInsets.all(SizeConstants.small),
+                    margin: const EdgeInsets.all(SizeConstants.normal),
                     padding: const EdgeInsets.symmetric(
                       vertical: SizeConstants.normal,
                       horizontal: SizeConstants.large,

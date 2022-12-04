@@ -96,7 +96,7 @@ class _TallyCounterPageState extends State<TallyCounterPage> with TickerProvider
   Color _getEndColor(TallyCounterAction action) {
     switch (action) {
       case TallyCounterAction.increase:
-        return Colors.greenAccent;
+        return Colors.green;
 
       case TallyCounterAction.decrease:
         return Colors.red.withOpacity(0.8);

@@ -5,6 +5,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import '../../constants/constants.dart';
 import '../../cubits/cubits.dart';
 import '../../enums/enums.dart';
+import '../../extensions/extensions.dart';
 import '../../models/models.dart';
 import '../../widgets/widgets.dart';
 
@@ -48,7 +49,7 @@ class TallyCounterItem extends StatelessWidget {
                       horizontal: SizeConstants.small,
                     ),
                     child: Text(
-                      tallyCounter.title?.isNotEmpty ?? false ? tallyCounter.title! : 'No Name',
+                      tallyCounter.title?.isNotEmpty ?? false ? tallyCounter.title! : context.local.noName,
                       style: TextStyle(
                         fontSize: 16,
                         fontWeight: FontWeight.w500,
