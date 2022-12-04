@@ -8,7 +8,7 @@ import '../../cubits/cubits.dart';
 import '../../enums/enums.dart';
 import '../../models/models.dart';
 import '../../widgets/widgets.dart';
-import 'reset_dialog.dart';
+import 'reset_sheet.dart';
 
 class BottomButtonRow extends StatelessWidget {
   final TallyCounter tallyCounter;
@@ -33,7 +33,7 @@ class BottomButtonRow extends StatelessWidget {
             children: [
               TallyCounterButton(
                 icon: const FaIcon(FontAwesomeIcons.arrowRotateLeft),
-                onPressed: () => showResetDialog(
+                onPressed: () => showResetActionSheet(
                   context,
                   backgroundColorAnimation: backgroundColorAnimation,
                 ),
