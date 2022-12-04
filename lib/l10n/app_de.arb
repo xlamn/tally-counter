@@ -6,5 +6,6 @@
   "delete": "löschen",
   "title": "Titel",
   "value": "Wert",
-  "steps": "Schritte"
+  "steps": "Schritte",
+  "noName": "Kein Name"
 }

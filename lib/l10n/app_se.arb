@@ -6,5 +6,6 @@
   "delete": "radera",
   "title": "Titel",
   "value": "Värde",
-  "steps": "Steg"
+  "steps": "Steg",
+  "noName": "Inget Namn"
 }
