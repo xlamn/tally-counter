@@ -1,16 +1,29 @@
-# tally_counter
+# Simple Tally Counter
 
-A new Flutter project.
+![feature graphic](assets/images/feature_graphic.png "Simple Tally Counter Feature Graphic")
 
-## Getting Started
+Simple Tally Counter is an easy way to keep count on your phone combining a minimalistic user interface with the most necessary functions.
 
-This project is a starting point for a Flutter application.
+The most common things Simple Tally Counter could be used for are counting people, animals, things that are quickly coming and going, boy or girlfriends, legos or visits at the gym.
 
-A few resources to get you started if this is your first Flutter project:
+Simple Tally Counter is totally for free and without ads!
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+# App Downloads
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+To try the app you can download it from the following app store:
+
+
+- [Google Play](https://play.google.com/store/apps/details?id=com.lamnguyen.tally_counter)
+
+# Setup
+
+If you're new to Flutter the first thing you'll need is to follow the [setup instructions](https://docs.flutter.dev/get-started/install).
+
+Execute the following command in your terminal:
+```
+flutter pub get
+```
+```
+flutter run 
+```
+The app can be run on several platforms but is only determined for iOS and Android.
