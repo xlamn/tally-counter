@@ -31,7 +31,7 @@ class TopButtonRow extends StatelessWidget {
             children: [
               TallyCounterIconButton(
                 icon: const FaIcon(FontAwesomeIcons.bars),
-                action: () => _showOverview(context),
+                action: () => _showTallyCountersOverview(context),
               ),
               TallyCounterIconButton(
                 icon: const FaIcon(FontAwesomeIcons.circleInfo),
@@ -44,9 +44,9 @@ class TopButtonRow extends StatelessWidget {
     );
   }
 
-  void _showOverview(BuildContext context) {
+  void _showTallyCountersOverview(BuildContext context) {
     PageConstants.pageController.animateToPage(
-      0,
+      PageConstants.tallyCountersOverviewPage,
       duration: const Duration(milliseconds: 250),
       curve: Curves.linear,
     );

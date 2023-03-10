@@ -20,12 +20,18 @@ class TallyCountersOverViewPage extends StatelessWidget {
         builder: (context, state) {
           return CustomScrollView(
             slivers: [
-              SliverAppBar(
-                toolbarHeight: MediaQuery.of(context).size.height * 0.1,
-                backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-                actions: const [
-                  _AddTallyCounterButton(),
-                ],
+              SliverPadding(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: SizeConstants.normal,
+                ),
+                sliver: SliverAppBar(
+                  toolbarHeight: MediaQuery.of(context).size.height * 0.1,
+                  leading: const _GroupCounterButton(),
+                  backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+                  actions: const [
+                    _AddTallyCounterButton(),
+                  ],
+                ),
               ),
               SliverList(
                 delegate: SliverChildBuilderDelegate(
@@ -59,6 +65,31 @@ class TallyCountersOverViewPage extends StatelessWidget {
   }
 }
 
+class _GroupCounterButton extends StatelessWidget {
+  const _GroupCounterButton({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.symmetric(
+        vertical: SizeConstants.normalSmaller,
+      ),
+      child: TallyCounterIconButton(
+        icon: const FaIcon(FontAwesomeIcons.qrcode),
+        action: () => _onTap(context),
+      ),
+    );
+  }
+
+  void _onTap(BuildContext context) {
+    PageConstants.pageController.animateToPage(
+      PageConstants.groupsOverviewPage,
+      duration: const Duration(milliseconds: 250),
+      curve: Curves.linear,
+    );
+  }
+}
+
 class _AddTallyCounterButton extends StatelessWidget {
   const _AddTallyCounterButton({Key? key}) : super(key: key);
 
@@ -67,7 +98,6 @@ class _AddTallyCounterButton extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(
         vertical: SizeConstants.normalSmaller,
-        horizontal: SizeConstants.normal,
       ),
       child: TallyCounterIconButton(
           icon: const FaIcon(FontAwesomeIcons.plus),

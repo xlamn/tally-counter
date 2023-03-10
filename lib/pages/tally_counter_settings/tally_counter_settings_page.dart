@@ -86,7 +86,7 @@ class TallyCounterSettingsPage extends StatelessWidget {
     BlocProvider.of<TallyCounterCubit>(context).removeCounter();
     Navigator.pop(context);
     PageConstants.pageController.animateToPage(
-      0,
+      PageConstants.tallyCountersOverviewPage,
       duration: const Duration(milliseconds: 250),
       curve: Curves.linear,
     );

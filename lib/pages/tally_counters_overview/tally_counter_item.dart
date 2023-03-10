@@ -90,7 +90,7 @@ class TallyCounterItem extends StatelessWidget {
   void _onTallyCounterTap(BuildContext context) {
     BlocProvider.of<TallyCounterCubit>(context).switchCounter(tallyCounter);
     PageConstants.pageController.animateToPage(
-      1,
+      PageConstants.tallyCounterPage,
       duration: const Duration(milliseconds: 250),
       curve: Curves.linear,
     );

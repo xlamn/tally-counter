@@ -71,6 +71,7 @@ class MyApp extends StatelessWidget {
                     controller: PageConstants.pageController,
                     physics: const NeverScrollableScrollPhysics(),
                     children: const [
+                      TallyCounterGroupsOverviewPage(),
                       TallyCountersOverViewPage(),
                       TallyCounterPage(),
                     ],
