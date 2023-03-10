@@ -52,7 +52,7 @@ class TallyCounterItem extends StatelessWidget {
                       tallyCounter.title?.isNotEmpty ?? false ? tallyCounter.title! : context.local.noName,
                       style: TextStyle(
                         fontSize: 16,
-                        fontWeight: FontWeight.w500,
+                        fontWeight: FontWeight.w400,
                         color: Theme.of(context).textTheme.headlineMedium!.color,
                       ),
                     ),
@@ -65,6 +65,7 @@ class TallyCounterItem extends StatelessWidget {
                       '${tallyCounter.count}',
                       style: const TextStyle(
                         fontSize: 30,
+                        fontWeight: FontWeight.w500,
                       ),
                     ),
                   ),

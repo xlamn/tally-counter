@@ -56,6 +56,7 @@ class _TallyCounterPageState extends State<TallyCounterPage> with TickerProvider
                       '${state.tallyCounters[state.selected].count}',
                       style: const TextStyle(
                         fontSize: 50,
+                        fontWeight: FontWeight.w500,
                       ),
                     ),
                   ),
