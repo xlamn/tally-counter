@@ -33,6 +33,19 @@ class TopButtonRow extends StatelessWidget {
                 icon: const FaIcon(FontAwesomeIcons.bars),
                 action: () => _showTallyCountersOverview(context),
               ),
+              Container(
+                margin: const EdgeInsets.only(
+                  top: SizeConstants.xSmall,
+                ),
+                child: Text(
+                  tallyCounter.title != null ? tallyCounter.title! : "",
+                  style: TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.w500,
+                    color: Theme.of(context).textTheme.headlineMedium!.color!.withOpacity(0.8),
+                  ),
+                ),
+              ),
               TallyCounterIconButton(
                 icon: const FaIcon(FontAwesomeIcons.circleInfo),
                 action: () async => await _showSettings(context),

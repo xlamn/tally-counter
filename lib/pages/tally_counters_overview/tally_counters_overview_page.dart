@@ -55,10 +55,10 @@ class TallyCountersOverViewPage extends StatelessWidget {
     final text = BlocProvider.of<TallyGroupCubit>(context).getSelectedGroup()?.title ?? "";
     return Text(
       text,
-      style: const TextStyle(
+      style: TextStyle(
         fontSize: 18,
         fontWeight: FontWeight.w500,
-        color: Colors.black54,
+        color: Theme.of(context).textTheme.headlineMedium!.color!.withOpacity(0.8),
       ),
     );
   }
