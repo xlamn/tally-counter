@@ -40,10 +40,10 @@ class _FormTextFieldState extends State<FormTextField> {
           ),
           TextFormField(
             maxLines: 1,
+            cursorColor: Colors.blue,
             controller: widget.textController,
             maxLength: widget.length,
             decoration: InputDecoration(
-              counterText: '',
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(10.0),
                 borderSide: const BorderSide(width: 0, style: BorderStyle.none),

@@ -46,6 +46,7 @@ class _FormValueFieldState extends State<FormValueField> {
             children: [
               TextFormField(
                 maxLines: 1,
+                cursorColor: Colors.blue,
                 inputFormatters: [FilteringTextInputFormatter.allow(RegExp("[0-9]"))],
                 controller: widget.valueController,
                 maxLength: widget.length,

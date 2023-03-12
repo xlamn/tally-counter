@@ -37,7 +37,10 @@ class _FormDropdownFieldState extends State<FormDropdownField> {
         children: <Widget>[
           Text(
             widget.title,
-            style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
+            style: const TextStyle(
+              fontWeight: FontWeight.bold,
+              fontSize: 15,
+            ),
           ),
           const SizedBox(
             height: SizeConstants.small,
@@ -46,7 +49,9 @@ class _FormDropdownFieldState extends State<FormDropdownField> {
             value: widget.controller.value,
             decoration: InputDecoration(
               suffixIcon: Container(
-                padding: const EdgeInsets.symmetric(horizontal: SizeConstants.xSmall),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: SizeConstants.xSmall,
+                ),
                 child: IconButton(
                     icon: FaIcon(
                       FontAwesomeIcons.trashCan,
@@ -59,7 +64,6 @@ class _FormDropdownFieldState extends State<FormDropdownField> {
                           })
                         }),
               ),
-              counterText: '',
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(10.0),
                 borderSide: const BorderSide(width: 0, style: BorderStyle.none),
