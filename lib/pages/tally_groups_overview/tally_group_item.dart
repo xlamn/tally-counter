@@ -28,28 +28,39 @@ class TallyGroupItem extends StatelessWidget {
             extentRatio: 0.26,
             motion: const ScrollMotion(),
             children: [
-              GestureDetector(
-                onTap: () => BlocProvider.of<TallyCounterCubit>(context).removeGroupFromCounters(tallyGroup),
-                child: Container(
-                  margin: const EdgeInsets.only(left: SizeConstants.small),
-                  padding: const EdgeInsets.all(
-                    SizeConstants.normalSmaller,
-                  ),
-                  decoration: BoxDecoration(
-                    color: Colors.red.withOpacity(context.isDarkMode ? 0.3 : 0.2),
-                    borderRadius: const BorderRadius.all(
-                      Radius.circular(20),
+              Builder(
+                builder: (context) {
+                  return GestureDetector(
+                    onTap: () {
+                      Slidable.of(context)?.dismiss(
+                        ResizeRequest(
+                          const Duration(milliseconds: 250),
+                          () => BlocProvider.of<TallyCounterCubit>(context).removeGroupFromCounters(tallyGroup),
+                        ),
+                      );
+                    },
+                    child: Container(
+                      margin: const EdgeInsets.only(left: SizeConstants.small),
+                      padding: const EdgeInsets.all(
+                        SizeConstants.normalSmaller,
+                      ),
+                      decoration: BoxDecoration(
+                        color: Colors.red.withOpacity(context.isDarkMode ? 0.3 : 0.2),
+                        borderRadius: const BorderRadius.all(
+                          Radius.circular(20),
+                        ),
+                      ),
+                      child: Container(
+                        margin: const EdgeInsets.all(SizeConstants.normal),
+                        child: FaIcon(
+                          FontAwesomeIcons.trash,
+                          size: SizeConstants.normal,
+                          color: context.isDarkMode ? Colors.redAccent : Colors.red.withOpacity(0.8),
+                        ),
+                      ),
                     ),
-                  ),
-                  child: Container(
-                    margin: const EdgeInsets.all(SizeConstants.normal),
-                    child: FaIcon(
-                      FontAwesomeIcons.trash,
-                      size: SizeConstants.normal,
-                      color: context.isDarkMode ? Colors.redAccent : Colors.red.withOpacity(0.8),
-                    ),
-                  ),
-                ),
+                  );
+                },
               ),
             ],
           ),
