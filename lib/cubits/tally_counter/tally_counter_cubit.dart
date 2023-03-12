@@ -108,8 +108,22 @@ class TallyCounterCubit extends Cubit<TallyCounterState> {
     }
   }
 
-  Future<void> updateCounter({String? title, int? count, int? step, TallyGroup? group}) async {
-    emit(state.copyCounter(title: title, count: count, step: step, group: group));
+  Future<void> updateCounter({
+    String? title,
+    int? count,
+    int? step,
+    TallyGroup? group,
+    bool forceOverrideGroup = false,
+  }) async {
+    emit(
+      state.copyCounter(
+        title: title,
+        count: count,
+        step: step,
+        group: group,
+        forceOverrideGroup: forceOverrideGroup,
+      ),
+    );
     await tallyCounterRepository.saveTallyCounters(state.tallyCounters);
   }
 

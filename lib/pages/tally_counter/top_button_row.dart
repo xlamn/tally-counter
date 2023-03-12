@@ -22,6 +22,7 @@ class TopButtonRow extends StatelessWidget {
       child: Align(
         alignment: Alignment.topCenter,
         child: Container(
+          height: HeightConstants.headerHeight,
           padding: const EdgeInsets.symmetric(
             vertical: SizeConstants.small,
             horizontal: SizeConstants.normal,
@@ -75,10 +76,18 @@ class TopButtonRow extends StatelessWidget {
         ),
       ),
       clipBehavior: Clip.antiAliasWithSaveLayer,
-      builder: ((context) => SizedBox(
-            height: MediaQuery.of(context).size.height * 0.7,
-            child: const TallyCounterSettingsPage(),
-          )),
+      builder: ((context) {
+        return Wrap(
+          children: [
+            Container(
+              margin: EdgeInsets.only(
+                bottom: MediaQuery.of(context).viewInsets.bottom,
+              ),
+              child: const TallyCounterSettingsPage(),
+            ),
+          ],
+        );
+      }),
     ).whenComplete(() => _updateCounter(context));
   }
 
@@ -96,6 +105,7 @@ class TopButtonRow extends StatelessWidget {
             )
           : null,
       group: PageConstants.groupController.value,
+      forceOverrideGroup: true,
     );
   }
 }

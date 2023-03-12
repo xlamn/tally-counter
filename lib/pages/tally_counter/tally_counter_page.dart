@@ -33,6 +33,7 @@ class _TallyCounterPageState extends State<TallyCounterPage> with TickerProvider
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body: BlocBuilder<TallyCounterCubit, TallyCounterState>(
         builder: (context, state) {
           return GestureDetector(

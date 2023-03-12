@@ -35,6 +35,7 @@ class TallyCounterSettingsPage extends StatelessWidget {
           child: Container(
             padding: const EdgeInsets.symmetric(horizontal: SizeConstants.large),
             child: Column(
+              mainAxisSize: MainAxisSize.min,
               children: [
                 const SizedBox(
                   height: SizeConstants.large,
@@ -60,13 +61,10 @@ class TallyCounterSettingsPage extends StatelessWidget {
                   dropdownItems: BlocProvider.of<TallyGroupCubit>(context).state.tallyGroups,
                   controller: PageConstants.groupController,
                 ),
-                Expanded(
-                  child: Container(),
-                ),
                 GestureDetector(
                   onTap: (state.tallyCounters.length > 1) ? () => _onDelete(context) : null,
                   child: Container(
-                    margin: const EdgeInsets.all(SizeConstants.normal),
+                    margin: const EdgeInsets.all(SizeConstants.large),
                     padding: const EdgeInsets.symmetric(
                       vertical: SizeConstants.normal,
                       horizontal: SizeConstants.large,

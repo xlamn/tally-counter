@@ -27,7 +27,7 @@ class TallyGroupsOverviewPage extends StatelessWidget {
                   horizontal: SizeConstants.normal,
                 ),
                 sliver: SliverAppBar(
-                  toolbarHeight: MediaQuery.of(context).size.height * 0.1,
+                  toolbarHeight: HeightConstants.headerHeight,
                   backgroundColor: Theme.of(context).scaffoldBackgroundColor,
                   actions: const [_AddTallyGroupButton()],
                 ),

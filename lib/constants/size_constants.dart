@@ -29,3 +29,7 @@ class SizeConstants {
   ///0px
   static const none = 0.0;
 }
+
+class HeightConstants {
+  static const headerHeight = 80.0;
+}

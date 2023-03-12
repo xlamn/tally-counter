@@ -28,7 +28,7 @@ class TallyCountersOverViewPage extends StatelessWidget {
                 ),
                 sliver: SliverAppBar(
                   title: _getTitle(context),
-                  toolbarHeight: MediaQuery.of(context).size.height * 0.1,
+                  toolbarHeight: HeightConstants.headerHeight,
                   leading: const _GroupCounterButton(),
                   backgroundColor: Theme.of(context).scaffoldBackgroundColor,
                   actions: const [
@@ -53,12 +53,14 @@ class TallyCountersOverViewPage extends StatelessWidget {
 
   Widget _getTitle(BuildContext context) {
     final text = BlocProvider.of<TallyGroupCubit>(context).getSelectedGroup()?.title ?? "";
-    return Text(
-      text,
-      style: TextStyle(
-        fontSize: 18,
-        fontWeight: FontWeight.w500,
-        color: Theme.of(context).textTheme.headlineMedium!.color!.withOpacity(0.8),
+    return Center(
+      child: Text(
+        text,
+        style: TextStyle(
+          fontSize: 18,
+          fontWeight: FontWeight.w500,
+          color: Theme.of(context).textTheme.headlineMedium!.color!.withOpacity(0.8),
+        ),
       ),
     );
   }

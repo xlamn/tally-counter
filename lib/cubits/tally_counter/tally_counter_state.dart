@@ -13,15 +13,25 @@ class TallyCounterState {
     );
   }
 
-  TallyCounterState copyCounter({String? title, int? count, int? step, TallyGroup? group}) {
+  TallyCounterState copyCounter(
+      {String? title, int? count, int? step, TallyGroup? group, bool forceOverrideGroup = false}) {
     final tallyCounter = tallyCounters[selected];
 
-    tallyCounters[selected] = TallyCounter(
-      title: title ?? tallyCounter.title,
-      count: count ?? tallyCounter.count,
-      step: step ?? tallyCounter.step,
-      group: group,
-    );
+    if (forceOverrideGroup) {
+      tallyCounters[selected] = TallyCounter(
+        title: title ?? tallyCounter.title,
+        count: count ?? tallyCounter.count,
+        step: step ?? tallyCounter.step,
+        group: group,
+      );
+    } else {
+      tallyCounters[selected] = TallyCounter(
+        title: title ?? tallyCounter.title,
+        count: count ?? tallyCounter.count,
+        step: step ?? tallyCounter.step,
+        group: group ?? tallyCounter.group,
+      );
+    }
     return TallyCounterState(tallyCounters, selected);
   }
 }

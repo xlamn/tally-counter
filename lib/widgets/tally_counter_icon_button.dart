@@ -16,16 +16,11 @@ class TallyCounterIconButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.all(
-        SizeConstants.small,
-      ),
-      child: IconButton(
-        iconSize: iconSize,
-        icon: icon,
-        color: Theme.of(context).iconTheme.color!.withOpacity(0.5),
-        onPressed: action,
-      ),
+    return IconButton(
+      iconSize: iconSize,
+      icon: icon,
+      color: Theme.of(context).iconTheme.color!.withOpacity(0.5),
+      onPressed: action,
     );
   }
 }
