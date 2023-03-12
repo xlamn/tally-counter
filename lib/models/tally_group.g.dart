@@ -7,7 +7,7 @@ part of 'tally_group.dart';
 // **************************************************************************
 
 TallyGroup _$TallyGroupFromJson(Map<String, dynamic> json) => TallyGroup(
-      title: json['title'] as String?,
+      title: json['title'] as String,
     );
 
 Map<String, dynamic> _$TallyGroupToJson(TallyGroup instance) =>

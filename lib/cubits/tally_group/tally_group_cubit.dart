@@ -30,10 +30,15 @@ class TallyGroupCubit extends Cubit<TallyGroupState> {
     );
   }
 
-  void addGroup() async {
+  void addGroup({required String title}) async {
     emit(
       state.copyWith(
-        tallyGroups: [...state.tallyGroups, const TallyGroup()],
+        tallyGroups: [
+          ...state.tallyGroups,
+          TallyGroup(
+            title: title,
+          )
+        ],
         selected: state.selected,
       ),
     );

@@ -17,5 +17,8 @@ class PageConstants {
 
   static TextEditingController stepController = TextEditingController();
 
+  static TextEditingController groupTitleController = TextEditingController();
+
   static TallyGroupController groupController = TallyGroupController();
+
 }

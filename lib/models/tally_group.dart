@@ -5,9 +5,9 @@ part 'tally_group.g.dart';
 
 @JsonSerializable()
 class TallyGroup extends Equatable {
-  final String? title;
+  final String title;
 
-  const TallyGroup({this.title});
+  const TallyGroup({required this.title});
 
   factory TallyGroup.fromJson(Map<String, dynamic> json) => _$TallyGroupFromJson(json);
 

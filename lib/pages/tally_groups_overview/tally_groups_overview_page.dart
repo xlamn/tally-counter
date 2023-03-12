@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:tally_counter/widgets/input_dialog.dart';
 
 import '../../constants/constants.dart';
 import '../../cubits/cubits.dart';
 import '../../models/models.dart';
 import '../../widgets/tally_counter_icon_button.dart';
-import 'tally_group_summary_item.dart';
 import 'tally_group_item.dart';
+import 'tally_group_summary_item.dart';
 
 class TallyGroupsOverviewPage extends StatelessWidget {
   const TallyGroupsOverviewPage({
@@ -76,10 +77,16 @@ class _AddTallyGroupButton extends StatelessWidget {
         vertical: SizeConstants.normalSmaller,
       ),
       child: TallyCounterIconButton(
-          icon: const FaIcon(FontAwesomeIcons.plus),
-          action: () {
-            BlocProvider.of<TallyGroupCubit>(context).addGroup();
-          }),
+        icon: const FaIcon(FontAwesomeIcons.plus),
+        action: () => showInputDialog(
+          context,
+          title: "New Group",
+          actionText: "Create",
+          action: () => BlocProvider.of<TallyGroupCubit>(context).addGroup(
+            title: PageConstants.groupTitleController.text,
+          ),
+        ),
+      ),
     );
   }
 }
