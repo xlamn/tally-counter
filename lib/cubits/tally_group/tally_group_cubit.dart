@@ -45,9 +45,9 @@ class TallyGroupCubit extends Cubit<TallyGroupState> {
     await tallyCounterRepository.saveTallyGroups(state.tallyGroups);
   }
 
-  void removeGroup() async {
+  void removeGroup({required TallyGroup tallyGroup}) async {
     final tallyGroups = state.tallyGroups.toList();
-    tallyGroups.remove(getSelectedGroup());
+    tallyGroups.remove(tallyGroup);
     emit(
       state.copyWith(
         tallyGroups: tallyGroups,

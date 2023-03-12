@@ -70,7 +70,7 @@ class _FormDropdownFieldState extends State<FormDropdownField> {
             items: widget.dropdownItems.map((TallyGroup value) {
               return DropdownMenuItem<TallyGroup>(
                 value: value,
-                child: Text(value.title!),
+                child: Text(value.title),
               );
             }).toList(),
             onChanged: (value) {

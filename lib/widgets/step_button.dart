@@ -23,7 +23,7 @@ class StepButton extends StatelessWidget {
       ),
       margin: const EdgeInsets.all(SizeConstants.xSmall),
       decoration: BoxDecoration(
-        color: color.withOpacity(context.isDarkMode ? 0.1 : 0.2),
+        color: color.withOpacity(context.isDarkMode ? 0.3 : 0.2),
         borderRadius: const BorderRadius.all(
           Radius.circular(10),
         ),

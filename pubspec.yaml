@@ -46,6 +46,7 @@ dependencies:
   dynamic_color: ^1.5.4
   json_annotation: ^4.7.0
   equatable: ^2.0.5
+  flutter_slidable: ^2.0.0
 
 dev_dependencies:
   flutter_test:

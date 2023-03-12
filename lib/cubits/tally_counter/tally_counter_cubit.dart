@@ -75,6 +75,23 @@ class TallyCounterCubit extends Cubit<TallyCounterState> {
     await tallyCounterRepository.saveTallyCounters(state.tallyCounters);
   }
 
+  void removeGroupFromCounters(TallyGroup tallyGroup) async {
+    final tallyCounters = state.tallyCounters.toList();
+    for (final tallyCounter in tallyCounters) {
+      if (tallyCounter.group == tallyGroup) {
+        tallyCounter.group = null;
+      }
+    }
+    emit(
+      state.copyWith(
+        tallyCounters: tallyCounters,
+        selected: state.selected,
+      ),
+    );
+    await tallyCounterRepository.saveTallyCounters(state.tallyCounters);
+    tallyGroupCubit.removeGroup(tallyGroup: tallyGroup);
+  }
+
   // counter itself
 
   void updateCount({required TallyCounterAction action}) async {
