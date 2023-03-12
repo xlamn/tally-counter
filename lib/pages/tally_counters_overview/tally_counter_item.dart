@@ -36,7 +36,7 @@ class TallyCounterItem extends StatelessWidget {
               color: Colors.red,
               icon: FaIcon(
                 FontAwesomeIcons.arrowDown,
-                color: Colors.red.withOpacity(0.8),
+                color: context.isDarkMode ? Colors.redAccent : Colors.red.withOpacity(0.8),
               ),
               onPressed: () => _onPressed(context, isUp: false),
             ),
@@ -74,9 +74,9 @@ class TallyCounterItem extends StatelessWidget {
             ),
             StepButton(
               color: Colors.green,
-              icon: const FaIcon(
+              icon: FaIcon(
                 FontAwesomeIcons.arrowUp,
-                color: Colors.green,
+                color: context.isDarkMode ? Colors.greenAccent : Colors.green,
               ),
               onPressed: () => _onPressed(context, isUp: true),
             ),
