@@ -8,6 +8,9 @@ class SizeConstants {
   ///24px
   static const large = 24.0;
 
+  ///20px
+  static const normalLarger = 20.0;
+
   ///16px
   static const normal = 16.0;
 

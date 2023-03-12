@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../constants/constants.dart';
 import '../../cubits/cubits.dart';
 import '../../extensions/extensions.dart';
+import '../../helper/helper.dart';
 import '../../widgets/widgets.dart';
 
 class TallyCounterSettingsPage extends StatelessWidget {
@@ -24,6 +25,10 @@ class TallyCounterSettingsPage extends StatelessWidget {
 
         PageConstants.stepController.value = TextEditingValue(
           text: '${state.tallyCounters[state.selected].step}',
+        );
+
+        PageConstants.groupController = TallyGroupController(
+          value: state.tallyCounters[state.selected].group,
         );
 
         return SafeArea(
@@ -48,6 +53,12 @@ class TallyCounterSettingsPage extends StatelessWidget {
                   tallyCounter: state.tallyCounters[state.selected],
                   title: context.local.steps.toCapitalized(),
                   valueController: PageConstants.stepController,
+                ),
+                FormDropdownField(
+                  tallyCounter: state.tallyCounters[state.selected],
+                  title: "Group",
+                  dropdownItems: BlocProvider.of<TallyGroupCubit>(context).state.tallyGroups,
+                  controller: PageConstants.groupController,
                 ),
                 Expanded(
                   child: Container(),

@@ -55,13 +55,17 @@ class TopButtonRow extends StatelessWidget {
   Future<void> _showSettings(BuildContext context) async {
     await showModalBottomSheet(
       context: context,
+      isScrollControlled: true,
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.vertical(
           top: Radius.circular(20),
         ),
       ),
       clipBehavior: Clip.antiAliasWithSaveLayer,
-      builder: ((context) => const TallyCounterSettingsPage()),
+      builder: ((context) => SizedBox(
+            height: MediaQuery.of(context).size.height * 0.7,
+            child: const TallyCounterSettingsPage(),
+          )),
     ).whenComplete(() => _updateCounter(context));
   }
 
@@ -78,6 +82,7 @@ class TopButtonRow extends StatelessWidget {
               PageConstants.stepController.value.text,
             )
           : null,
+      group: PageConstants.groupController.value,
     );
   }
 }

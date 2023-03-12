@@ -1,5 +1,7 @@
 import 'package:flutter/widgets.dart';
 
+import '../helper/helper.dart';
+
 class PageConstants {
   static PageController pageController = PageController(
     initialPage: tallyCounterPage,
@@ -14,4 +16,6 @@ class PageConstants {
   static TextEditingController countController = TextEditingController();
 
   static TextEditingController stepController = TextEditingController();
+
+  static TallyGroupController groupController = TallyGroupController();
 }

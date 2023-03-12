@@ -13,13 +13,14 @@ class TallyCounterState {
     );
   }
 
-  TallyCounterState copyCounter({String? title, int? count, int? step}) {
+  TallyCounterState copyCounter({String? title, int? count, int? step, TallyGroup? group}) {
     final tallyCounter = tallyCounters[selected];
 
     tallyCounters[selected] = TallyCounter(
       title: title ?? tallyCounter.title,
       count: count ?? tallyCounter.count,
       step: step ?? tallyCounter.step,
+      group: group,
     );
     return TallyCounterState(tallyCounters, selected);
   }

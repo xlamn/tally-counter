@@ -3,13 +3,26 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../enums/enums.dart';
 import '../../models/models.dart';
 import '../../repositories/repositories.dart';
+import '../cubits.dart';
 
 part 'tally_counter_state.dart';
 
 class TallyCounterCubit extends Cubit<TallyCounterState> {
   final TallyCounterRepository tallyCounterRepository;
+  final TallyGroupCubit tallyGroupCubit;
 
-  TallyCounterCubit({required this.tallyCounterRepository}) : super(TallyCounterState([TallyCounter()], 0));
+  TallyCounterCubit({required this.tallyCounterRepository, required this.tallyGroupCubit})
+      : super(TallyCounterState([TallyCounter()], 0));
+
+  List<TallyCounter> getTallyCountersFromSelectedGroup() {
+    var filteredTallyCounters = state.tallyCounters;
+    if (tallyGroupCubit.getSelectedGroup() != null) {
+      filteredTallyCounters = filteredTallyCounters
+          .where((tallyCounter) => tallyCounter.group?.title == tallyGroupCubit.getSelectedGroup()?.title)
+          .toList();
+    }
+    return filteredTallyCounters;
+  }
 
   // multiple counters
 
@@ -38,7 +51,12 @@ class TallyCounterCubit extends Cubit<TallyCounterState> {
   void addCounter() async {
     emit(
       state.copyWith(
-        tallyCounters: [...state.tallyCounters, TallyCounter()],
+        tallyCounters: [
+          ...state.tallyCounters,
+          TallyCounter(
+            group: tallyGroupCubit.getSelectedGroup(),
+          ),
+        ],
         selected: state.selected,
       ),
     );
@@ -73,8 +91,8 @@ class TallyCounterCubit extends Cubit<TallyCounterState> {
     }
   }
 
-  Future<void> updateCounter({String? title, int? count, int? step}) async {
-    emit(state.copyCounter(title: title, count: count, step: step));
+  Future<void> updateCounter({String? title, int? count, int? step, TallyGroup? group}) async {
+    emit(state.copyCounter(title: title, count: count, step: step, group: group));
     await tallyCounterRepository.saveTallyCounters(state.tallyCounters);
   }
 

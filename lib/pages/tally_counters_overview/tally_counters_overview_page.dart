@@ -18,6 +18,8 @@ class TallyCountersOverViewPage extends StatelessWidget {
     return Scaffold(
       body: BlocBuilder<TallyCounterCubit, TallyCounterState>(
         builder: (context, state) {
+          final tallyCounters = BlocProvider.of<TallyCounterCubit>(context).getTallyCountersFromSelectedGroup();
+
           return CustomScrollView(
             slivers: [
               SliverPadding(
@@ -25,6 +27,7 @@ class TallyCountersOverViewPage extends StatelessWidget {
                   horizontal: SizeConstants.normal,
                 ),
                 sliver: SliverAppBar(
+                  title: _getTitle(context),
                   toolbarHeight: MediaQuery.of(context).size.height * 0.1,
                   leading: const _GroupCounterButton(),
                   backgroundColor: Theme.of(context).scaffoldBackgroundColor,
@@ -35,15 +38,27 @@ class TallyCountersOverViewPage extends StatelessWidget {
               ),
               SliverList(
                 delegate: SliverChildBuilderDelegate(
-                  childCount: state.tallyCounters.length,
+                  childCount: tallyCounters.length,
                   (BuildContext context, int index) {
-                    return _buildTallyCounterListItem(context, index, state.tallyCounters);
+                    return _buildTallyCounterListItem(context, index, tallyCounters);
                   },
                 ),
               ),
             ],
           );
         },
+      ),
+    );
+  }
+
+  Widget _getTitle(BuildContext context) {
+    final text = BlocProvider.of<TallyGroupCubit>(context).getSelectedGroup()?.title ?? "";
+    return Text(
+      text,
+      style: const TextStyle(
+        fontSize: 18,
+        fontWeight: FontWeight.w500,
+        color: Colors.black54,
       ),
     );
   }
@@ -75,7 +90,7 @@ class _GroupCounterButton extends StatelessWidget {
         vertical: SizeConstants.normalSmaller,
       ),
       child: TallyCounterIconButton(
-        icon: const FaIcon(FontAwesomeIcons.qrcode),
+        icon: const FaIcon(FontAwesomeIcons.grip),
         action: () => _onTap(context),
       ),
     );
