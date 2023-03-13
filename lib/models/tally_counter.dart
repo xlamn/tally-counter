@@ -7,11 +7,11 @@ part 'tally_counter.g.dart';
 @JsonSerializable()
 class TallyCounter {
   final int count;
-  final String? title;
+  final String title;
   final int step;
   TallyGroup? group;
 
-  TallyCounter({this.count = 0, this.title, this.step = 1, this.group});
+  TallyCounter({this.count = 0, this.title = "", this.step = 1, this.group});
 
   factory TallyCounter.fromJson(Map<String, dynamic> json) => _$TallyCounterFromJson(json);
 

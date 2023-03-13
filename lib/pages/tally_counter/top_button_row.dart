@@ -34,18 +34,27 @@ class TopButtonRow extends StatelessWidget {
                 icon: const FaIcon(FontAwesomeIcons.bars),
                 action: () => _showTallyCountersOverview(context),
               ),
-              Container(
-                margin: const EdgeInsets.only(
-                  top: SizeConstants.xSmall,
-                ),
-                child: Text(
-                  tallyCounter.title != null ? tallyCounter.title! : "",
-                  style: TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.w500,
-                    color: Theme.of(context).textTheme.headlineMedium!.color!.withOpacity(0.8),
-                  ),
-                ),
+              Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  if (tallyCounter.title.isNotEmpty)
+                    Text(
+                      tallyCounter.title,
+                      style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.w500,
+                        color: Theme.of(context).textTheme.headlineMedium!.color!.withOpacity(0.8),
+                      ),
+                    ),
+                  if (tallyCounter.group?.title != null)
+                    Text(
+                      tallyCounter.group!.title,
+                      style: TextStyle(
+                        fontWeight: FontWeight.w500,
+                        color: Theme.of(context).textTheme.headlineSmall!.color!.withOpacity(0.5),
+                      ),
+                    )
+                ],
               ),
               TallyCounterIconButton(
                 icon: const FaIcon(FontAwesomeIcons.circleInfo),

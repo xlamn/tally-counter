@@ -8,7 +8,7 @@ part of 'tally_counter.dart';
 
 TallyCounter _$TallyCounterFromJson(Map<String, dynamic> json) => TallyCounter(
       count: json['count'] as int? ?? 0,
-      title: json['title'] as String?,
+      title: json['title'] as String? ?? "",
       step: json['step'] as int? ?? 1,
       group: json['group'] == null
           ? null

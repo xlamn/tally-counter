@@ -15,7 +15,7 @@ class TallyCounterSettingsPage extends StatelessWidget {
     return BlocBuilder<TallyCounterCubit, TallyCounterState>(
       builder: (context, state) {
         PageConstants.titleController.value = TextEditingValue(
-          text: state.tallyCounters[state.selected].title ?? '',
+          text: state.tallyCounters[state.selected].title,
         );
 
         //TODO: Cursor isn't consistent

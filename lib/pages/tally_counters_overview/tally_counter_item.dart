@@ -49,7 +49,7 @@ class TallyCounterItem extends StatelessWidget {
                       horizontal: SizeConstants.small,
                     ),
                     child: Text(
-                      tallyCounter.title?.isNotEmpty ?? false ? tallyCounter.title! : context.local.noName,
+                      tallyCounter.title.isNotEmpty ? tallyCounter.title : context.local.noName,
                       style: TextStyle(
                         fontSize: 16,
                         fontWeight: FontWeight.w400,
