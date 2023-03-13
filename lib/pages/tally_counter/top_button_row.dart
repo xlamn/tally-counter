@@ -97,7 +97,9 @@ class TopButtonRow extends StatelessWidget {
           ],
         );
       }),
-    ).whenComplete(() => _updateCounter(context));
+    ).then((value) {
+      if (value == null) _updateCounter(context);
+    });
   }
 
   void _updateCounter(BuildContext context) {

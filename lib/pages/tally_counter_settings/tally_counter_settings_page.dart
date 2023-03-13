@@ -93,7 +93,7 @@ class TallyCounterSettingsPage extends StatelessWidget {
 
   void _onDelete(BuildContext context) {
     BlocProvider.of<TallyCounterCubit>(context).removeCounter();
-    Navigator.pop(context);
+    Navigator.pop(context, "isDeleted");
     PageConstants.pageController.animateToPage(
       PageConstants.tallyCountersOverviewPage,
       duration: const Duration(milliseconds: 250),
