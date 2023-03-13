@@ -10,6 +10,7 @@ part 'tally_counter_state.dart';
 class TallyCounterCubit extends Cubit<TallyCounterState> {
   final TallyCounterRepository tallyCounterRepository;
   final TallyGroupCubit tallyGroupCubit;
+  final maxCount = 99999999999;
 
   TallyCounterCubit({required this.tallyCounterRepository, required this.tallyGroupCubit})
       : super(TallyCounterState([TallyCounter()], 0));
@@ -100,10 +101,14 @@ class TallyCounterCubit extends Cubit<TallyCounterState> {
   void updateCount({required TallyCounterAction action}) async {
     switch (action) {
       case TallyCounterAction.increase:
-        await updateCounter(count: _getSelectedCounter().count + _getSelectedCounter().step);
+        var count = _getSelectedCounter().count + _getSelectedCounter().step;
+        if (count > maxCount) count = maxCount;
+        await updateCounter(count: count);
         break;
       case TallyCounterAction.decrease:
-        await updateCounter(count: _getSelectedCounter().count - _getSelectedCounter().step);
+        var count = _getSelectedCounter().count - _getSelectedCounter().step;
+        if (count < -maxCount) count = -maxCount;
+        await updateCounter(count: count);
         break;
       case TallyCounterAction.reset:
         await updateCounter(count: 0);
