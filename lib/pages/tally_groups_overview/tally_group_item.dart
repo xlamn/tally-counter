@@ -21,7 +21,7 @@ class TallyGroupItem extends StatelessWidget {
     return GestureDetector(
       behavior: HitTestBehavior.opaque,
       child: SizedBox(
-        width: MediaQuery.of(context).size.width * 0.8,
+        width: MediaQuery.of(context).size.width * 0.85,
         child: Slidable(
           key: Key(tallyGroup.title),
           endActionPane: ActionPane(
@@ -68,7 +68,17 @@ class TallyGroupItem extends StatelessWidget {
             margin: const EdgeInsets.symmetric(vertical: SizeConstants.small),
             padding: const EdgeInsets.all(SizeConstants.large),
             decoration: BoxDecoration(
-              color: Colors.grey.withOpacity(0.1),
+              color: context.isDarkMode ? Colors.grey[600] : Colors.grey[100],
+              boxShadow: [
+                BoxShadow(
+                  color: Theme.of(context).shadowColor.withOpacity(0.1),
+                  blurRadius: 5,
+                  offset: const Offset(
+                    0,
+                    SizeConstants.small,
+                  ),
+                ),
+              ],
               borderRadius: BorderRadius.circular(20.0),
             ),
             child: Row(
@@ -86,8 +96,8 @@ class TallyGroupItem extends StatelessWidget {
                           tallyGroup.title.isNotEmpty ? tallyGroup.title : context.local.noName,
                           style: TextStyle(
                             fontSize: 16,
-                            fontWeight: FontWeight.w400,
-                            color: Theme.of(context).textTheme.headlineMedium!.color,
+                            fontWeight: FontWeight.bold,
+                            color: Theme.of(context).textTheme.headlineSmall!.color!,
                           ),
                         ),
                       ),

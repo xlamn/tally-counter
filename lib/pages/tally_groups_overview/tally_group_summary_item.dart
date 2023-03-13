@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import '../../constants/constants.dart';
 import '../../cubits/cubits.dart';
@@ -18,12 +19,27 @@ class TallyGroupSummaryItem extends StatelessWidget {
           child: Container(
             margin: const EdgeInsets.only(
               top: SizeConstants.small,
-              bottom: SizeConstants.xLarge,
+              bottom: SizeConstants.normal,
             ),
-            width: MediaQuery.of(context).size.width * 0.8,
+            width: MediaQuery.of(context).size.width * 0.9,
             padding: const EdgeInsets.all(SizeConstants.normal),
             decoration: BoxDecoration(
-              color: Colors.grey.withOpacity(0.1),
+              boxShadow: [
+                BoxShadow(
+                  color: Theme.of(context).shadowColor.withOpacity(0.2),
+                  blurRadius: 5,
+                  offset: const Offset(
+                    0,
+                    SizeConstants.small,
+                  ),
+                ),
+              ],
+              gradient: const LinearGradient(
+                colors: [
+                  Color(0xFFfc506e),
+                  Color(0xFFee821a),
+                ],
+              ),
               borderRadius: BorderRadius.circular(20.0),
             ),
             child: Row(
@@ -37,15 +53,19 @@ class TallyGroupSummaryItem extends StatelessWidget {
                           vertical: SizeConstants.xxSmall,
                           horizontal: SizeConstants.small,
                         ),
-                        child: Center(
-                          child: Text(
-                            "ALL",
-                            style: TextStyle(
-                              fontSize: 26,
-                              fontWeight: FontWeight.bold,
-                              color: Theme.of(context).textTheme.headlineMedium!.color,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: const [
+                            Text(
+                              "all",
+                              style: TextStyle(
+                                fontSize: 24,
+                                letterSpacing: 1,
+                                color: Colors.white,
+                              ),
                             ),
-                          ),
+                            FaIcon(FontAwesomeIcons.globe, color: Colors.white),
+                          ],
                         ),
                       ),
                     ],

@@ -23,7 +23,7 @@ class TallyCounterItem extends StatelessWidget {
     return GestureDetector(
       behavior: HitTestBehavior.opaque,
       child: SizedBox(
-        width: MediaQuery.of(context).size.width * 0.8,
+        width: MediaQuery.of(context).size.width * 0.85,
         child: Slidable(
           key: Key(tallyCounter.title),
           endActionPane: ActionPane(
@@ -70,7 +70,17 @@ class TallyCounterItem extends StatelessWidget {
             margin: const EdgeInsets.all(SizeConstants.small),
             padding: const EdgeInsets.all(SizeConstants.large),
             decoration: BoxDecoration(
-              color: Colors.grey.withOpacity(0.1),
+              color: context.isDarkMode ? Colors.grey[600] : Colors.grey[100],
+              boxShadow: [
+                BoxShadow(
+                  color: Theme.of(context).shadowColor.withOpacity(0.1),
+                  blurRadius: 5,
+                  offset: const Offset(
+                    0,
+                    SizeConstants.small,
+                  ),
+                ),
+              ],
               borderRadius: BorderRadius.circular(20.0),
             ),
             child: Row(

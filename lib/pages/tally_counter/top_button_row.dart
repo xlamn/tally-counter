@@ -50,8 +50,8 @@ class TopButtonRow extends StatelessWidget {
                     Text(
                       tallyCounter.group!.title,
                       style: TextStyle(
-                        fontWeight: FontWeight.w500,
-                        color: Theme.of(context).textTheme.headlineSmall!.color!.withOpacity(0.5),
+                        fontWeight: FontWeight.bold,
+                        color: Theme.of(context).textTheme.headlineSmall!.color!.withOpacity(0.8),
                       ),
                     )
                 ],

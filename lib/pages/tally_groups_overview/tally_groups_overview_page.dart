@@ -37,7 +37,25 @@ class TallyGroupsOverviewPage extends StatelessWidget {
                   childCount: state.tallyGroups.length + 1,
                   (BuildContext context, int index) {
                     if (index == 0) {
-                      return const TallyGroupSummaryItem();
+                      return Column(
+                        children: [
+                          const TallyGroupSummaryItem(),
+                          Align(
+                            alignment: Alignment.centerLeft,
+                            child: Container(
+                                padding: const EdgeInsets.only(
+                                  top: SizeConstants.normal,
+                                  bottom: SizeConstants.xSmall,
+                                  left: SizeConstants.xLarge,
+                                  right: SizeConstants.xLarge,
+                                ),
+                                child: Text(
+                                  "Groups".toUpperCase(),
+                                  style: TextStyle(fontWeight: FontWeight.w900, fontSize: 20, letterSpacing: 2),
+                                )),
+                          ),
+                        ],
+                      );
                     }
                     return _buildTallyGroupListItem(context, index - 1, state.tallyGroups);
                   },
