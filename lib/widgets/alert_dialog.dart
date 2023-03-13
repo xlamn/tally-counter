@@ -3,11 +3,12 @@ import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import '../../extensions/extensions.dart';
+
 void showAlertDialog(
   BuildContext context, {
   required String title,
   required String description,
-  String cancelText = 'Cancel',
   required String actionText,
   required Function action,
 }) async {
@@ -19,7 +20,7 @@ void showAlertDialog(
         content: Text(description),
         actions: <Widget>[
           TextButton(
-            child: Text(cancelText),
+            child: Text(context.local.cancel.toCapitalized()),
             onPressed: () => Navigator.of(dialogContext).pop(false),
           ),
           TextButton(
@@ -48,7 +49,7 @@ void showAlertDialog(
       content: Text(description),
       actions: <Widget>[
         CupertinoDialogAction(
-          child: Text(cancelText),
+          child: Text(context.local.cancel.toCapitalized()),
           onPressed: () => Navigator.of(dialogContext).pop(false),
         ),
         CupertinoDialogAction(

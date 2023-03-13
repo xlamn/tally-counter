@@ -3,12 +3,12 @@ import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import '../../extensions/extensions.dart';
 import '../constants/constants.dart';
 
 void showInputDialog(
   BuildContext context, {
   required String title,
-  String cancelText = 'Cancel',
   required String actionText,
   required Function action,
 }) async {
@@ -24,13 +24,14 @@ void showInputDialog(
           mainAxisSize: MainAxisSize.min,
           children: [
             TextFormField(
+              style: TextStyle(color: Theme.of(context).textTheme.displayMedium!.color),
               maxLines: 1,
               cursorColor: Colors.blue,
               onChanged: (value) =>
                   value.isNotEmpty ? enableCreateButton.value = true : enableCreateButton.value = false,
               controller: PageConstants.groupTitleController,
               decoration: InputDecoration(
-                hintText: "Name",
+                hintText: context.local.name,
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(10.0),
                   borderSide: const BorderSide(width: 0, style: BorderStyle.none),
@@ -47,7 +48,7 @@ void showInputDialog(
               foregroundColor: Colors.red,
             ),
             child: Text(
-              cancelText,
+              context.local.cancel.toCapitalized(),
               style: const TextStyle(
                 color: Colors.red,
               ),
@@ -87,11 +88,12 @@ void showInputDialog(
           top: SizeConstants.normal,
         ),
         child: CupertinoTextFormFieldRow(
+          style: TextStyle(color: Theme.of(context).textTheme.displayMedium!.color),
           onChanged: (value) => value.isNotEmpty ? enableCreateButton.value = true : enableCreateButton.value = false,
           padding: EdgeInsets.zero,
           controller: PageConstants.groupTitleController,
           cursorColor: CupertinoColors.systemBlue,
-          placeholder: "Name",
+          placeholder: context.local.name,
           decoration: const BoxDecoration(
               borderRadius: BorderRadius.all(Radius.circular(8)),
               color: CupertinoDynamicColor.withBrightness(
@@ -103,7 +105,7 @@ void showInputDialog(
       actions: <Widget>[
         CupertinoDialogAction(
           isDestructiveAction: true,
-          child: Text(cancelText),
+          child: Text(context.local.cancel.toCapitalized()),
           onPressed: () => Navigator.of(dialogContext).pop(false),
         ),
         ValueListenableBuilder<bool>(

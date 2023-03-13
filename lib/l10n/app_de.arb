@@ -13,5 +13,6 @@
   "all": "alle",
   "counters": "Zähler",
   "newGroup": "neue Gruppe",
-  "create": "anlegen"
+  "create": "anlegen",
+  "name": "Name"
 }

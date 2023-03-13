@@ -13,5 +13,6 @@
   "all": "all",
   "counters": "counters",
   "newGroup": "new group",
-  "create": "create"
+  "create": "create",
+  "name": "name"
 }

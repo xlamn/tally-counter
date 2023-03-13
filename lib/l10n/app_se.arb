@@ -13,5 +13,6 @@
   "all": "allt",
   "counters": "Räkningsräknare",
   "newGroup": "ny grupp",
-  "create": "skapa"
+  "create": "skapa",
+  "name": "namn"
 }
