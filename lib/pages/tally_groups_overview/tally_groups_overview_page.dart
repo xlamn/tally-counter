@@ -51,11 +51,11 @@ class TallyGroupsOverviewPage extends StatelessWidget {
                                   right: SizeConstants.xLarge,
                                 ),
                                 child: Text(
-                                  context.local.groups.toUpperCase(),
+                                  context.local.groups,
                                   style: const TextStyle(
                                     fontWeight: FontWeight.w900,
-                                    fontSize: 20,
-                                    letterSpacing: 2,
+                                    fontSize: 26,
+                                    letterSpacing: 0.8,
                                   ),
                                 )),
                           ),
