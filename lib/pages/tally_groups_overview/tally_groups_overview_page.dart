@@ -103,8 +103,8 @@ class _AddTallyGroupButton extends StatelessWidget {
         icon: const FaIcon(FontAwesomeIcons.plus),
         action: () => showInputDialog(
           context,
-          title: "New Group",
-          actionText: "Create",
+          title: context.local.newGroup.toCapitalized(),
+          actionText: context.local.create.toCapitalized(),
           action: () => BlocProvider.of<TallyGroupCubit>(context).addGroup(
             title: PageConstants.groupTitleController.text,
           ),

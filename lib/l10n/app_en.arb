@@ -10,5 +10,8 @@
   "noName": "No Name",
   "group": "group",
   "groups": "groups",
-  "all": "all"
+  "all": "all",
+  "counters": "counters",
+  "newGroup": "new group",
+  "create": "create"
 }

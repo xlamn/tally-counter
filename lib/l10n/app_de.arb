@@ -10,5 +10,8 @@
   "noName": "Kein Name",
   "group": "Gruppe",
   "groups": "Gruppen",
-  "all": "alle"
+  "all": "alle",
+  "counters": "Zähler",
+  "newGroup": "neue Gruppe",
+  "create": "anlegen"
 }

@@ -18,6 +18,8 @@ class TallyGroupItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var tallyCounterCubit = BlocProvider.of<TallyCounterCubit>(context);
+
     return GestureDetector(
       behavior: HitTestBehavior.opaque,
       child: SizedBox(
@@ -41,8 +43,9 @@ class TallyGroupItem extends StatelessWidget {
                     },
                     child: Container(
                       margin: const EdgeInsets.only(left: SizeConstants.small),
-                      padding: const EdgeInsets.all(
-                        SizeConstants.normalSmaller,
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: SizeConstants.normalSmaller,
+                        vertical: SizeConstants.large,
                       ),
                       decoration: BoxDecoration(
                         color: Colors.red.withOpacity(context.isDarkMode ? 0.3 : 0.2),
@@ -86,6 +89,7 @@ class TallyGroupItem extends StatelessWidget {
               children: [
                 Flexible(
                   child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Container(
                         padding: const EdgeInsets.symmetric(
@@ -96,13 +100,28 @@ class TallyGroupItem extends StatelessWidget {
                           tallyGroup.title.isNotEmpty ? tallyGroup.title : context.local.noName,
                           style: TextStyle(
                             fontSize: 16,
-                            color: Theme.of(context).textTheme.headlineSmall!.color!,
+                            fontWeight: FontWeight.w500,
+                            color: Theme.of(context).textTheme.headlineMedium!.color!,
                           ),
                         ),
                       ),
+                      Container(
+                        padding: const EdgeInsets.symmetric(
+                          vertical: SizeConstants.xxSmall,
+                          horizontal: SizeConstants.small,
+                        ),
+                        child: Text(
+                          "${context.local.counters}: ${tallyCounterCubit.getTallyCountersFromSelectedGroup(tallyGroup: tallyGroup).length}",
+                          style: TextStyle(
+                            fontSize: 14,
+                            color: Theme.of(context).textTheme.headlineSmall!.color!.withOpacity(0.8),
+                          ),
+                        ),
+                      )
                     ],
                   ),
                 ),
+                const FaIcon(FontAwesomeIcons.arrowRightLong)
               ],
             ),
           ),

@@ -4,11 +4,14 @@
   "warningDescription": "Är du säker på att nollställa räknaren?",
   "reset": "nollställa",
   "delete": "radera",
-  "title": "Titel",
-  "value": "Värde",
+  "title": "titel",
+  "value": "värde",
   "steps": "Steg",
   "noName": "Inget Namn",
-  "group": "Grupp",
-  "groups": "Grupper",
-  "all": "allt"
+  "group": "grupp",
+  "groups": "grupper",
+  "all": "allt",
+  "counters": "Räkningsräknare",
+  "newGroup": "ny grupp",
+  "create": "skapa"
 }

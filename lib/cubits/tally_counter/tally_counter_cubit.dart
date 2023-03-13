@@ -14,9 +14,12 @@ class TallyCounterCubit extends Cubit<TallyCounterState> {
   TallyCounterCubit({required this.tallyCounterRepository, required this.tallyGroupCubit})
       : super(TallyCounterState([TallyCounter()], 0));
 
-  List<TallyCounter> getTallyCountersFromSelectedGroup() {
+  List<TallyCounter> getTallyCountersFromSelectedGroup({TallyGroup? tallyGroup}) {
     var filteredTallyCounters = state.tallyCounters;
-    if (tallyGroupCubit.getSelectedGroup() != null) {
+    if (tallyGroup != null) {
+      filteredTallyCounters =
+          filteredTallyCounters.where((tallyCounter) => tallyCounter.group?.title == tallyGroup.title).toList();
+    } else if (tallyGroupCubit.getSelectedGroup() != null) {
       filteredTallyCounters = filteredTallyCounters
           .where((tallyCounter) => tallyCounter.group?.title == tallyGroupCubit.getSelectedGroup()?.title)
           .toList();
