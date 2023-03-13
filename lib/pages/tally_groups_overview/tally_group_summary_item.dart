@@ -4,6 +4,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import '../../constants/constants.dart';
 import '../../cubits/cubits.dart';
+import '../../extensions/extensions.dart';
 
 class TallyGroupSummaryItem extends StatelessWidget {
   const TallyGroupSummaryItem({
@@ -55,16 +56,19 @@ class TallyGroupSummaryItem extends StatelessWidget {
                         ),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: const [
+                          children: [
                             Text(
-                              "all",
-                              style: TextStyle(
+                              context.local.all,
+                              style: const TextStyle(
                                 fontSize: 24,
                                 letterSpacing: 1,
                                 color: Colors.white,
                               ),
                             ),
-                            FaIcon(FontAwesomeIcons.globe, color: Colors.white),
+                            const FaIcon(
+                              FontAwesomeIcons.globe,
+                              color: Colors.white,
+                            ),
                           ],
                         ),
                       ),

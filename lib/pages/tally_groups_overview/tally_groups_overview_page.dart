@@ -5,6 +5,7 @@ import 'package:tally_counter/widgets/input_dialog.dart';
 
 import '../../constants/constants.dart';
 import '../../cubits/cubits.dart';
+import '../../extensions/extensions.dart';
 import '../../models/models.dart';
 import '../../widgets/tally_counter_icon_button.dart';
 import 'tally_group_item.dart';
@@ -50,8 +51,12 @@ class TallyGroupsOverviewPage extends StatelessWidget {
                                   right: SizeConstants.xLarge,
                                 ),
                                 child: Text(
-                                  "Groups".toUpperCase(),
-                                  style: TextStyle(fontWeight: FontWeight.w900, fontSize: 20, letterSpacing: 2),
+                                  context.local.groups.toUpperCase(),
+                                  style: const TextStyle(
+                                    fontWeight: FontWeight.w900,
+                                    fontSize: 20,
+                                    letterSpacing: 2,
+                                  ),
                                 )),
                           ),
                         ],

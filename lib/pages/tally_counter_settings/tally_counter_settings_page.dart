@@ -57,7 +57,7 @@ class TallyCounterSettingsPage extends StatelessWidget {
                 ),
                 FormDropdownField(
                   tallyCounter: state.tallyCounters[state.selected],
-                  title: "Group",
+                  title: context.local.group,
                   dropdownItems: BlocProvider.of<TallyGroupCubit>(context).state.tallyGroups,
                   controller: PageConstants.groupController,
                 ),
