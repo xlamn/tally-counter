@@ -25,7 +25,7 @@ class TallyGroupItem extends StatelessWidget {
         child: Slidable(
           key: Key(tallyGroup.title),
           endActionPane: ActionPane(
-            extentRatio: 0.26,
+            extentRatio: 0.25,
             motion: const ScrollMotion(),
             children: [
               Builder(

@@ -63,9 +63,9 @@ class TallyCounterCubit extends Cubit<TallyCounterState> {
     await tallyCounterRepository.saveTallyCounters(state.tallyCounters);
   }
 
-  void removeCounter() async {
+  void removeCounter({TallyCounter? tallyCounter}) async {
     final tallyCounters = state.tallyCounters.toList();
-    tallyCounters.remove(_getSelectedCounter());
+    tallyCounters.remove(tallyCounter ?? _getSelectedCounter());
     emit(
       state.copyWith(
         tallyCounters: tallyCounters,
