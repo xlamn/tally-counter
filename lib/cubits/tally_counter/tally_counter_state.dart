@@ -6,18 +6,26 @@ class TallyCounterState {
 
   const TallyCounterState(this.tallyCounters, this.selected);
 
-  TallyCounterState copyWith({List<TallyCounter>? tallyCounters, int? selected}) {
+  TallyCounterState copyWith({
+    List<TallyCounter>? tallyCounters,
+    int? selected,
+  }) {
     return TallyCounterState(
       tallyCounters ?? this.tallyCounters,
       selected ?? this.selected,
     );
   }
 
-  TallyCounterState copyCounter(
-      {String? title, int? count, int? step, TallyGroup? group, bool forceOverrideGroup = false}) {
+  TallyCounterState copyCounter({
+    String? title,
+    int? count,
+    int? step,
+    TallyGroup? group,
+    bool forceGroupOverride = false,
+  }) {
     final tallyCounter = tallyCounters[selected];
 
-    if (forceOverrideGroup) {
+    if (forceGroupOverride) {
       tallyCounters[selected] = TallyCounter(
         title: title ?? tallyCounter.title,
         count: count ?? tallyCounter.count,

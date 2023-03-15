@@ -1,3 +1,4 @@
+import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../enums/enums.dart';
@@ -13,19 +14,6 @@ class TallyCounterCubit extends Cubit<TallyCounterState> {
 
   TallyCounterCubit({required this.tallyCounterRepository, required this.tallyGroupCubit})
       : super(TallyCounterState([TallyCounter()], 0));
-
-  List<TallyCounter> getTallyCountersFromSelectedGroup({TallyGroup? tallyGroup}) {
-    var filteredTallyCounters = state.tallyCounters;
-    if (tallyGroup != null) {
-      filteredTallyCounters =
-          filteredTallyCounters.where((tallyCounter) => tallyCounter.group?.title == tallyGroup.title).toList();
-    } else if (tallyGroupCubit.getSelectedGroup() != null) {
-      filteredTallyCounters = filteredTallyCounters
-          .where((tallyCounter) => tallyCounter.group?.title == tallyGroupCubit.getSelectedGroup()?.title)
-          .toList();
-    }
-    return filteredTallyCounters;
-  }
 
   // multiple counters
 
@@ -78,6 +66,15 @@ class TallyCounterCubit extends Cubit<TallyCounterState> {
     await tallyCounterRepository.saveTallyCounters(state.tallyCounters);
   }
 
+  List<TallyCounter> getCountersFromGroup({TallyGroup? tallyGroup}) {
+    var tallyCounters = state.tallyCounters;
+    var group = tallyGroup ?? tallyGroupCubit.getSelectedGroup();
+    if (group != null) {
+      tallyCounters = tallyCounters.where((tallyCounter) => tallyCounter.group?.title == group.title).toList();
+    }
+    return tallyCounters;
+  }
+
   void removeGroupFromCounters(TallyGroup tallyGroup) async {
     final tallyCounters = state.tallyCounters.toList();
     for (final tallyCounter in tallyCounters) {
@@ -124,7 +121,7 @@ class TallyCounterCubit extends Cubit<TallyCounterState> {
         count: count,
         step: step,
         group: group,
-        forceOverrideGroup: forceOverrideGroup,
+        forceGroupOverride: forceOverrideGroup,
       ),
     );
     await tallyCounterRepository.saveTallyCounters(state.tallyCounters);

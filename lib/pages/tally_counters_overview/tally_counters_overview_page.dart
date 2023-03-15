@@ -4,6 +4,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import '../../constants/constants.dart';
 import '../../cubits/cubits.dart';
+import '../../enums/pages.dart';
 import '../../models/models.dart';
 import '../../widgets/widgets.dart';
 import 'tally_counter_item.dart';
@@ -18,7 +19,7 @@ class TallyCountersOverViewPage extends StatelessWidget {
     return Scaffold(
       body: BlocBuilder<TallyCounterCubit, TallyCounterState>(
         builder: (context, state) {
-          final tallyCounters = BlocProvider.of<TallyCounterCubit>(context).getTallyCountersFromSelectedGroup();
+          final tallyCounters = BlocProvider.of<TallyCounterCubit>(context).getCountersFromGroup();
 
           return CustomScrollView(
             slivers: [
@@ -29,7 +30,7 @@ class TallyCountersOverViewPage extends StatelessWidget {
                 sliver: SliverAppBar(
                   title: _getTitle(context),
                   toolbarHeight: HeightConstants.headerHeight,
-                  leading: const _GroupCounterButton(),
+                  leading: const _ViewTallyGroupsButton(),
                   backgroundColor: Theme.of(context).scaffoldBackgroundColor,
                   actions: const [
                     _AddTallyCounterButton(),
@@ -82,8 +83,8 @@ class TallyCountersOverViewPage extends StatelessWidget {
   }
 }
 
-class _GroupCounterButton extends StatelessWidget {
-  const _GroupCounterButton({Key? key}) : super(key: key);
+class _ViewTallyGroupsButton extends StatelessWidget {
+  const _ViewTallyGroupsButton({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -100,7 +101,7 @@ class _GroupCounterButton extends StatelessWidget {
 
   void _onTap(BuildContext context) {
     PageConstants.pageController.animateToPage(
-      PageConstants.groupsOverviewPage,
+      Pages.groupsOverviewPage.value,
       duration: const Duration(milliseconds: 250),
       curve: Curves.linear,
     );

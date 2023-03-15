@@ -1,15 +1,12 @@
 import 'package:flutter/widgets.dart';
 
+import '../enums/pages.dart';
 import '../helper/helper.dart';
 
 class PageConstants {
   static PageController pageController = PageController(
-    initialPage: tallyCounterPage,
+    initialPage: Pages.tallyCounterPage.value,
   );
-
-  static const groupsOverviewPage = 0;
-  static const tallyCountersOverviewPage = 1;
-  static const tallyCounterPage = 2;
 
   static TextEditingController titleController = TextEditingController();
 
@@ -20,5 +17,4 @@ class PageConstants {
   static TextEditingController groupTitleController = TextEditingController();
 
   static TallyGroupController groupController = TallyGroupController();
-
 }

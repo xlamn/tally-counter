@@ -5,7 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../cubits/cubits.dart';
 import '../../enums/enums.dart';
 import 'bottom_button_row.dart';
-import 'top_button_row.dart';
+import 'tally_counter_page_header.dart';
 
 class TallyCounterPage extends StatefulWidget {
   const TallyCounterPage({
@@ -62,7 +62,7 @@ class _TallyCounterPageState extends State<TallyCounterPage> with TickerProvider
                     ),
                   ),
                 ),
-                TopButtonRow(
+                TallyCounterPageHeader(
                   tallyCounter: state.tallyCounters[state.selected],
                 ),
                 BottomButtonRow(

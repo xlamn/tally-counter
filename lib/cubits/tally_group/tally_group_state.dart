@@ -6,7 +6,10 @@ class TallyGroupState {
 
   const TallyGroupState(this.tallyGroups, {this.selected});
 
-  TallyGroupState copyWith({List<TallyGroup>? tallyGroups, int? selected}) {
+  TallyGroupState copyWith({
+    List<TallyGroup>? tallyGroups,
+    int? selected,
+  }) {
     return TallyGroupState(
       tallyGroups ?? this.tallyGroups,
       selected: selected,

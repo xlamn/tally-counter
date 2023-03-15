@@ -39,26 +39,9 @@ class TallyGroupsOverviewPage extends StatelessWidget {
                   (BuildContext context, int index) {
                     if (index == 0) {
                       return Column(
-                        children: [
-                          const TallyGroupSummaryItem(),
-                          Align(
-                            alignment: Alignment.centerLeft,
-                            child: Container(
-                                padding: const EdgeInsets.only(
-                                  top: SizeConstants.normal,
-                                  bottom: SizeConstants.xSmall,
-                                  left: SizeConstants.xLarge,
-                                  right: SizeConstants.xLarge,
-                                ),
-                                child: Text(
-                                  context.local.groups,
-                                  style: const TextStyle(
-                                    fontWeight: FontWeight.w900,
-                                    fontSize: 26,
-                                    letterSpacing: 0.8,
-                                  ),
-                                )),
-                          ),
+                        children: const [
+                          TallyGroupSummaryItem(),
+                          _GroupsTitle(),
                         ],
                       );
                     }
@@ -86,6 +69,32 @@ class TallyGroupsOverviewPage extends StatelessWidget {
             height: SizeConstants.xxLarge,
           )
       ],
+    );
+  }
+}
+
+class _GroupsTitle extends StatelessWidget {
+  const _GroupsTitle({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Align(
+      alignment: Alignment.centerLeft,
+      child: Container(
+          padding: const EdgeInsets.only(
+            top: SizeConstants.normal,
+            bottom: SizeConstants.xSmall,
+            left: SizeConstants.xLarge,
+            right: SizeConstants.xLarge,
+          ),
+          child: Text(
+            context.local.groups,
+            style: const TextStyle(
+              fontWeight: FontWeight.w900,
+              fontSize: 26,
+              letterSpacing: 0.8,
+            ),
+          )),
     );
   }
 }
