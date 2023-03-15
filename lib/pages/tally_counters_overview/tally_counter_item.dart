@@ -24,7 +24,17 @@ class TallyCounterItem extends StatelessWidget {
       behavior: HitTestBehavior.opaque,
       child: SizedBox(
         width: MediaQuery.of(context).size.width * 0.85,
-        child: _DeleteSlide(
+        child: SlideAction(
+          padding: const EdgeInsets.symmetric(
+            horizontal: SizeConstants.normalSmaller,
+            vertical: SizeConstants.xLarge + SizeConstants.xxSmall,
+          ),
+          color: Colors.red,
+          icon: FaIcon(
+            FontAwesomeIcons.trash,
+            size: SizeConstants.normal,
+            color: context.isDarkMode ? Colors.redAccent : Colors.red.withOpacity(0.8),
+          ),
           onTap: (context) => _onDelete(context),
           child: _CounterContainer(
             child: Row(
@@ -91,7 +101,7 @@ class _CounterContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.all(SizeConstants.small),
+      margin: const EdgeInsets.symmetric(vertical: SizeConstants.small),
       padding: const EdgeInsets.all(SizeConstants.large),
       decoration: BoxDecoration(
         color: context.isDarkMode ? Colors.grey[600] : Colors.grey[100],

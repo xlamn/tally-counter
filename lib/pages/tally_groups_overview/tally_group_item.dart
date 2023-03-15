@@ -2,12 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:tally_counter/enums/enums.dart';
 
 import '../../constants/constants.dart';
 import '../../cubits/cubits.dart';
+import '../../enums/pages.dart';
 import '../../extensions/extensions.dart';
 import '../../models/models.dart';
+import '../../widgets/widgets.dart';
 
 class TallyGroupItem extends StatelessWidget {
   final TallyGroup tallyGroup;
@@ -23,7 +24,17 @@ class TallyGroupItem extends StatelessWidget {
       behavior: HitTestBehavior.opaque,
       child: SizedBox(
         width: MediaQuery.of(context).size.width * 0.85,
-        child: _DeleteSlide(
+        child: SlideAction(
+          padding: const EdgeInsets.symmetric(
+            horizontal: SizeConstants.normalSmaller,
+            vertical: SizeConstants.large,
+          ),
+          icon: FaIcon(
+            FontAwesomeIcons.trash,
+            size: SizeConstants.normal,
+            color: context.isDarkMode ? Colors.redAccent : Colors.red.withOpacity(0.8),
+          ),
+          color: Colors.red,
           onTap: (context) => Slidable.of(context)?.dismiss(
             ResizeRequest(
               const Duration(milliseconds: 250),
@@ -124,54 +135,6 @@ class _GroupInfo extends StatelessWidget {
           )
         ],
       ),
-    );
-  }
-}
-
-class _DeleteSlide extends StatelessWidget {
-  final Widget child;
-  final Function(BuildContext) onTap;
-  const _DeleteSlide({Key? key, required this.child, required this.onTap}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Slidable(
-      key: Key(child.hashCode.toString()),
-      endActionPane: ActionPane(
-        extentRatio: 0.25,
-        motion: const ScrollMotion(),
-        children: [
-          Builder(
-            builder: (context) {
-              return GestureDetector(
-                onTap: () => onTap(context),
-                child: Container(
-                  margin: const EdgeInsets.only(left: SizeConstants.small),
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: SizeConstants.normalSmaller,
-                    vertical: SizeConstants.large,
-                  ),
-                  decoration: BoxDecoration(
-                    color: Colors.red.withOpacity(context.isDarkMode ? 0.3 : 0.2),
-                    borderRadius: const BorderRadius.all(
-                      Radius.circular(20),
-                    ),
-                  ),
-                  child: Container(
-                    margin: const EdgeInsets.all(SizeConstants.normal),
-                    child: FaIcon(
-                      FontAwesomeIcons.trash,
-                      size: SizeConstants.normal,
-                      color: context.isDarkMode ? Colors.redAccent : Colors.red.withOpacity(0.8),
-                    ),
-                  ),
-                ),
-              );
-            },
-          ),
-        ],
-      ),
-      child: child,
     );
   }
 }
