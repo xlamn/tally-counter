@@ -90,7 +90,7 @@ Future<T?> _showCupertinoBottomSheet<T>(
   CancelAction? cancelAction, {
   bool isDismissible = true,
 }) {
-  final defaultTextStyle = Theme.of(context).textTheme.headline6 ?? const TextStyle(fontSize: 20);
+  final defaultTextStyle = Theme.of(context).textTheme.headlineMedium ?? const TextStyle(fontSize: 20);
   return showCupertinoModalPopup(
     context: context,
     barrierDismissible: isDismissible,
@@ -163,7 +163,7 @@ Future<T?> _showMaterialBottomSheet<T>(
   double? androidBorderRadius, {
   bool isDismissible = true,
 }) {
-  final defaultTextStyle = Theme.of(context).textTheme.headline6 ?? const TextStyle(fontSize: 20);
+  final defaultTextStyle = Theme.of(context).textTheme.headlineMedium ?? const TextStyle(fontSize: 20);
   final BottomSheetThemeData sheetTheme = Theme.of(context).bottomSheetTheme;
   return showModalBottomSheet<T>(
     context: context,

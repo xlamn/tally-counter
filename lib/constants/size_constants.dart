@@ -8,6 +8,9 @@ class SizeConstants {
   ///24px
   static const large = 24.0;
 
+  ///20px
+  static const normalLarger = 20.0;
+
   ///16px
   static const normal = 16.0;
 
@@ -25,4 +28,8 @@ class SizeConstants {
 
   ///0px
   static const none = 0.0;
+}
+
+class HeightConstants {
+  static const headerHeight = 80.0;
 }

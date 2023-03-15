@@ -7,5 +7,12 @@
   "title": "title",
   "value": "value",
   "steps": "steps",
-  "noName": "No Name"
+  "noName": "No Name",
+  "group": "group",
+  "groups": "groups",
+  "all": "all",
+  "counters": "counters",
+  "newGroup": "new group",
+  "create": "create",
+  "name": "name"
 }

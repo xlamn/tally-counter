@@ -35,10 +35,20 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => TallyCounterCubit(
-        tallyCounterRepository: TallyCounterRepository(),
-      )..loadTallyCounters(),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) => TallyGroupCubit(
+            tallyCounterRepository: TallyCounterRepository(),
+          )..loadTallyGroups(),
+        ),
+        BlocProvider(
+          create: (context) => TallyCounterCubit(
+            tallyGroupCubit: BlocProvider.of<TallyGroupCubit>(context),
+            tallyCounterRepository: TallyCounterRepository(),
+          )..loadTallyCounters(),
+        ),
+      ],
       child: DynamicColorBuilder(
         builder: ((lightColorScheme, darkColorScheme) {
           return MaterialApp(
@@ -48,6 +58,7 @@ class MyApp extends StatelessWidget {
               useMaterial3: true,
             ),
             darkTheme: ThemeData(
+              fontFamily: "Poppins",
               colorScheme: darkColorScheme ?? ColorConstants.defaultDarkColorScheme,
               useMaterial3: true,
             ),
@@ -71,6 +82,7 @@ class MyApp extends StatelessWidget {
                     controller: PageConstants.pageController,
                     physics: const NeverScrollableScrollPhysics(),
                     children: const [
+                      TallyGroupsOverviewPage(),
                       TallyCountersOverViewPage(),
                       TallyCounterPage(),
                     ],

@@ -7,5 +7,12 @@
   "title": "Titel",
   "value": "Wert",
   "steps": "Schritte",
-  "noName": "Kein Name"
+  "noName": "Kein Name",
+  "group": "Gruppe",
+  "groups": "Gruppen",
+  "all": "alle",
+  "counters": "Zähler",
+  "newGroup": "neue Gruppe",
+  "create": "anlegen",
+  "name": "Name"
 }

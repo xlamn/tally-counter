@@ -4,6 +4,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import '../../constants/constants.dart';
 import '../../cubits/cubits.dart';
+import '../../enums/pages.dart';
 import '../../models/models.dart';
 import '../../widgets/widgets.dart';
 import 'tally_counter_item.dart';
@@ -18,26 +19,49 @@ class TallyCountersOverViewPage extends StatelessWidget {
     return Scaffold(
       body: BlocBuilder<TallyCounterCubit, TallyCounterState>(
         builder: (context, state) {
+          final tallyCounters = BlocProvider.of<TallyCounterCubit>(context).getCountersFromGroup();
+
           return CustomScrollView(
             slivers: [
-              SliverAppBar(
-                toolbarHeight: MediaQuery.of(context).size.height * 0.1,
-                backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-                actions: const [
-                  _AddTallyCounterButton(),
-                ],
+              SliverPadding(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: SizeConstants.normal,
+                ),
+                sliver: SliverAppBar(
+                  title: _getTitle(context),
+                  toolbarHeight: HeightConstants.headerHeight,
+                  leading: const _ViewTallyGroupsButton(),
+                  backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+                  actions: const [
+                    _AddTallyCounterButton(),
+                  ],
+                ),
               ),
               SliverList(
                 delegate: SliverChildBuilderDelegate(
-                  childCount: state.tallyCounters.length,
+                  childCount: tallyCounters.length,
                   (BuildContext context, int index) {
-                    return _buildTallyCounterListItem(context, index, state.tallyCounters);
+                    return _buildTallyCounterListItem(context, index, tallyCounters);
                   },
                 ),
               ),
             ],
           );
         },
+      ),
+    );
+  }
+
+  Widget _getTitle(BuildContext context) {
+    final text = BlocProvider.of<TallyGroupCubit>(context).getSelectedGroup()?.title ?? "";
+    return Center(
+      child: Text(
+        text,
+        style: TextStyle(
+          fontSize: 18,
+          fontWeight: FontWeight.bold,
+          color: Theme.of(context).textTheme.headlineMedium!.color!.withOpacity(0.8),
+        ),
       ),
     );
   }
@@ -59,6 +83,31 @@ class TallyCountersOverViewPage extends StatelessWidget {
   }
 }
 
+class _ViewTallyGroupsButton extends StatelessWidget {
+  const _ViewTallyGroupsButton({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.symmetric(
+        vertical: SizeConstants.normalSmaller,
+      ),
+      child: TallyCounterIconButton(
+        icon: const FaIcon(FontAwesomeIcons.grip),
+        action: () => _onTap(context),
+      ),
+    );
+  }
+
+  void _onTap(BuildContext context) {
+    PageConstants.pageController.animateToPage(
+      Pages.groupsOverviewPage.value,
+      duration: const Duration(milliseconds: 250),
+      curve: Curves.linear,
+    );
+  }
+}
+
 class _AddTallyCounterButton extends StatelessWidget {
   const _AddTallyCounterButton({Key? key}) : super(key: key);
 
@@ -67,7 +116,6 @@ class _AddTallyCounterButton extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(
         vertical: SizeConstants.normalSmaller,
-        horizontal: SizeConstants.normal,
       ),
       child: TallyCounterIconButton(
           icon: const FaIcon(FontAwesomeIcons.plus),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:tally_counter/enums/enums.dart';
 
 import '../../constants/constants.dart';
 import '../../cubits/cubits.dart';
@@ -8,10 +9,10 @@ import '../../models/models.dart';
 import '../../widgets/widgets.dart';
 import '../pages.dart';
 
-class TopButtonRow extends StatelessWidget {
+class TallyCounterPageHeader extends StatelessWidget {
   final TallyCounter tallyCounter;
 
-  const TopButtonRow({
+  const TallyCounterPageHeader({
     Key? key,
     required this.tallyCounter,
   }) : super(key: key);
@@ -22,6 +23,7 @@ class TopButtonRow extends StatelessWidget {
       child: Align(
         alignment: Alignment.topCenter,
         child: Container(
+          height: HeightConstants.headerHeight,
           padding: const EdgeInsets.symmetric(
             vertical: SizeConstants.small,
             horizontal: SizeConstants.normal,
@@ -31,8 +33,9 @@ class TopButtonRow extends StatelessWidget {
             children: [
               TallyCounterIconButton(
                 icon: const FaIcon(FontAwesomeIcons.bars),
-                action: () => _showOverview(context),
+                action: () => _showTallyCountersOverview(context),
               ),
+              _HeaderTitle(tallyCounter: tallyCounter),
               TallyCounterIconButton(
                 icon: const FaIcon(FontAwesomeIcons.circleInfo),
                 action: () async => await _showSettings(context),
@@ -44,9 +47,9 @@ class TopButtonRow extends StatelessWidget {
     );
   }
 
-  void _showOverview(BuildContext context) {
+  void _showTallyCountersOverview(BuildContext context) {
     PageConstants.pageController.animateToPage(
-      0,
+      Pages.tallyCountersOverviewPage.value,
       duration: const Duration(milliseconds: 250),
       curve: Curves.linear,
     );
@@ -55,14 +58,28 @@ class TopButtonRow extends StatelessWidget {
   Future<void> _showSettings(BuildContext context) async {
     await showModalBottomSheet(
       context: context,
+      isScrollControlled: true,
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.vertical(
           top: Radius.circular(20),
         ),
       ),
       clipBehavior: Clip.antiAliasWithSaveLayer,
-      builder: ((context) => const TallyCounterSettingsPage()),
-    ).whenComplete(() => _updateCounter(context));
+      builder: ((context) {
+        return Wrap(
+          children: [
+            Container(
+              margin: EdgeInsets.only(
+                bottom: MediaQuery.of(context).viewInsets.bottom,
+              ),
+              child: const TallyCounterSettingsPage(),
+            ),
+          ],
+        );
+      }),
+    ).then((value) {
+      if (value == null) _updateCounter(context);
+    });
   }
 
   void _updateCounter(BuildContext context) {
@@ -78,6 +95,40 @@ class TopButtonRow extends StatelessWidget {
               PageConstants.stepController.value.text,
             )
           : null,
+      group: PageConstants.groupController.value,
+      forceOverrideGroup: true,
+    );
+  }
+}
+
+class _HeaderTitle extends StatelessWidget {
+  final TallyCounter tallyCounter;
+
+  const _HeaderTitle({Key? key, required this.tallyCounter}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        if (tallyCounter.title.isNotEmpty)
+          Text(
+            tallyCounter.title,
+            style: TextStyle(
+              fontSize: 18,
+              fontWeight: FontWeight.w500,
+              color: Theme.of(context).textTheme.headlineMedium!.color!.withOpacity(0.8),
+            ),
+          ),
+        if (tallyCounter.group?.title != null)
+          Text(
+            tallyCounter.group!.title,
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+              color: Theme.of(context).textTheme.headlineSmall!.color!.withOpacity(0.8),
+            ),
+          )
+      ],
     );
   }
 }
