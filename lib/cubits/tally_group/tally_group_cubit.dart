@@ -10,6 +10,8 @@ class TallyGroupCubit extends Cubit<TallyGroupState> {
 
   TallyGroupCubit({required this.tallyCounterRepository}) : super(const TallyGroupState([]));
 
+  // multiple groups
+
   void loadTallyGroups() async {
     final tallyGroups = await tallyCounterRepository.getTallyGroups();
     emit(
@@ -51,7 +53,20 @@ class TallyGroupCubit extends Cubit<TallyGroupState> {
     emit(
       state.copyWith(
         tallyGroups: tallyGroups,
-        selected: 0,
+        selected: null,
+      ),
+    );
+    await tallyCounterRepository.saveTallyGroups(state.tallyGroups);
+  }
+
+  // group itself
+
+  Future<void> updateGroup({
+    String? title,
+  }) async {
+    emit(
+      state.copyGroup(
+        title: title,
       ),
     );
     await tallyCounterRepository.saveTallyGroups(state.tallyGroups);

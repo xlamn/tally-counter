@@ -15,4 +15,16 @@ class TallyGroupState {
       selected: selected,
     );
   }
+
+  TallyGroupState copyGroup({
+    String? title,
+  }) {
+    if (selected != null) {
+      final tallyGroup = tallyGroups[selected!];
+      tallyGroups[selected!] = TallyGroup(
+        title: title ?? tallyGroup.title,
+      );
+    }
+    return TallyGroupState(tallyGroups, selected: selected);
+  }
 }

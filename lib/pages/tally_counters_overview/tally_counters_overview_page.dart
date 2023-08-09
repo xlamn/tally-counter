@@ -34,7 +34,13 @@ class TallyCountersOverViewPage extends StatelessWidget {
                   toolbarHeight: HeightConstants.headerHeight,
                   leading: const _ViewTallyGroupsButton(),
                   backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-                  actions: [],
+                  actions: [
+                    if (BlocProvider.of<TallyGroupCubit>(context).getSelectedGroup() != null)
+                      TallyCounterIconButton(
+                        icon: const FaIcon(FontAwesomeIcons.circleInfo),
+                        action: () => _showSettings(context),
+                      ),
+                  ],
                 ),
               ),
               SliverList(
@@ -56,15 +62,19 @@ class TallyCountersOverViewPage extends StatelessWidget {
   }
 
   Widget _getTitle(BuildContext context) {
-    final text = BlocProvider.of<TallyGroupCubit>(context).getSelectedGroup()?.title ?? "";
     return Center(
-      child: Text(
-        text,
-        style: TextStyle(
-          fontSize: 18,
-          fontWeight: FontWeight.bold,
-          color: Theme.of(context).textTheme.headlineMedium!.color!.withOpacity(0.8),
-        ),
+      child: BlocBuilder<TallyGroupCubit, TallyGroupState>(
+        builder: (context, state) {
+          final text = state.selected != null ? state.tallyGroups[state.selected!].title : "";
+          return Text(
+            text,
+            style: TextStyle(
+              fontSize: 18,
+              fontWeight: FontWeight.bold,
+              color: Theme.of(context).textTheme.headlineMedium!.color!.withOpacity(0.8),
+            ),
+          );
+        },
       ),
     );
   }
@@ -82,6 +92,39 @@ class TallyCountersOverViewPage extends StatelessWidget {
             height: SizeConstants.xxLarge,
           ),
       ],
+    );
+  }
+
+  Future<void> _showSettings(BuildContext context) async {
+    await showModalBottomSheet(
+      context: context,
+      isScrollControlled: true,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(
+          top: Radius.circular(20),
+        ),
+      ),
+      clipBehavior: Clip.antiAliasWithSaveLayer,
+      builder: ((context) {
+        return Wrap(
+          children: [
+            Container(
+              margin: EdgeInsets.only(
+                bottom: MediaQuery.of(context).viewInsets.bottom,
+              ),
+              child: const TallyCountersSettingsPage(),
+            ),
+          ],
+        );
+      }),
+    ).then((value) {
+      if (value == null) _updateGroup(context);
+    });
+  }
+
+  void _updateGroup(BuildContext context) {
+    BlocProvider.of<TallyGroupCubit>(context).updateGroup(
+      title: PageConstants.titleController.text,
     );
   }
 }
