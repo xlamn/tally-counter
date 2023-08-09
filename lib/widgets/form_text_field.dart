@@ -1,17 +1,14 @@
 import 'package:flutter/material.dart';
 
 import '../constants/constants.dart';
-import '../models/models.dart';
 
 class FormTextField extends StatefulWidget {
-  final TallyCounter tallyCounter;
   final String title;
   final int? length;
   final TextEditingController? textController;
 
   const FormTextField({
     Key? key,
-    required this.tallyCounter,
     required this.title,
     this.length,
     this.textController,

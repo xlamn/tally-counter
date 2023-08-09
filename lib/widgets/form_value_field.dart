@@ -3,18 +3,15 @@ import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import '../constants/constants.dart';
-import '../models/models.dart';
 import 'widgets.dart';
 
 class FormValueField extends StatefulWidget {
-  final TallyCounter tallyCounter;
   final String title;
   final int? length;
   final TextEditingController? valueController;
 
   const FormValueField({
     Key? key,
-    required this.tallyCounter,
     required this.title,
     this.length,
     this.valueController,

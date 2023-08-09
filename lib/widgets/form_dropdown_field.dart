@@ -6,7 +6,6 @@ import '../helper/helper.dart';
 import '../models/models.dart';
 
 class FormDropdownField extends StatefulWidget {
-  final TallyCounter tallyCounter;
   final String title;
   final int? length;
   final List<TallyGroup> dropdownItems;
@@ -14,7 +13,6 @@ class FormDropdownField extends StatefulWidget {
 
   const FormDropdownField({
     Key? key,
-    required this.tallyCounter,
     required this.title,
     required this.dropdownItems,
     required this.controller,
