@@ -123,9 +123,9 @@ class TallyCountersOverViewPage extends StatelessWidget {
   }
 
   void _updateGroup(BuildContext context) {
-    BlocProvider.of<TallyGroupCubit>(context).updateGroup(
-      title: PageConstants.groupTitleController.text,
-      color: PageConstants.groupColorController.value,
+    BlocProvider.of<TallyCounterCubit>(context).changeGroupFromCounters(
+      PageConstants.groupTitleController.text,
+      PageConstants.groupColorController.value,
     );
   }
 }

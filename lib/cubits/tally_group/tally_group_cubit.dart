@@ -63,16 +63,12 @@ class TallyGroupCubit extends Cubit<TallyGroupState> {
 
   // group itself
 
-  Future<void> updateGroup({
-    String? title,
-    Color? color,
-  }) async {
-    emit(
-      state.copyGroup(
-        title: title,
-        color: color,
-      ),
-    );
+  Future<void> updateGroup({required TallyGroup tallyGroup}) async {
+    state.tallyGroups[state.selected!] = tallyGroup;
+    emit(state.copyWith(
+      tallyGroups: state.tallyGroups,
+      selected: state.selected,
+    ));
     await tallyCounterRepository.saveTallyGroups(state.tallyGroups);
   }
 

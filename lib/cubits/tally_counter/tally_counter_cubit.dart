@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../enums/enums.dart';
@@ -72,6 +74,29 @@ class TallyCounterCubit extends Cubit<TallyCounterState> {
       tallyCounters = tallyCounters.where((tallyCounter) => tallyCounter.group?.title == group.title).toList();
     }
     return tallyCounters;
+  }
+
+  void changeGroupFromCounters(String title, Color? color) async {
+    var oldTallyGroup = tallyGroupCubit.getSelectedGroup();
+    final newTallyGroup = TallyGroup(
+      title: title,
+      color: color,
+    );
+
+    final tallyCounters = state.tallyCounters.toList();
+    for (final tallyCounter in tallyCounters) {
+      if (tallyCounter.group == oldTallyGroup) {
+        tallyCounter.group = newTallyGroup;
+      }
+    }
+    emit(
+      state.copyWith(
+        tallyCounters: tallyCounters,
+        selected: state.selected,
+      ),
+    );
+    await tallyCounterRepository.saveTallyCounters(state.tallyCounters);
+    tallyGroupCubit.updateGroup(tallyGroup: newTallyGroup);
   }
 
   void removeGroupFromCounters(TallyGroup tallyGroup) async {
