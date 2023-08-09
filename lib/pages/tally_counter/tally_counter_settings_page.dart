@@ -29,22 +29,18 @@ class TallyCounterSettingsPage extends StatelessWidget {
                   height: SizeConstants.large,
                 ),
                 FormTextField(
-                  tallyCounter: state.tallyCounters[state.selected],
                   title: context.local.title.toCapitalized(),
                   textController: PageConstants.titleController,
                 ),
                 FormValueField(
-                  tallyCounter: state.tallyCounters[state.selected],
                   title: context.local.value.toCapitalized(),
                   valueController: PageConstants.countController,
                 ),
                 FormValueField(
-                  tallyCounter: state.tallyCounters[state.selected],
                   title: context.local.steps.toCapitalized(),
                   valueController: PageConstants.stepController,
                 ),
                 FormDropdownField(
-                  tallyCounter: state.tallyCounters[state.selected],
                   title: context.local.group,
                   dropdownItems: BlocProvider.of<TallyGroupCubit>(context).state.tallyGroups,
                   controller: PageConstants.groupController,

@@ -6,8 +6,10 @@ import '../../constants/constants.dart';
 import '../../cubits/cubits.dart';
 import '../../enums/pages.dart';
 import '../../models/models.dart';
+import '../../widgets/floating_add_button.dart';
 import '../../widgets/widgets.dart';
 import 'tally_counter_item.dart';
+import 'tally_counters_settings_page.dart';
 
 class TallyCountersOverViewPage extends StatelessWidget {
   const TallyCountersOverViewPage({
@@ -32,9 +34,7 @@ class TallyCountersOverViewPage extends StatelessWidget {
                   toolbarHeight: HeightConstants.headerHeight,
                   leading: const _ViewTallyGroupsButton(),
                   backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-                  actions: const [
-                    _AddTallyCounterButton(),
-                  ],
+                  actions: [],
                 ),
               ),
               SliverList(
@@ -48,6 +48,9 @@ class TallyCountersOverViewPage extends StatelessWidget {
             ],
           );
         },
+      ),
+      floatingActionButton: FloatingAddButton(
+        onPressed: () => BlocProvider.of<TallyCounterCubit>(context).addCounter(),
       ),
     );
   }
@@ -77,7 +80,7 @@ class TallyCountersOverViewPage extends StatelessWidget {
         if (index == tallyCounters.length - 1)
           const SizedBox(
             height: SizeConstants.xxLarge,
-          )
+          ),
       ],
     );
   }
@@ -104,24 +107,6 @@ class _ViewTallyGroupsButton extends StatelessWidget {
       Pages.groupsOverviewPage.value,
       duration: const Duration(milliseconds: 250),
       curve: Curves.linear,
-    );
-  }
-}
-
-class _AddTallyCounterButton extends StatelessWidget {
-  const _AddTallyCounterButton({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.symmetric(
-        vertical: SizeConstants.normalSmaller,
-      ),
-      child: TallyCounterIconButton(
-          icon: const FaIcon(FontAwesomeIcons.plus),
-          action: () {
-            BlocProvider.of<TallyCounterCubit>(context).addCounter();
-          }),
     );
   }
 }

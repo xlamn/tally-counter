@@ -7,7 +7,7 @@ import '../../constants/constants.dart';
 import '../../cubits/cubits.dart';
 import '../../models/models.dart';
 import '../../widgets/widgets.dart';
-import '../pages.dart';
+import 'tally_counter_settings_page.dart';
 
 class TallyCounterPageHeader extends StatelessWidget {
   final TallyCounter tallyCounter;

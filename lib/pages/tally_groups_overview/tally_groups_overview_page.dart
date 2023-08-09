@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:tally_counter/widgets/input_dialog.dart';
 
 import '../../constants/constants.dart';
 import '../../cubits/cubits.dart';
 import '../../extensions/extensions.dart';
 import '../../models/models.dart';
-import '../../widgets/tally_counter_icon_button.dart';
+import '../../widgets/floating_add_button.dart';
 import 'tally_group_item.dart';
 import 'tally_group_summary_item.dart';
 
@@ -30,7 +29,7 @@ class TallyGroupsOverviewPage extends StatelessWidget {
                 sliver: SliverAppBar(
                   toolbarHeight: HeightConstants.headerHeight,
                   backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-                  actions: const [_AddTallyGroupButton()],
+                  actions: const [],
                 ),
               ),
               SliverList(
@@ -52,6 +51,16 @@ class TallyGroupsOverviewPage extends StatelessWidget {
             ],
           );
         },
+      ),
+      floatingActionButton: FloatingAddButton(
+        onPressed: () => showInputDialog(
+          context,
+          title: context.local.newGroup.toCapitalized(),
+          actionText: context.local.create.toCapitalized(),
+          action: () => BlocProvider.of<TallyGroupCubit>(context).addGroup(
+            title: PageConstants.groupTitleController.text,
+          ),
+        ),
       ),
     );
   }
@@ -95,30 +104,6 @@ class _GroupsTitle extends StatelessWidget {
               letterSpacing: 0.8,
             ),
           )),
-    );
-  }
-}
-
-class _AddTallyGroupButton extends StatelessWidget {
-  const _AddTallyGroupButton({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.symmetric(
-        vertical: SizeConstants.normalSmaller,
-      ),
-      child: TallyCounterIconButton(
-        icon: const FaIcon(FontAwesomeIcons.plus),
-        action: () => showInputDialog(
-          context,
-          title: context.local.newGroup.toCapitalized(),
-          actionText: context.local.create.toCapitalized(),
-          action: () => BlocProvider.of<TallyGroupCubit>(context).addGroup(
-            title: PageConstants.groupTitleController.text,
-          ),
-        ),
-      ),
     );
   }
 }
