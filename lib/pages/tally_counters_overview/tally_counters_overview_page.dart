@@ -5,6 +5,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import '../../constants/constants.dart';
 import '../../cubits/cubits.dart';
 import '../../enums/pages.dart';
+import '../../extensions/extensions.dart';
 import '../../models/models.dart';
 import '../../widgets/floating_add_button.dart';
 import '../../widgets/widgets.dart';
@@ -18,47 +19,68 @@ class TallyCountersOverViewPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: BlocBuilder<TallyCounterCubit, TallyCounterState>(
-        builder: (context, state) {
-          final tallyCounters = BlocProvider.of<TallyCounterCubit>(context).getCountersFromGroup();
+    return BlocBuilder<TallyGroupCubit, TallyGroupState>(
+      builder: (context, groupState) {
+        return Scaffold(
+          backgroundColor: _getBackgroundColor(context, groupState),
+          body: BlocBuilder<TallyCounterCubit, TallyCounterState>(
+            builder: (context, counterState) {
+              final tallyCounters = BlocProvider.of<TallyCounterCubit>(context).getCountersFromGroup();
 
-          return CustomScrollView(
-            slivers: [
-              SliverPadding(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: SizeConstants.normal,
-                ),
-                sliver: SliverAppBar(
-                  title: _getTitle(context),
-                  toolbarHeight: HeightConstants.headerHeight,
-                  leading: const _ViewTallyGroupsButton(),
-                  backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-                  actions: [
-                    if (BlocProvider.of<TallyGroupCubit>(context).getSelectedGroup() != null)
-                      TallyCounterIconButton(
-                        icon: const FaIcon(FontAwesomeIcons.circleInfo),
-                        action: () => _showSettings(context),
-                      ),
-                  ],
-                ),
-              ),
-              SliverList(
-                delegate: SliverChildBuilderDelegate(
-                  childCount: tallyCounters.length,
-                  (BuildContext context, int index) {
-                    return _buildTallyCounterListItem(context, index, tallyCounters);
-                  },
-                ),
-              ),
-            ],
-          );
-        },
-      ),
-      floatingActionButton: FloatingAddButton(
-        onPressed: () => BlocProvider.of<TallyCounterCubit>(context).addCounter(),
-      ),
+              return CustomScrollView(
+                slivers: [
+                  SliverPadding(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: SizeConstants.normal,
+                    ),
+                    sliver: SliverAppBar(
+                      title: _getTitle(context),
+                      toolbarHeight: HeightConstants.headerHeight,
+                      leading: _ViewTallyGroupsButton(color: _getHeaderColor(context, groupState)),
+                      backgroundColor: _getBackgroundColor(context, groupState),
+                      actions: [
+                        if (BlocProvider.of<TallyGroupCubit>(context).getSelectedGroup() != null)
+                          TallyCounterIconButton(
+                            icon: FaIcon(FontAwesomeIcons.circleInfo, color: _getHeaderColor(context, groupState)),
+                            action: () => _showSettings(context),
+                          ),
+                      ],
+                    ),
+                  ),
+                  SliverList(
+                    delegate: SliverChildBuilderDelegate(
+                      childCount: tallyCounters.length,
+                      (BuildContext context, int index) {
+                        return _buildTallyCounterListItem(context, index, tallyCounters);
+                      },
+                    ),
+                  ),
+                ],
+              );
+            },
+          ),
+          floatingActionButton: FloatingAddButton(
+            onPressed: () => BlocProvider.of<TallyCounterCubit>(context).addCounter(),
+          ),
+        );
+      },
     );
+  }
+
+  Color? _getBackgroundColor(BuildContext context, TallyGroupState state) {
+    if (state.selected != null && state.tallyGroups[state.selected!].color != null) {
+      return state.tallyGroups[state.selected!].color;
+    } else {
+      return Theme.of(context).scaffoldBackgroundColor;
+    }
+  }
+
+  Color? _getHeaderColor(BuildContext context, TallyGroupState state) {
+    if (state.selected != null && state.tallyGroups[state.selected!].color != null) {
+      return context.isDarkMode ? null : Colors.white;
+    } else {
+      return null;
+    }
   }
 
   Widget _getTitle(BuildContext context) {
@@ -71,7 +93,7 @@ class TallyCountersOverViewPage extends StatelessWidget {
             style: TextStyle(
               fontSize: 18,
               fontWeight: FontWeight.bold,
-              color: Theme.of(context).textTheme.headlineMedium!.color!.withOpacity(0.8),
+              color: _getHeaderColor(context, state),
             ),
           );
         },
@@ -133,7 +155,8 @@ class TallyCountersOverViewPage extends StatelessWidget {
 }
 
 class _ViewTallyGroupsButton extends StatelessWidget {
-  const _ViewTallyGroupsButton({Key? key}) : super(key: key);
+  final Color? color;
+  const _ViewTallyGroupsButton({Key? key, required this.color}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -142,7 +165,7 @@ class _ViewTallyGroupsButton extends StatelessWidget {
         vertical: SizeConstants.normalSmaller,
       ),
       child: TallyCounterIconButton(
-        icon: const FaIcon(FontAwesomeIcons.grip),
+        icon: FaIcon(FontAwesomeIcons.grip, color: color),
         action: () => _onTap(context),
       ),
     );

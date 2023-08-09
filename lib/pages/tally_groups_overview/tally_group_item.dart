@@ -42,11 +42,15 @@ class TallyGroupItem extends StatelessWidget {
             ),
           ),
           child: _GroupContainer(
+            color: tallyGroup.color,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 _GroupInfo(tallyGroup: tallyGroup),
-                const FaIcon(FontAwesomeIcons.arrowRightLong),
+                FaIcon(
+                  FontAwesomeIcons.arrowRightLong,
+                  color: tallyGroup.color != null ? Colors.white : null,
+                ),
               ],
             ),
           ),
@@ -68,8 +72,9 @@ class TallyGroupItem extends StatelessWidget {
 
 class _GroupContainer extends StatelessWidget {
   final Widget child;
+  final Color? color;
 
-  const _GroupContainer({Key? key, required this.child}) : super(key: key);
+  const _GroupContainer({Key? key, required this.child, this.color}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -77,7 +82,7 @@ class _GroupContainer extends StatelessWidget {
         margin: const EdgeInsets.symmetric(vertical: SizeConstants.small),
         padding: const EdgeInsets.all(SizeConstants.large),
         decoration: BoxDecoration(
-          color: context.isDarkMode ? Colors.grey[600] : Colors.grey[100],
+          color: _getColor(context),
           boxShadow: [
             BoxShadow(
               color: Theme.of(context).shadowColor.withOpacity(0.1),
@@ -91,6 +96,14 @@ class _GroupContainer extends StatelessWidget {
           borderRadius: BorderRadius.circular(20.0),
         ),
         child: child);
+  }
+
+  Color? _getColor(BuildContext context) {
+    if (color != null) {
+      return color!.withOpacity(0.9);
+    } else {
+      return context.isDarkMode ? Colors.grey[600] : Colors.grey[100];
+    }
   }
 }
 
@@ -116,7 +129,7 @@ class _GroupInfo extends StatelessWidget {
               style: TextStyle(
                 fontSize: 16,
                 fontWeight: FontWeight.w500,
-                color: Theme.of(context).textTheme.headlineMedium!.color!,
+                color: tallyGroup.color != null ? Colors.white : Theme.of(context).textTheme.headlineMedium!.color!,
               ),
             ),
           ),
@@ -129,7 +142,9 @@ class _GroupInfo extends StatelessWidget {
               "${context.local.counters}: ${tallyCounterCubit.getCountersFromGroup(tallyGroup: tallyGroup).length}",
               style: TextStyle(
                 fontSize: 14,
-                color: Theme.of(context).textTheme.headlineSmall!.color!.withOpacity(0.8),
+                color: tallyGroup.color != null
+                    ? Colors.white
+                    : Theme.of(context).textTheme.headlineSmall!.color!.withOpacity(0.8),
               ),
             ),
           )

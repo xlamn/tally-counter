@@ -8,6 +8,25 @@ class ColorConstants {
     primarySwatch: Colors.blueGrey,
     brightness: Brightness.dark,
   );
+
+  static final List<Color> tallyGroupColors = [
+    Colors.orange,
+    Colors.deepOrange,
+    Colors.red,
+    Colors.pink,
+    Colors.purple,
+    Colors.deepPurple,
+    Colors.indigo,
+    Colors.blue,
+    Colors.lightBlue,
+    Colors.cyan,
+    Colors.teal,
+    Colors.green,
+    Colors.lightGreen,
+    Colors.brown,
+    Colors.grey,
+    Colors.blueGrey,
+  ];
 }
 
 const MaterialColor white = MaterialColor(

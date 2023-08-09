@@ -3,6 +3,7 @@ import 'package:flutter_colorpicker/flutter_colorpicker.dart';
 
 import '../constants/constants.dart';
 import '../helper/color_controller.dart';
+import '../extensions/extensions.dart';
 
 class FormColorField extends StatefulWidget {
   final String title;
@@ -36,7 +37,7 @@ class _FormColorFieldState extends State<FormColorField> {
           GestureDetector(
             child: Container(
               decoration: BoxDecoration(
-                border: Border.all(width: 0.4),
+                border: Border.all(width: 2),
                 borderRadius: BorderRadius.circular(50.0),
                 color: PageConstants.groupColorController.value,
               ),
@@ -47,19 +48,47 @@ class _FormColorFieldState extends State<FormColorField> {
               context: context,
               builder: (BuildContext context) {
                 return AlertDialog(
-                  content: SingleChildScrollView(
+                  content: Container(
+                    height: 300,
                     child: BlockPicker(
                       pickerColor: widget.colorController.value ?? Colors.black,
-                      // availableColors: [],
+                      availableColors: ColorConstants.tallyGroupColors,
                       onColorChanged: (color) {
                         setState(() {
                           widget.colorController.setValue(color);
                         });
-
                         Navigator.pop(context);
                       },
                     ),
                   ),
+                  actions: <Widget>[
+                    GestureDetector(
+                      onTap: () {
+                        setState(() {
+                          widget.colorController.setValue(null);
+                        });
+                        Navigator.pop(context);
+                      },
+                      child: Container(
+                        padding: const EdgeInsets.symmetric(
+                          vertical: SizeConstants.normal,
+                          horizontal: SizeConstants.large,
+                        ),
+                        decoration: BoxDecoration(
+                          color: Colors.red.withOpacity(0.1),
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                        child: Text(
+                          context.local.delete.toCapitalized(),
+                          style: const TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.w500,
+                            color: Colors.red,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
                 );
               },
             ),
