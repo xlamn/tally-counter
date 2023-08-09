@@ -94,7 +94,7 @@ class _DeleteButton extends StatelessWidget {
           borderRadius: BorderRadius.circular(20),
         ),
         child: Text(
-          context.local.delete.toCapitalized().toCapitalized(),
+          context.local.delete.toCapitalized(),
           style: const TextStyle(
             fontSize: 16,
             fontWeight: FontWeight.w500,
