@@ -14,5 +14,6 @@
   "counters": "Räkningsräknare",
   "newGroup": "ny grupp",
   "create": "skapa",
-  "name": "namn"
+  "name": "namn",
+  "color": "färg"
 }

@@ -14,5 +14,6 @@
   "counters": "Zähler",
   "newGroup": "neue Gruppe",
   "create": "anlegen",
-  "name": "Name"
+  "name": "Name",
+  "color": "Farbe"
 }

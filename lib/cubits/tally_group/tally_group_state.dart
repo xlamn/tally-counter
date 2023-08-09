@@ -18,11 +18,13 @@ class TallyGroupState {
 
   TallyGroupState copyGroup({
     String? title,
+    Color? color,
   }) {
     if (selected != null) {
       final tallyGroup = tallyGroups[selected!];
       tallyGroups[selected!] = TallyGroup(
         title: title ?? tallyGroup.title,
+        color: color ?? tallyGroup.color,
       );
     }
     return TallyGroupState(tallyGroups, selected: selected);

@@ -8,13 +8,19 @@ class PageConstants {
     initialPage: Pages.tallyCounterPage.value,
   );
 
+  // counter
+
   static TextEditingController titleController = TextEditingController();
 
   static TextEditingController countController = TextEditingController();
 
   static TextEditingController stepController = TextEditingController();
 
+  static TallyGroupController groupController = TallyGroupController();
+
+  // group
+
   static TextEditingController groupTitleController = TextEditingController();
 
-  static TallyGroupController groupController = TallyGroupController();
+  static ColorController groupColorController = ColorController();
 }

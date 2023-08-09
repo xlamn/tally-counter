@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../models/models.dart';
@@ -63,10 +65,12 @@ class TallyGroupCubit extends Cubit<TallyGroupState> {
 
   Future<void> updateGroup({
     String? title,
+    Color? color,
   }) async {
     emit(
       state.copyGroup(
         title: title,
+        color: color,
       ),
     );
     await tallyCounterRepository.saveTallyGroups(state.tallyGroups);

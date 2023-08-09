@@ -5,7 +5,7 @@ class ColorConstants {
     primarySwatch: white,
   );
   static final defaultDarkColorScheme = ColorScheme.fromSwatch(
-    primarySwatch: Colors.blue,
+    primarySwatch: Colors.blueGrey,
     brightness: Brightness.dark,
   );
 }

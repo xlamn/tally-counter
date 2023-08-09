@@ -14,5 +14,6 @@
   "counters": "counters",
   "newGroup": "new group",
   "create": "create",
-  "name": "name"
+  "name": "name",
+  "color": "color"
 }

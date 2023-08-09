@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tally_counter/enums/enums.dart';
+import 'package:tally_counter/widgets/form_color_field.dart';
 
 import '../../constants/constants.dart';
 import '../../cubits/cubits.dart';
@@ -29,7 +30,11 @@ class TallyCountersSettingsPage extends StatelessWidget {
                 ),
                 FormTextField(
                   title: context.local.title.toCapitalized(),
-                  textController: PageConstants.titleController,
+                  textController: PageConstants.groupTitleController,
+                ),
+                FormColorField(
+                  title: context.local.color.toCapitalized(),
+                  colorController: PageConstants.groupColorController,
                 ),
                 _DeleteButton(state: state),
               ],
@@ -41,8 +46,9 @@ class TallyCountersSettingsPage extends StatelessWidget {
   }
 
   void _initializeControllerValues(context, TallyGroupState state) {
-    PageConstants.titleController.value =
+    PageConstants.groupTitleController.value =
         TextEditingValue(text: BlocProvider.of<TallyGroupCubit>(context).getSelectedGroup()?.title ?? "");
+    PageConstants.groupColorController.value = BlocProvider.of<TallyGroupCubit>(context).getSelectedGroup()?.color;
   }
 }
 
