@@ -1,6 +1,7 @@
-import 'dart:ui';
+import 'dart:math';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:tally_counter/constants/color_constants.dart';
 
 import '../../models/models.dart';
 import '../../repositories/repositories.dart';
@@ -41,7 +42,8 @@ class TallyGroupCubit extends Cubit<TallyGroupState> {
           ...state.tallyGroups,
           TallyGroup(
             title: title,
-          )
+            color: ColorConstants.tallyGroupColors[Random().nextInt(ColorConstants.tallyGroupColors.length)],
+          ),
         ],
         selected: state.selected,
       ),

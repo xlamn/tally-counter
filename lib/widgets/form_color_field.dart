@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_colorpicker/flutter_colorpicker.dart';
 
 import '../constants/constants.dart';
-import '../extensions/extensions.dart';
 import '../helper/color_controller.dart';
 
 class FormColorField extends StatefulWidget {
@@ -68,36 +67,6 @@ class _FormColorFieldState extends State<FormColorField> {
                       },
                     ),
                   ),
-                  actions: <Widget>[
-                    GestureDetector(
-                      onTap: () {
-                        setState(() {
-                          widget.colorController.setValue(null);
-                        });
-                        Navigator.pop(context);
-                      },
-                      child: Container(
-                        padding: const EdgeInsets.symmetric(
-                          vertical: SizeConstants.normal,
-                          horizontal: SizeConstants.large,
-                        ),
-                        decoration: BoxDecoration(
-                          color: Colors.red.withOpacity(0.1),
-                          borderRadius: BorderRadius.circular(
-                            RadiusConstants.large,
-                          ),
-                        ),
-                        child: Text(
-                          context.local.delete.toCapitalized(),
-                          style: const TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.w500,
-                            color: Colors.red,
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
                 );
               },
             ),
