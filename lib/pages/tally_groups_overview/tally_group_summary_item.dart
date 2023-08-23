@@ -33,12 +33,17 @@ class TallyGroupSummaryItem extends StatelessWidget {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Text(
-                              context.local.all,
-                              style: const TextStyle(
-                                fontSize: 24,
-                                letterSpacing: 1,
-                                color: Colors.white,
+                            Container(
+                              padding: const EdgeInsets.symmetric(
+                                vertical: SizeConstants.xSmall,
+                              ),
+                              child: Text(
+                                "${context.local.all} ${context.local.counters}".toCapitalized(),
+                                style: const TextStyle(
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.w500,
+                                  color: Colors.white,
+                                ),
                               ),
                             ),
                             const FaIcon(
@@ -86,7 +91,7 @@ class _GroupSummaryContainer extends StatelessWidget {
       decoration: BoxDecoration(
         boxShadow: [
           BoxShadow(
-            color: Theme.of(context).shadowColor.withOpacity(0.2),
+            color: Theme.of(context).shadowColor.withOpacity(0.1),
             blurRadius: 5,
             offset: const Offset(
               0,

@@ -49,6 +49,9 @@ class _FormValueFieldState extends State<FormValueField> {
                 maxLength: widget.length,
                 keyboardType: TextInputType.number,
                 decoration: InputDecoration(
+                  contentPadding: const EdgeInsets.all(
+                    SizeConstants.normal,
+                  ),
                   counterText: '',
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(

@@ -46,6 +46,9 @@ class _FormDropdownFieldState extends State<FormDropdownField> {
           DropdownButtonFormField(
             value: widget.controller.value,
             decoration: InputDecoration(
+              contentPadding: const EdgeInsets.all(
+                SizeConstants.normal,
+              ),
               suffixIcon: Container(
                 padding: const EdgeInsets.symmetric(
                   horizontal: SizeConstants.xSmall,

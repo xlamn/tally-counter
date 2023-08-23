@@ -31,6 +31,9 @@ void showInputDialog(
                   value.isNotEmpty ? enableCreateButton.value = true : enableCreateButton.value = false,
               controller: PageConstants.groupTitleController,
               decoration: InputDecoration(
+                contentPadding: const EdgeInsets.all(
+                  SizeConstants.normal,
+                ),
                 hintText: context.local.name,
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(
@@ -99,7 +102,7 @@ void showInputDialog(
           decoration: const BoxDecoration(
               borderRadius: BorderRadius.all(
                 Radius.circular(
-                  RadiusConstants.large,
+                  RadiusConstants.small,
                 ),
               ),
               color: CupertinoDynamicColor.withBrightness(

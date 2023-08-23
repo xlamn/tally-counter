@@ -90,20 +90,21 @@ class _GroupsTitle extends StatelessWidget {
     return Align(
       alignment: Alignment.centerLeft,
       child: Container(
-          padding: const EdgeInsets.only(
-            top: SizeConstants.normal,
-            bottom: SizeConstants.xSmall,
-            left: SizeConstants.xLarge,
-            right: SizeConstants.xLarge,
+        padding: const EdgeInsets.only(
+          top: SizeConstants.normal,
+          bottom: SizeConstants.xSmall,
+          left: SizeConstants.xLarge,
+          right: SizeConstants.xLarge,
+        ),
+        child: Text(
+          context.local.groups,
+          style: const TextStyle(
+            fontWeight: FontWeight.w900,
+            fontSize: 26,
+            letterSpacing: 0.8,
           ),
-          child: Text(
-            context.local.groups,
-            style: const TextStyle(
-              fontWeight: FontWeight.w900,
-              fontSize: 26,
-              letterSpacing: 0.8,
-            ),
-          )),
+        ),
+      ),
     );
   }
 }

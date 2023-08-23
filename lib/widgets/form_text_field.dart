@@ -41,6 +41,9 @@ class _FormTextFieldState extends State<FormTextField> {
             controller: widget.textController,
             maxLength: widget.length,
             decoration: InputDecoration(
+              contentPadding: const EdgeInsets.all(
+                SizeConstants.normal,
+              ),
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(
                   RadiusConstants.large,
