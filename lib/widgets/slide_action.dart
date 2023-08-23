@@ -38,7 +38,9 @@ class SlideAction extends StatelessWidget {
                   decoration: BoxDecoration(
                     color: color.withOpacity(context.isDarkMode ? 0.3 : 0.2),
                     borderRadius: const BorderRadius.all(
-                      Radius.circular(20),
+                      Radius.circular(
+                        RadiusConstants.large,
+                      ),
                     ),
                   ),
                   child: Container(

@@ -33,3 +33,11 @@ class SizeConstants {
 class HeightConstants {
   static const headerHeight = 80.0;
 }
+
+class RadiusConstants {
+  static const large = 30.0;
+
+  static const normal = 20.0;
+
+  static const small = 10.0;
+}

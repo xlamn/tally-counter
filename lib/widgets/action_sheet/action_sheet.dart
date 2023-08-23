@@ -175,8 +175,8 @@ Future<T?> _showMaterialBottomSheet<T>(
     barrierColor: barrierColor,
     shape: RoundedRectangleBorder(
       borderRadius: BorderRadius.only(
-        topLeft: Radius.circular(androidBorderRadius ?? 30),
-        topRight: Radius.circular(androidBorderRadius ?? 30),
+        topLeft: Radius.circular(androidBorderRadius ?? RadiusConstants.large),
+        topRight: Radius.circular(androidBorderRadius ?? RadiusConstants.large),
       ),
     ),
     builder: (BuildContext coxt) {

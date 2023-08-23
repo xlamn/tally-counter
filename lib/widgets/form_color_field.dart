@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_colorpicker/flutter_colorpicker.dart';
 
 import '../constants/constants.dart';
-import '../helper/color_controller.dart';
 import '../extensions/extensions.dart';
+import '../helper/color_controller.dart';
 
 class FormColorField extends StatefulWidget {
   final String title;
@@ -30,25 +30,32 @@ class _FormColorFieldState extends State<FormColorField> {
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
-          Text(
-            widget.title,
-            style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
+          Container(
+            padding: const EdgeInsets.only(
+              bottom: SizeConstants.normalSmaller,
+            ),
+            child: Text(
+              widget.title,
+              style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
+            ),
           ),
           GestureDetector(
             child: Container(
               decoration: BoxDecoration(
-                border: Border.all(width: 2),
-                borderRadius: BorderRadius.circular(50.0),
+                border: Border.all(width: 2, color: Colors.grey),
+                borderRadius: BorderRadius.circular(
+                  RadiusConstants.large,
+                ),
                 color: PageConstants.groupColorController.value,
               ),
-              height: 50,
-              width: 70,
+              height: 55,
+              width: 55,
             ),
             onTap: () => showDialog(
               context: context,
               builder: (BuildContext context) {
                 return AlertDialog(
-                  content: Container(
+                  content: SizedBox(
                     height: 300,
                     child: BlockPicker(
                       pickerColor: widget.colorController.value ?? Colors.black,
@@ -76,7 +83,9 @@ class _FormColorFieldState extends State<FormColorField> {
                         ),
                         decoration: BoxDecoration(
                           color: Colors.red.withOpacity(0.1),
-                          borderRadius: BorderRadius.circular(20),
+                          borderRadius: BorderRadius.circular(
+                            RadiusConstants.large,
+                          ),
                         ),
                         child: Text(
                           context.local.delete.toCapitalized(),

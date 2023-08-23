@@ -82,7 +82,7 @@ class _GroupContainer extends StatelessWidget {
         margin: const EdgeInsets.symmetric(vertical: SizeConstants.small),
         padding: const EdgeInsets.all(SizeConstants.large),
         decoration: BoxDecoration(
-          color: _getColor(context),
+          color: _getContainerColor(context),
           boxShadow: [
             BoxShadow(
               color: Theme.of(context).shadowColor.withOpacity(0.1),
@@ -93,12 +93,12 @@ class _GroupContainer extends StatelessWidget {
               ),
             ),
           ],
-          borderRadius: BorderRadius.circular(20.0),
+          borderRadius: BorderRadius.circular(RadiusConstants.large),
         ),
         child: child);
   }
 
-  Color? _getColor(BuildContext context) {
+  Color? _getContainerColor(BuildContext context) {
     if (color != null) {
       return color!.withOpacity(0.9);
     } else {

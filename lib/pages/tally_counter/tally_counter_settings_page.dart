@@ -91,7 +91,9 @@ class _DeleteButton extends StatelessWidget {
         ),
         decoration: BoxDecoration(
           color: Colors.red.withOpacity(0.1),
-          borderRadius: BorderRadius.circular(20),
+          borderRadius: BorderRadius.circular(
+            RadiusConstants.large,
+          ),
         ),
         child: Text(
           context.local.delete.toCapitalized(),

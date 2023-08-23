@@ -42,7 +42,9 @@ class _FormTextFieldState extends State<FormTextField> {
             maxLength: widget.length,
             decoration: InputDecoration(
               border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(10.0),
+                borderRadius: BorderRadius.circular(
+                  RadiusConstants.large,
+                ),
                 borderSide: const BorderSide(width: 0, style: BorderStyle.none),
               ),
               fillColor: Theme.of(context).textTheme.bodySmall!.color!.withOpacity(0.05),

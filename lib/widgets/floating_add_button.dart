@@ -22,7 +22,10 @@ class FloatingAddButton extends StatelessWidget {
       child: FittedBox(
         child: FloatingActionButton(
           onPressed: onPressed,
-          child: const FaIcon(FontAwesomeIcons.plus),
+          shape: const CircleBorder(),
+          child: const FaIcon(
+            FontAwesomeIcons.plus,
+          ),
         ),
       ),
     );

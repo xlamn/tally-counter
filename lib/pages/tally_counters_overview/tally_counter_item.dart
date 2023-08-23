@@ -115,7 +115,9 @@ class _CounterContainer extends StatelessWidget {
             ),
           ),
         ],
-        borderRadius: BorderRadius.circular(20.0),
+        borderRadius: BorderRadius.circular(
+          RadiusConstants.large,
+        ),
       ),
       child: child,
     );

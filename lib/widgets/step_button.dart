@@ -25,7 +25,9 @@ class StepButton extends StatelessWidget {
       decoration: BoxDecoration(
         color: color.withOpacity(context.isDarkMode ? 0.3 : 0.2),
         borderRadius: const BorderRadius.all(
-          Radius.circular(10),
+          Radius.circular(
+            RadiusConstants.large,
+          ),
         ),
       ),
       child: IconButton(

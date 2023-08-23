@@ -100,7 +100,9 @@ class _GroupSummaryContainer extends StatelessWidget {
             Color(0xFFee821a),
           ],
         ),
-        borderRadius: BorderRadius.circular(20.0),
+        borderRadius: BorderRadius.circular(
+          RadiusConstants.normal,
+        ),
       ),
       child: child,
     );

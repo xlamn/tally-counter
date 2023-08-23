@@ -33,7 +33,9 @@ void showInputDialog(
               decoration: InputDecoration(
                 hintText: context.local.name,
                 border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(10.0),
+                  borderRadius: BorderRadius.circular(
+                    RadiusConstants.large,
+                  ),
                   borderSide: const BorderSide(width: 0, style: BorderStyle.none),
                 ),
                 fillColor: Theme.of(context).textTheme.bodySmall!.color!.withOpacity(0.05),
@@ -95,7 +97,11 @@ void showInputDialog(
           cursorColor: CupertinoColors.systemBlue,
           placeholder: context.local.name,
           decoration: const BoxDecoration(
-              borderRadius: BorderRadius.all(Radius.circular(8)),
+              borderRadius: BorderRadius.all(
+                Radius.circular(
+                  RadiusConstants.large,
+                ),
+              ),
               color: CupertinoDynamicColor.withBrightness(
                 color: Color(0xCCF2F2F2),
                 darkColor: Color(0xBF1E1E1E),

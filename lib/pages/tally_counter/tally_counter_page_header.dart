@@ -61,7 +61,9 @@ class TallyCounterPageHeader extends StatelessWidget {
       isScrollControlled: true,
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.vertical(
-          top: Radius.circular(20),
+          top: Radius.circular(
+            RadiusConstants.large,
+          ),
         ),
       ),
       clipBehavior: Clip.antiAliasWithSaveLayer,
