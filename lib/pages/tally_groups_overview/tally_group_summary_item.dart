@@ -106,7 +106,7 @@ class _GroupSummaryContainer extends StatelessWidget {
           ],
         ),
         borderRadius: BorderRadius.circular(
-          RadiusConstants.normal,
+          RadiusConstants.large,
         ),
       ),
       child: child,
