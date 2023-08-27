@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:tally_counter/pages/settings/settings_page.dart';
 import 'package:tally_counter/widgets/input_dialog.dart';
 
 import '../../constants/constants.dart';
@@ -7,6 +9,7 @@ import '../../cubits/cubits.dart';
 import '../../extensions/extensions.dart';
 import '../../models/models.dart';
 import '../../widgets/floating_add_button.dart';
+import '../../widgets/tally_counter_icon_button.dart';
 import 'tally_group_item.dart';
 import 'tally_group_summary_item.dart';
 
@@ -29,7 +32,20 @@ class TallyGroupsOverviewPage extends StatelessWidget {
                 sliver: SliverAppBar(
                   toolbarHeight: HeightConstants.headerHeight,
                   backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-                  actions: const [],
+                  actions: [
+                    TallyCounterIconButton(
+                      icon: const FaIcon(FontAwesomeIcons.gear),
+                      action: () async {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            fullscreenDialog: true,
+                            builder: (context) => const SettingsPage(),
+                          ),
+                        );
+                      },
+                    ),
+                  ],
                 ),
               ),
               SliverList(

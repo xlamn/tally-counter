@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:tally_counter/repositories/authentication.dart';
 
 import 'constants/constants.dart';
 import 'cubits/cubits.dart';
@@ -10,12 +11,12 @@ import 'helper/helper.dart';
 import 'pages/pages.dart';
 import 'repositories/repositories.dart';
 
-void main() {
-  setUp();
+Future<void> main() async {
+  await setUp();
   runApp(const MyApp());
 }
 
-void setUp() {
+Future<void> setUp() async {
   // Logging Settings
   final cubitDelegateFactory = CubitDelegateFactory();
   if (!cubitDelegateFactory.hasObserverSetup(Bloc.observer)) {
@@ -27,6 +28,10 @@ void setUp() {
     statusBarColor: Colors.transparent,
     statusBarIconBrightness: Brightness.dark,
   ));
+
+  // Google Auth
+  WidgetsFlutterBinding.ensureInitialized();
+  await Authentication.initializeFirebase();
 }
 
 class MyApp extends StatelessWidget {
