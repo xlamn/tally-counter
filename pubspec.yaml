@@ -35,8 +35,8 @@ dependencies:
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
-  flutter_bloc: ^8.0.1
-  bloc: ^8.1.0
+  flutter_bloc: ^9.1.1
+  bloc: ^9.0.0
   meta: ^1.7.0
   shared_preferences: ^2.0.15
   json_serializable: ^6.3.1
@@ -44,7 +44,7 @@ dependencies:
   font_awesome_flutter: ^10.1.0
   json_annotation: ^4.7.0
   equatable: ^2.0.5
-  flutter_slidable: ^2.0.0
+  flutter_slidable: ^4.0.0
   flutter_colorpicker: ^1.0.3
 
 dev_dependencies:
@@ -56,9 +56,9 @@ dev_dependencies:
   # activated in the `analysis_options.yaml` file located at the root of your
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
-  flutter_lints: ^2.0.0
-  flutter_launcher_icons: ^0.10.0
-  intl: ^0.17.0
+  flutter_lints: ^6.0.0
+  flutter_launcher_icons: ^0.14.4
+  intl: ^0.20.2
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
