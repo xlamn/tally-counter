@@ -8,9 +8,10 @@ import '../../cubits/cubits.dart';
 import '../../extensions/extensions.dart';
 
 class TallyGroupSummaryItem extends StatelessWidget {
+
   const TallyGroupSummaryItem({
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -76,8 +77,10 @@ class TallyGroupSummaryItem extends StatelessWidget {
 }
 
 class _GroupSummaryContainer extends StatelessWidget {
+  
   final Widget child;
-  const _GroupSummaryContainer({Key? key, required this.child}) : super(key: key);
+
+  const _GroupSummaryContainer({required this.child});
 
   @override
   Widget build(BuildContext context) {
@@ -91,7 +94,7 @@ class _GroupSummaryContainer extends StatelessWidget {
       decoration: BoxDecoration(
         boxShadow: [
           BoxShadow(
-            color: Theme.of(context).shadowColor.withOpacity(0.1),
+            color: Theme.of(context).shadowColor.withValues(alpha: 0.1),
             blurRadius: 5,
             offset: const Offset(
               0,

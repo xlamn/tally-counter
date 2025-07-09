@@ -9,10 +9,10 @@ class FormColorField extends StatefulWidget {
   final ColorController colorController;
 
   const FormColorField({
-    Key? key,
+    super.key,
     required this.title,
     required this.colorController,
-  }) : super(key: key);
+  });
 
   @override
   State<FormColorField> createState() => _FormColorFieldState();

@@ -11,9 +11,10 @@ import 'tally_group_item.dart';
 import 'tally_group_summary_item.dart';
 
 class TallyGroupsOverviewPage extends StatelessWidget {
+
   const TallyGroupsOverviewPage({
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -83,7 +84,8 @@ class TallyGroupsOverviewPage extends StatelessWidget {
 }
 
 class _GroupsTitle extends StatelessWidget {
-  const _GroupsTitle({Key? key}) : super(key: key);
+  
+  const _GroupsTitle();
 
   @override
   Widget build(BuildContext context) {
@@ -97,7 +99,7 @@ class _GroupsTitle extends StatelessWidget {
           right: SizeConstants.xLarge,
         ),
         child: Text(
-          context.local.groups,
+          context.local.groups.toCapitalized(),
           style: const TextStyle(
             fontWeight: FontWeight.w900,
             fontSize: 26,

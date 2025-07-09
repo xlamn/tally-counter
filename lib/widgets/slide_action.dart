@@ -12,13 +12,13 @@ class SlideAction extends StatelessWidget {
   final EdgeInsets padding;
 
   const SlideAction({
-    Key? key,
+    super.key,
     required this.child,
     required this.onTap,
     required this.color,
     required this.icon,
     required this.padding,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +36,7 @@ class SlideAction extends StatelessWidget {
                   margin: const EdgeInsets.only(left: SizeConstants.normalSmaller),
                   padding: padding,
                   decoration: BoxDecoration(
-                    color: color.withOpacity(context.isDarkMode ? 0.3 : 0.2),
+                    color: color.withValues(alpha: context.isDarkMode ? 0.3 : 0.2),
                     borderRadius: const BorderRadius.all(
                       Radius.circular(
                         RadiusConstants.large,

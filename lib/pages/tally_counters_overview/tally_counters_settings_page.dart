@@ -9,7 +9,7 @@ import '../../extensions/extensions.dart';
 import '../../widgets/widgets.dart';
 
 class TallyCountersSettingsPage extends StatelessWidget {
-  const TallyCountersSettingsPage({Key? key}) : super(key: key);
+  const TallyCountersSettingsPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -45,7 +45,7 @@ class TallyCountersSettingsPage extends StatelessWidget {
     );
   }
 
-  void _initializeControllerValues(context, TallyGroupState state) {
+  void _initializeControllerValues(BuildContext context, TallyGroupState state) {
     PageConstants.groupTitleController.value =
         TextEditingValue(text: BlocProvider.of<TallyGroupCubit>(context).getSelectedGroup()?.title ?? "");
     PageConstants.groupColorController.value = BlocProvider.of<TallyGroupCubit>(context).getSelectedGroup()?.color;
@@ -54,7 +54,7 @@ class TallyCountersSettingsPage extends StatelessWidget {
 
 class _DeleteButton extends StatelessWidget {
   final TallyGroupState state;
-  const _DeleteButton({Key? key, required this.state}) : super(key: key);
+  const _DeleteButton({required this.state});
 
   @override
   Widget build(BuildContext context) {
@@ -67,7 +67,7 @@ class _DeleteButton extends StatelessWidget {
           horizontal: SizeConstants.large,
         ),
         decoration: BoxDecoration(
-          color: Colors.red.withOpacity(0.1),
+          color: Colors.red.withValues(alpha: 0.1),
           borderRadius: BorderRadius.circular(
             RadiusConstants.large,
           ),

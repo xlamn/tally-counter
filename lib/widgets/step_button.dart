@@ -9,11 +9,11 @@ class StepButton extends StatelessWidget {
   final void Function()? onPressed;
 
   const StepButton({
-    Key? key,
+    super.key,
     required this.color,
     required this.icon,
     required this.onPressed,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +23,7 @@ class StepButton extends StatelessWidget {
       ),
       margin: const EdgeInsets.all(SizeConstants.xSmall),
       decoration: BoxDecoration(
-        color: color.withOpacity(context.isDarkMode ? 0.3 : 0.2),
+        color: color.withValues(alpha: context.isDarkMode ? 0.3 : 0.2),
         borderRadius: const BorderRadius.all(
           Radius.circular(
             RadiusConstants.large,

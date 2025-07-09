@@ -13,11 +13,12 @@ import 'reset_sheet.dart';
 class BottomButtonRow extends StatelessWidget {
   final TallyCounter tallyCounter;
   final Function backgroundColorAnimation;
+
   const BottomButtonRow({
-    Key? key,
+    super.key,
     required this.backgroundColorAnimation,
     required this.tallyCounter,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

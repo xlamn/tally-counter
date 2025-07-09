@@ -12,12 +12,12 @@ class FormDropdownField extends StatefulWidget {
   final TallyGroupController controller;
 
   const FormDropdownField({
-    Key? key,
+    super.key,
     required this.title,
     required this.dropdownItems,
     required this.controller,
     this.length,
-  }) : super(key: key);
+  });
 
   @override
   State<FormDropdownField> createState() => _FormDropdownFieldState();
@@ -57,7 +57,7 @@ class _FormDropdownFieldState extends State<FormDropdownField> {
                     icon: FaIcon(
                       FontAwesomeIcons.trashCan,
                       size: SizeConstants.normalLarger,
-                      color: Colors.red.withOpacity(0.5),
+                      color: Colors.red.withValues(alpha: 0.5),
                     ),
                     onPressed: () => {
                           setState(() {
@@ -71,7 +71,7 @@ class _FormDropdownFieldState extends State<FormDropdownField> {
                 ),
                 borderSide: const BorderSide(width: 0, style: BorderStyle.none),
               ),
-              fillColor: Theme.of(context).textTheme.bodySmall!.color!.withOpacity(0.05),
+              fillColor: Theme.of(context).textTheme.bodySmall!.color!.withValues(alpha: 0.05),
               filled: true,
             ),
             items: widget.dropdownItems.map((TallyGroup value) {

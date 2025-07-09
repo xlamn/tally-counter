@@ -8,11 +8,11 @@ class FormTextField extends StatefulWidget {
   final TextEditingController? textController;
 
   const FormTextField({
-    Key? key,
+    super.key,
     required this.title,
     this.length,
     this.textController,
-  }) : super(key: key);
+  });
 
   @override
   State<FormTextField> createState() => _FormTextFieldState();
@@ -50,7 +50,7 @@ class _FormTextFieldState extends State<FormTextField> {
                 ),
                 borderSide: const BorderSide(width: 0, style: BorderStyle.none),
               ),
-              fillColor: Theme.of(context).textTheme.bodySmall!.color!.withOpacity(0.05),
+              fillColor: Theme.of(context).textTheme.bodySmall!.color!.withValues(alpha: 0.05),
               filled: true,
             ),
           )

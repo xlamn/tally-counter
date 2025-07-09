@@ -8,18 +8,18 @@ class TallyCounterIconButton extends StatelessWidget {
   final double? iconSize;
 
   const TallyCounterIconButton({
-    Key? key,
+    super.key,
     required this.icon,
     required this.action,
     this.iconSize = SizeConstants.large,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
     return IconButton(
       iconSize: iconSize,
       icon: icon,
-      color: Theme.of(context).iconTheme.color!.withOpacity(0.5),
+      color: Theme.of(context).iconTheme.color!.withValues(alpha: 0.5),
       onPressed: action,
     );
   }

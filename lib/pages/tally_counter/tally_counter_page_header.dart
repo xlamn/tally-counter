@@ -13,9 +13,9 @@ class TallyCounterPageHeader extends StatelessWidget {
   final TallyCounter tallyCounter;
 
   const TallyCounterPageHeader({
-    Key? key,
+    super.key,
     required this.tallyCounter,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -106,7 +106,7 @@ class TallyCounterPageHeader extends StatelessWidget {
 class _HeaderTitle extends StatelessWidget {
   final TallyCounter tallyCounter;
 
-  const _HeaderTitle({Key? key, required this.tallyCounter}) : super(key: key);
+  const _HeaderTitle({required this.tallyCounter});
 
   @override
   Widget build(BuildContext context) {
@@ -119,7 +119,7 @@ class _HeaderTitle extends StatelessWidget {
             style: TextStyle(
               fontSize: 18,
               fontWeight: FontWeight.w500,
-              color: Theme.of(context).textTheme.headlineMedium!.color!.withOpacity(0.8),
+              color: Theme.of(context).textTheme.headlineMedium!.color!.withValues(alpha: 0.8),
             ),
           ),
         if (tallyCounter.group?.title != null)
@@ -127,7 +127,7 @@ class _HeaderTitle extends StatelessWidget {
             tallyCounter.group!.title,
             style: TextStyle(
               fontWeight: FontWeight.bold,
-              color: Theme.of(context).textTheme.headlineSmall!.color!.withOpacity(0.8),
+              color: Theme.of(context).textTheme.headlineSmall!.color!.withValues(alpha: 0.8),
             ),
           )
       ],

@@ -14,9 +14,9 @@ class TallyCounterItem extends StatelessWidget {
   final TallyCounter tallyCounter;
 
   const TallyCounterItem({
-    Key? key,
+    super.key,
     required this.tallyCounter,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +33,7 @@ class TallyCounterItem extends StatelessWidget {
           icon: FaIcon(
             FontAwesomeIcons.trash,
             size: SizeConstants.normal,
-            color: context.isDarkMode ? Colors.redAccent : Colors.red.withOpacity(0.8),
+            color: context.isDarkMode ? Colors.redAccent : Colors.red.withValues(alpha: 0.8),
           ),
           onTap: (context) => _onDelete(context),
           child: _CounterContainer(
@@ -44,7 +44,7 @@ class TallyCounterItem extends StatelessWidget {
                   color: Colors.red,
                   icon: FaIcon(
                     FontAwesomeIcons.arrowDown,
-                    color: context.isDarkMode ? Colors.redAccent : Colors.red.withOpacity(0.8),
+                    color: context.isDarkMode ? Colors.redAccent : Colors.red.withValues(alpha: 0.8),
                   ),
                   onPressed: () => _onPressed(context, isUp: false),
                 ),
@@ -96,7 +96,7 @@ class TallyCounterItem extends StatelessWidget {
 class _CounterContainer extends StatelessWidget {
   final Widget child;
 
-  const _CounterContainer({Key? key, required this.child}) : super(key: key);
+  const _CounterContainer({required this.child});
 
   @override
   Widget build(BuildContext context) {
@@ -107,7 +107,7 @@ class _CounterContainer extends StatelessWidget {
         color: context.isDarkMode ? Colors.grey[600] : Colors.grey[100],
         boxShadow: [
           BoxShadow(
-            color: Theme.of(context).shadowColor.withOpacity(0.1),
+            color: Theme.of(context).shadowColor.withValues(alpha: 0.1),
             blurRadius: 5,
             offset: const Offset(
               0,
@@ -125,8 +125,10 @@ class _CounterContainer extends StatelessWidget {
 }
 
 class _CounterInfo extends StatelessWidget {
+
   final TallyCounter tallyCounter;
-  const _CounterInfo({Key? key, required this.tallyCounter}) : super(key: key);
+
+  const _CounterInfo({required this.tallyCounter});
 
   @override
   Widget build(BuildContext context) {

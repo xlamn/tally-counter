@@ -9,7 +9,8 @@ import '../../helper/helper.dart';
 import '../../widgets/widgets.dart';
 
 class TallyCounterSettingsPage extends StatelessWidget {
-  const TallyCounterSettingsPage({Key? key}) : super(key: key);
+  
+  const TallyCounterSettingsPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -41,7 +42,7 @@ class TallyCounterSettingsPage extends StatelessWidget {
                   valueController: PageConstants.stepController,
                 ),
                 FormDropdownField(
-                  title: context.local.group,
+                  title: context.local.group.toCapitalized(),
                   dropdownItems: BlocProvider.of<TallyGroupCubit>(context).state.tallyGroups,
                   controller: PageConstants.groupController,
                 ),
@@ -77,7 +78,7 @@ class TallyCounterSettingsPage extends StatelessWidget {
 class _DeleteButton extends StatelessWidget {
   final TallyCounterState state;
 
-  const _DeleteButton({Key? key, required this.state}) : super(key: key);
+  const _DeleteButton({required this.state});
 
   @override
   Widget build(BuildContext context) {
@@ -90,7 +91,7 @@ class _DeleteButton extends StatelessWidget {
           horizontal: SizeConstants.large,
         ),
         decoration: BoxDecoration(
-          color: Colors.red.withOpacity(0.1),
+          color: Colors.red.withValues(alpha: 0.1),
           borderRadius: BorderRadius.circular(
             RadiusConstants.large,
           ),

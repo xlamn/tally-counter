@@ -11,11 +11,11 @@ class FormValueField extends StatefulWidget {
   final TextEditingController? valueController;
 
   const FormValueField({
-    Key? key,
+    super.key,
     required this.title,
     this.length,
     this.valueController,
-  }) : super(key: key);
+  });
 
   @override
   State<FormValueField> createState() => _FormValueFieldState();
@@ -59,7 +59,7 @@ class _FormValueFieldState extends State<FormValueField> {
                     ),
                     borderSide: const BorderSide(width: 0, style: BorderStyle.none),
                   ),
-                  fillColor: Theme.of(context).textTheme.bodySmall!.color!.withOpacity(0.05),
+                  fillColor: Theme.of(context).textTheme.bodySmall!.color!.withValues(alpha: 0.05),
                   filled: true,
                 ),
               ),
@@ -74,7 +74,7 @@ class _FormValueFieldState extends State<FormValueField> {
                       color: Colors.red,
                       icon: FaIcon(
                         FontAwesomeIcons.arrowDown,
-                        color: Colors.red.withOpacity(0.8),
+                        color: Colors.red.withValues(alpha: 0.8),
                       ),
                       onPressed: () => _onPressed(isUp: false),
                     ),

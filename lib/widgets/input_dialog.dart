@@ -41,7 +41,7 @@ void showInputDialog(
                   ),
                   borderSide: const BorderSide(width: 0, style: BorderStyle.none),
                 ),
-                fillColor: Theme.of(context).textTheme.bodySmall!.color!.withOpacity(0.05),
+                fillColor: Theme.of(context).textTheme.bodySmall!.color!.withValues(alpha: 0.05),
                 filled: true,
               ),
             ),

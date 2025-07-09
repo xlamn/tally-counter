@@ -14,8 +14,8 @@ import 'tally_counters_settings_page.dart';
 
 class TallyCountersOverViewPage extends StatelessWidget {
   const TallyCountersOverViewPage({
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -157,8 +157,10 @@ class TallyCountersOverViewPage extends StatelessWidget {
 }
 
 class _ViewTallyGroupsButton extends StatelessWidget {
+
   final Color? color;
-  const _ViewTallyGroupsButton({Key? key, required this.color}) : super(key: key);
+  
+  const _ViewTallyGroupsButton({required this.color});
 
   @override
   Widget build(BuildContext context) {

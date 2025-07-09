@@ -8,9 +8,10 @@ import 'bottom_button_row.dart';
 import 'tally_counter_page_header.dart';
 
 class TallyCounterPage extends StatefulWidget {
+
   const TallyCounterPage({
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   State<TallyCounterPage> createState() => _TallyCounterPageState();
@@ -101,7 +102,7 @@ class _TallyCounterPageState extends State<TallyCounterPage> with TickerProvider
         return Colors.green;
 
       case TallyCounterAction.decrease:
-        return Colors.red.withOpacity(0.8);
+        return Colors.red.withValues(alpha: 0.8);
 
       case TallyCounterAction.reset:
         return Colors.yellow;

@@ -14,9 +14,9 @@ class TallyGroupItem extends StatelessWidget {
   final TallyGroup tallyGroup;
 
   const TallyGroupItem({
-    Key? key,
+    super.key,
     required this.tallyGroup,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +32,7 @@ class TallyGroupItem extends StatelessWidget {
           icon: FaIcon(
             FontAwesomeIcons.trash,
             size: SizeConstants.normal,
-            color: context.isDarkMode ? Colors.redAccent : Colors.red.withOpacity(0.8),
+            color: context.isDarkMode ? Colors.redAccent : Colors.red.withValues(alpha: 0.8),
           ),
           color: Colors.red,
           onTap: (context) => Slidable.of(context)?.dismiss(
@@ -74,7 +74,7 @@ class _GroupContainer extends StatelessWidget {
   final Widget child;
   final Color? color;
 
-  const _GroupContainer({Key? key, required this.child, this.color}) : super(key: key);
+  const _GroupContainer({required this.child, this.color});
 
   @override
   Widget build(BuildContext context) {
@@ -85,7 +85,7 @@ class _GroupContainer extends StatelessWidget {
           color: _getContainerColor(context),
           boxShadow: [
             BoxShadow(
-              color: Theme.of(context).shadowColor.withOpacity(0.1),
+              color: Theme.of(context).shadowColor.withValues(alpha: 0.1),
               blurRadius: 5,
               offset: const Offset(
                 0,
@@ -100,7 +100,7 @@ class _GroupContainer extends StatelessWidget {
 
   Color? _getContainerColor(BuildContext context) {
     if (color != null) {
-      return color!.withOpacity(0.9);
+      return color!.withValues(alpha: 0.9);
     } else {
       return context.isDarkMode ? Colors.grey[600] : Colors.grey[100];
     }
@@ -108,8 +108,10 @@ class _GroupContainer extends StatelessWidget {
 }
 
 class _GroupInfo extends StatelessWidget {
+
   final TallyGroup tallyGroup;
-  const _GroupInfo({Key? key, required this.tallyGroup}) : super(key: key);
+
+  const _GroupInfo({required this.tallyGroup});
 
   @override
   Widget build(BuildContext context) {
@@ -144,7 +146,7 @@ class _GroupInfo extends StatelessWidget {
                 fontSize: 14,
                 color: tallyGroup.color != null
                     ? Colors.white
-                    : Theme.of(context).textTheme.headlineSmall!.color!.withOpacity(0.8),
+                    : Theme.of(context).textTheme.headlineSmall!.color!.withValues(alpha: 0.8),
               ),
             ),
           )
